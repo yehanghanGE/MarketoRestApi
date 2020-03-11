@@ -1,128 +1,121 @@
 ﻿using MarketoRestApiLibrary.Request;
 using Newtonsoft.Json;
+using RestSharp;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace MarketoRestApiLibrary.Service
 {
     public static class HttpProcessor
     {
-        public static string GetFiles(GetFilesRequest getFilesRequest)
+        public static async Task<string> GetFiles(GetFilesRequest request)
         {
             var qs = HttpUtility.ParseQueryString(string.Empty);
-            qs.Add("access_token", getFilesRequest.Token);
-            if (getFilesRequest.Folder != null)
+            qs.Add("access_token", request.Token);
+            if (request.Folder != null)
             {
-                qs.Add("folder", JsonConvert.SerializeObject(getFilesRequest.Folder));
+                qs.Add("folder", JsonConvert.SerializeObject(request.Folder));
             }
-            if (getFilesRequest.Offset > 0)
+            if (request.Offset > 0)
             {
-                qs.Add("offset", getFilesRequest.Offset.ToString());
+                qs.Add("offset", request.Offset.ToString());
             }
-            if (getFilesRequest.MaxReturn > 0)
+            if (request.MaxReturn > 0)
             {
-                qs.Add("maxReturn", getFilesRequest.MaxReturn.ToString());
+                qs.Add("maxReturn", request.MaxReturn.ToString());
             }
-            string url = getFilesRequest.Host + "/rest/asset/v1/files.json?" + qs.ToString();
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.ContentType = "application/json";
-            request.Accept = "application/json";
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream resStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(resStream);
-            return reader.ReadToEnd();
+            string url = request.Host + "/rest/asset/v1/files.json?" + qs.ToString();
+            var client = new HttpClient();
+            var response = await client.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+
+            string content = await response.Content.ReadAsStringAsync();
+            return content;
+
         }
 
-        public static string GetFolders(GetFoldersRequest getFoldersRequest)
+        public static async Task<string> GetFolders(GetFoldersRequest request)
         {
             var qs = HttpUtility.ParseQueryString(string.Empty);
-            qs.Add("access_token", getFoldersRequest.Token);
-            qs.Add("root", JsonConvert.SerializeObject(getFoldersRequest.Root));
-            if (getFoldersRequest.Offset > 0)
+            qs.Add("access_token", request.Token);
+            qs.Add("root", JsonConvert.SerializeObject(request.Root));
+            if (request.Offset > 0)
             {
-                qs.Add("offset", getFoldersRequest.Offset.ToString());
+                qs.Add("offset", request.Offset.ToString());
             }
-            if (getFoldersRequest.MaxDepth > 0)
+            if (request.MaxDepth > 0)
             {
-                qs.Add("maxDepth", getFoldersRequest.MaxDepth.ToString());
+                qs.Add("maxDepth", request.MaxDepth.ToString());
             }
-            if (getFoldersRequest.MaxReturn > 0)
+            if (request.MaxReturn > 0)
             {
-                qs.Add("maxReturn", getFoldersRequest.MaxReturn.ToString());
+                qs.Add("maxReturn", request.MaxReturn.ToString());
             }
-            if (getFoldersRequest.WorkSpace != null)
+            if (request.WorkSpace != null)
             {
-                qs.Add("workSpace", getFoldersRequest.WorkSpace);
+                qs.Add("workSpace", request.WorkSpace);
             }
-            String url = getFoldersRequest.Host + "/rest/asset/v1/folders.json?" + qs.ToString();
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.ContentType = "application/json";
-            request.Accept = "application/json";
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream resStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(resStream);
-            return reader.ReadToEnd();
+            String url = request.Host + "/rest/asset/v1/folders.json?" + qs.ToString();
+            var client = new HttpClient();
+            var response = await client.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+
+            string content = await response.Content.ReadAsStringAsync();
+            return content;
         }
 
-        public static string GetActivityTypes(BaseRequest getActivityTypesRequest)
+        public static async Task<string> GetActivityTypes(BaseRequest request)
         {
-            string url = getActivityTypesRequest.Host + "/rest/v1/activities/types.json?access_token=" + getActivityTypesRequest.Token;
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.ContentType = "application/json";
-            request.Accept = "application/json";
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream resStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(resStream);
-            return reader.ReadToEnd();
+            string url = request.Host + "/rest/v1/activities/types.json?access_token=" + request.Token;
+            var client = new HttpClient();
+            var response = await client.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+
+            string content = await response.Content.ReadAsStringAsync();
+            return content;
         }
 
-        public static string ListCustomObjects(ListCustomObjectsRequest listCustomObjectsRequest)
+        public static async Task<string> GetFolderByName(GetFolderByNameRequest request)
         {
             var qs = HttpUtility.ParseQueryString(string.Empty);
-            qs.Add("access_token", listCustomObjectsRequest.Token);
-            if (listCustomObjectsRequest.Names != null)
+            qs.Add("access_token", request.Token);
+            qs.Add("name", request.Name);
+            if (request.Type != null)
             {
-                qs.Add("names", Helper.CsvString(listCustomObjectsRequest.Names));
+                qs.Add("type", request.Type);
             }
-            String url = listCustomObjectsRequest.Host + "/rest/v1/customobjects.json?" + qs.ToString();
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.ContentType = "application/json";
-            request.Accept = "application/json";
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream resStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(resStream);
-            return reader.ReadToEnd();
+            if (request.Root != null)
+            {
+                qs.Add("root", JsonConvert.SerializeObject(request.Root));
+            }
+            if (request.WorkSpace != null)
+            {
+                qs.Add("workSpace", request.WorkSpace);
+            }
+            string url = request.Host + "/rest/asset/v1/folder/byName.json?" + qs.ToString();
+            var client = new HttpClient();
+            var response = await client.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+
+            string content = await response.Content.ReadAsStringAsync();
+            return content;
         }
 
-        public static string GetFolderByName(GetFolderByNameRequest getFolderByNameRequest)
+        public static async Task<string> GetSmartList(BaseRequest request)
         {
+            string url = request.Host + "/rest/asset/v1/staticLists.json?access_token=" + request.Token;
 
-            var qs = HttpUtility.ParseQueryString(string.Empty);
-            qs.Add("access_token", getFolderByNameRequest.Token);
-            qs.Add("name", getFolderByNameRequest.Name);
-            if (getFolderByNameRequest.Type != null)
-            {
-                qs.Add("type", getFolderByNameRequest.Type);
-            }
-            if (getFolderByNameRequest.Root != null)
-            {
-                qs.Add("root", JsonConvert.SerializeObject(getFolderByNameRequest.Root));
-            }
-            if (getFolderByNameRequest.WorkSpace != null)
-            {
-                qs.Add("workSpace", getFolderByNameRequest.WorkSpace);
-            }
-            String url = getFolderByNameRequest.Host + "/rest/asset/v1/folder/byName.json?" + qs.ToString();
-            Console.Write(url);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.ContentType = "application/json";
-            request.Accept = "application/json";
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream resStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(resStream);
-            return reader.ReadToEnd();
+            var client = new HttpClient();
+            var response = await client.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+
+            string content = await response.Content.ReadAsStringAsync();
+            return content;
         }
     }
 }

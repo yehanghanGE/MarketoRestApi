@@ -49,13 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BulkActivityExport.cs" />
-    <Compile Include="BulkLeadsExport.cs" />
-    <Compile Include="GetSmartList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SendCartInfo.cs" />
-    <Compile Include="SyncCustomObjects.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
