@@ -5,7 +5,6 @@ using MarketoRestApiLibrary.Service;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MarketoApiLibrary
@@ -21,7 +20,7 @@ namespace MarketoApiLibrary
             Host = host;
             ClientId = clientId;
             ClientSecret = clientSecret;
-            Token = TokenProvider.GetToken(host, clientId, clientSecret);
+            Token = TokenProvider.GetTokenAsync(host, clientId, clientSecret).Result;
         }
         public async Task<string> GetSmartList()
         {
@@ -92,7 +91,7 @@ namespace MarketoApiLibrary
             if (ActivitiesHttpProcessor.GetJobStatus(request) == "Completed")
             {
                 Console.WriteLine("==========================Job Completed, Start to retrieving===============================");
-                string extractedData = ActivitiesHttpProcessor.RetrieveData(request);
+                string extractedData = ActivitiesHttpProcessor.Export(request).Result;
                 System.IO.File.WriteAllText(@"D:\activitity_results001.csv", extractedData);
                 Console.WriteLine("==========================Done!===============================");
                 Console.ReadKey();
