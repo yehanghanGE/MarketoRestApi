@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MarketoRestApiLibrary.Provider
 {
-    public static class TokenProvider
+    public class TokenProvider : ITokenProvider
     {
         /// <summary>
         /// Implemented using HttpClient
@@ -14,7 +14,7 @@ namespace MarketoRestApiLibrary.Provider
         /// <param name="clientId"></param>
         /// <param name="clientSecret"></param>
         /// <returns></returns>
-        public static async Task<string> GetTokenAsync(string host, string clientId, string clientSecret)
+        public async Task<string> GetTokenAsync(string host, string clientId, string clientSecret)
         {
             string url = host + "/identity/oauth/token?grant_type=client_credentials&client_id=" + clientId + "&client_secret=" + clientSecret;
 
