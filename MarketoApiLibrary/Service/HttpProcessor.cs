@@ -1,10 +1,6 @@
 ﻿using MarketoRestApiLibrary.Request;
 using Newtonsoft.Json;
-using RestSharp;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
@@ -15,28 +11,27 @@ namespace MarketoRestApiLibrary.Service
     {
         public static async Task<string> GetFiles(GetFilesRequest request)
         {
-            var qs = HttpUtility.ParseQueryString(string.Empty);
-            qs.Add("access_token", request.Token);
-            if (request.Folder != null)
-            {
-                qs.Add("folder", JsonConvert.SerializeObject(request.Folder));
-            }
-            if (request.Offset > 0)
-            {
-                qs.Add("offset", request.Offset.ToString());
-            }
-            if (request.MaxReturn > 0)
-            {
-                qs.Add("maxReturn", request.MaxReturn.ToString());
-            }
-            string url = request.Host + "/rest/asset/v1/files.json?" + qs.ToString();
-            var client = new HttpClient();
-            var response = await client.GetAsync(url);
-            response.EnsureSuccessStatusCode();
+            //var qs = HttpUtility.ParseQueryString(string.Empty);
+            //qs.Add("access_token", request.Token);
+            //if (request.Folder != null)
+            //{
+            //    qs.Add("folder", JsonConvert.SerializeObject(request.Folder));
+            //}
+            //if (request.Offset > 0)
+            //{
+            //    qs.Add("offset", request.Offset.ToString());
+            //}
+            //if (request.MaxReturn > 0)
+            //{
+            //    qs.Add("maxReturn", request.MaxReturn.ToString());
+            //}
+            //string url = request.Host + "/rest/asset/v1/files.json?" + qs.ToString();
+            //var client = new HttpClient();
+            //var response = await client.GetAsync(url);
+            //response.EnsureSuccessStatusCode();
 
-            string content = await response.Content.ReadAsStringAsync();
-            return content;
-
+            //string content = await response.Content.ReadAsStringAsync();
+            return "";
         }
 
         public static async Task<string> GetFolders(GetFoldersRequest request)
@@ -60,7 +55,7 @@ namespace MarketoRestApiLibrary.Service
             {
                 qs.Add("workSpace", request.WorkSpace);
             }
-            String url = request.Host + "/rest/asset/v1/folders.json?" + qs.ToString();
+            string url = request.Host + "/rest/asset/v1/folders.json?" + qs.ToString();
             var client = new HttpClient();
             var response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
