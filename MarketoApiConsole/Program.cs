@@ -31,10 +31,15 @@ namespace MarketoApiConsole
                 //                                  "47865","46098","52951","43462","52357","49792","48470",
                 //                                  "47202","54034","59952","65937","62541","59951","63661","66800"};
                 //var folderIds = new List<string> { "30844" };
-                var folderIds = new List<string> { "79047", "45169","48095","47968","54651","55105","54964",
-                                                    "55162","55158","55067","55072","50671","46406","49445",
-                                                    "62842","65113","49005","47462","52936","45603",
-                                                    "51337","44073"};
+                //var folderIds = new List<string> { "79047", "45169","48095","47968","54651","55105","54964",
+                //                                    "55162","55158","55067","55072","50671","46406","49445",
+                //                                    "62842","65113","49005","47462","52936","45603",
+                //                                    "51337","44073"};
+                // var folderIds = new List<string> { "77128", "76383" };
+                var folderIds = new List<string> { "76383", "30846", "56935", "75680", "67334", "69523", "39438",
+                                                    "35469", "47159","54738", "45192", "49518", "51397", "40497",
+                                                    "36037","49582","54150","37783","41502","44521","50537"};
+
 
                 DownFile(host, clientId, clientSecret, folderIds, @"D:\DownloadedImageFromMarketo");
             }
@@ -81,7 +86,6 @@ namespace MarketoApiConsole
             }
             Console.ReadKey();
         }
-
         private static void WriteFileToDisk(GetFilesResponse fileResult, string saveRootPath)
         {
             foreach (var file in fileResult?.Result)
