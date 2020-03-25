@@ -1,4 +1,5 @@
-﻿using MarketoRestApiLibrary.Request;
+﻿using MarketoRestApiLibrary.Model;
+using MarketoRestApiLibrary.Request;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
@@ -34,7 +35,7 @@ namespace MarketoRestApiLibrary.Service
             return "";
         }
 
-        public static async Task<string> GetFolders(GetFoldersRequest request)
+        public static async Task<GetFoldersResponse> GetFolders(GetFoldersRequest request)
         {
             var qs = HttpUtility.ParseQueryString(string.Empty);
             qs.Add("access_token", request.Token);
@@ -61,7 +62,7 @@ namespace MarketoRestApiLibrary.Service
             response.EnsureSuccessStatusCode();
 
             string content = await response.Content.ReadAsStringAsync();
-            return content;
+            return JsonConvert.DeserializeObject<GetFoldersResponse>(content);
         }
 
         public static async Task<string> GetActivityTypes(BaseRequest request)

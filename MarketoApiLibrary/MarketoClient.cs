@@ -1,5 +1,6 @@
 ﻿using MarketoApiLibrary.Request;
 using MarketoApiLibrary.Service;
+using MarketoRestApiLibrary.Model;
 using MarketoRestApiLibrary.Provider;
 using MarketoRestApiLibrary.Request;
 using MarketoRestApiLibrary.Service;
@@ -44,6 +45,14 @@ namespace MarketoApiLibrary
             var result = getSmartListRequest.Run<T>();
             return result;
         }
+
+        public Task<GetFoldersResponse> GetFolders(bool isJson)
+        {
+            var request = requestFactorty.CreateGetFoldersRequest(Host, Token);
+            var folders = HttpProcessor.GetFolders(request);
+            return folders;
+        }
+
         public void BulkExportLeads()
         {
             Console.WriteLine("============================Getting token==============================");

@@ -46,7 +46,7 @@ namespace MarketoRestApiLibrary.Provider
         public GetFoldersRequest CreateGetFoldersRequest(string host, string token)
         {
             Dictionary<string, dynamic> root = new Dictionary<string, dynamic>();
-            root.Add("id", 17445);
+            root.Add("id", 76383);
             root.Add("type", "folder");
 
             var getFoldersRequest = new GetFoldersRequest()
@@ -54,8 +54,8 @@ namespace MarketoRestApiLibrary.Provider
                 Host = host,
                 Token = token,
                 Offset = 0,
-                MaxDepth = 2,
-                MaxReturn = 30,
+                MaxDepth = 10,
+                MaxReturn = 200,
                 Root = root
                 //WorkSpace = "GL LS - Global Life Sciences"
             };
