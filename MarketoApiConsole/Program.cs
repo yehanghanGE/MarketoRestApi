@@ -5,6 +5,8 @@ using MarketoApiLibrary;
 using MarketoRestApiLibrary.Model;
 using System.IO;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MarketoApiConsole
 {
@@ -36,12 +38,14 @@ namespace MarketoApiConsole
                 //                                    "62842","65113","49005","47462","52936","45603",
                 //                                    "51337","44073"};
                 // var folderIds = new List<string> { "77128", "76383" };
-                var folderIds = new List<string> { "76383", "30846", "56935", "75680", "67334", "69523", "39438",
-                                                    "35469", "47159","54738", "45192", "49518", "51397", "40497",
-                                                    "36037","49582","54150","37783","41502","44521","50537"};
+                //var folderIds = new List<string> { "76383", "30846", "56935", "75680", "67334", "69523", "39438",
+                //                                    "35469", "47159","54738", "45192", "49518", "51397", "40497",
+                //                                    "36037","49582","54150","37783","41502","44521","50537"};
 
-
+                //DownFile(host, clientId, clientSecret, folderIds, @"D:\DownloadedImageFromMarketo");
+                var folderIds = GetSubFolderIDs(host, clientId, clientSecret, "76383");
                 DownFile(host, clientId, clientSecret, folderIds, @"D:\DownloadedImageFromMarketo");
+
             }
             catch (Exception ex)
             {
@@ -55,6 +59,25 @@ namespace MarketoApiConsole
             var result = client.GetSmartList<GetSmartListResponse>(isJson);
             Console.WriteLine(result);
             Console.ReadKey();
+        }
+
+        private static List<string> GetSubFolderIDs(string host, string clientId, string clientSecret, string rootFolderId)
+        {
+            var client = new MarketoClient(host, clientId, clientSecret);
+            bool isJson = true;
+            var result = client.GetFolders(isJson).Result;
+            var folderIDs = new List<string>();
+            if (result.Result != null)
+            {
+                foreach (var folder in result.Result)
+                {
+                    folderIDs.Add(folder.Id.ToString());
+                }
+            }
+            return folderIDs;
+            //string prettyJson = JToken.Parse(result).ToString(Formatting.Indented);
+            //Console.WriteLine(prettyJson);
+            //Console.ReadKey();
         }
         private static void DownFile(string host, string clientId, string clientSecret, List<string> folderIds, string savePath)
         {

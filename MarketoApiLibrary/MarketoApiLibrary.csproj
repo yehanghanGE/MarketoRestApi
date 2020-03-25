@@ -49,7 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="Model\Error.cs" />
+    <Compile Include="Model\GetFoldersResponse.cs" />
     <Compile Include="Model\GetSmartListResponse.cs" />
+    <Compile Include="Model\IBaseMarketoResponse.cs" />
     <Compile Include="Model\MarketoSmartList.cs" />
     <Compile Include="Request\BaseGetRequest.cs" />
     <Compile Include="Request\GetSmartListRequest.cs" />
@@ -58,7 +61,6 @@
     <Compile Include="Model\ApiConfig.cs" />
     <Compile Include="Model\BaseMarketoResponse.cs" />
     <Compile Include="Model\GetFilesResponse.cs" />
-    <Compile Include="Model\IBaseMarketoResponse.cs" />
     <Compile Include="Model\MarketoFile.cs" />
     <Compile Include="Model\MarketoFolder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
