@@ -5,16 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MarketoUI"
         mc:Ignorable="d"
-        Title="MarketoApiUI" Height="500" Width="700" WindowStartupLocation="CenterScreen">
-    <Border Padding="3" Background="Blue">
+        Title="{Binding Title}" Height="500" Width="700" WindowStartupLocation="CenterScreen">
+    <Border Padding="3">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" Grid.Row="0">
+                <Label x:Name="label" Content="Foler ID(s):" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+                <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding FolderIDs}" VerticalAlignment="Center" Width="650"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Row="1">
+                <Label  Content="Save Path:" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+                <TextBox  HorizontalAlignment="Left" Height="23" Margin="10,0,0,10" TextWrapping="Wrap" Text="{Binding SavePath}" VerticalAlignment="Center" Width="650"/>
+            </StackPanel>
+
+            <Button x:Name="start_button" Grid.Row="3" Command="{Binding StartCommand}" Content="Start" Width="100" HorizontalAlignment="Center" />
+
+
+            <StackPanel Grid.Row="4">
+                <TextBlock x:Name="status_textBlock" HorizontalAlignment="Left" Margin="75,5,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Status}" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF086C15"/>
+            </StackPanel>
+
 
         </Grid>
     </Border>
