@@ -46,9 +46,9 @@ namespace MarketoApiLibrary
             return result;
         }
 
-        public Task<GetFoldersResponse> GetFolders(bool isJson)
+        public Task<GetFoldersResponse> GetFolders(string rootFolderId)
         {
-            var request = requestFactorty.CreateGetFoldersRequest(Host, Token);
+            var request = requestFactorty.CreateGetFoldersRequest(Host, Token, rootFolderId);
             var folders = HttpProcessor.GetFolders(request);
             return folders;
         }
@@ -87,32 +87,13 @@ namespace MarketoApiLibrary
                 Console.ReadKey();
             }
         }
-        public T GetFiles<T>(string folderId, string offSet)
+
+        public Task<GetFilesResponse> GetFiles(string folderId, string offSet)
         {
-            Dictionary<string, dynamic> folder = new Dictionary<string, dynamic>();
-            folder.Add("id", folderId);
-            folder.Add("type", "Folder");
-            var qs = HttpUtility.ParseQueryString(string.Empty);
-            qs.Add("access_token", Token);
-            if (folder != null)
-            {
-                qs.Add("folder", JsonConvert.SerializeObject(folder));
-            }
-            //if (request.Offset > 0)
-            //{
-            qs.Add("offset", offSet);
-            //}
-            //if (request.MaxReturn > 0)
-            //{
-            qs.Add("maxReturn", "200");
-            //}
-            string url = Host + "/rest/asset/v1/files.json?" + qs.ToString();
-            var getFilesRequest = new GetFilesRequest()
-            {
-                Url = url
-            };
-            var result = getFilesRequest.Run<T>();
+            var request = requestFactorty.CreateGetFilesRequest(Host, Token, folderId);
+            var result = HttpProcessor.GetFiles(request);
             return result;
+
         }
         public void BulkExportActivities()
         {

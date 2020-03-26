@@ -9,22 +9,22 @@ namespace MarketoRestApiLibrary.Provider
         {
 
         }
-        //public GetFilesRequest CreateGetFilesRequest(string host, string token)
-        //{
-        //    Dictionary<string, dynamic> folder = new Dictionary<string, dynamic>();
-        //    folder.Add("id", 29514);
-        //    folder.Add("type", "Folder");
-        //    var getFilesRequest = new GetFilesRequest()
-        //    {
-        //        Host = host,
-        //        Token = token,
-        //        //Offset = 10,
-        //        //MaxReturn = 3,
-        //        Folder = folder
-        //    };
+        public GetFilesRequest CreateGetFilesRequest(string host, string token, string folderId, int offSet = 0, int maxReturn = 200)
+        {
+            Dictionary<string, dynamic> folder = new Dictionary<string, dynamic>();
+            folder.Add("id", folderId);
+            folder.Add("type", "Folder");
+            var getFilesRequest = new GetFilesRequest()
+            {
+                Host = host,
+                Token = token,
+                Offset = offSet,
+                MaxReturn = maxReturn,
+                Folder = folder
+            };
 
-        //    return getFilesRequest;
-        //}
+            return getFilesRequest;
+        }
         public GetFolderByNameRequest CreateGetFolderByNameRequest(string host, string token)
         {
             Dictionary<string, dynamic> root = new Dictionary<string, dynamic>();
@@ -36,17 +36,17 @@ namespace MarketoRestApiLibrary.Provider
                 Host = host,
                 Token = token,
                 Name = "LATAM", //required
-                //Type = "Folder",//optional
+                Type = "Folder",//optional
                 //WorkSpace = "GL LS - Global Life Sciences",
                 Root = null     //optional
             };
 
             return getFolderByNameRequest;
         }
-        public GetFoldersRequest CreateGetFoldersRequest(string host, string token)
+        public GetFoldersRequest CreateGetFoldersRequest(string host, string token, string rootFolderId)
         {
             Dictionary<string, dynamic> root = new Dictionary<string, dynamic>();
-            root.Add("id", 76383);
+            root.Add("id", rootFolderId);
             root.Add("type", "folder");
 
             var getFoldersRequest = new GetFoldersRequest()

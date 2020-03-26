@@ -6,7 +6,11 @@
         xmlns:local="clr-namespace:MarketoUI"
         mc:Ignorable="d"
         Title="{Binding Title}" Height="500" Width="700" WindowStartupLocation="CenterScreen">
-    <Border Padding="3">
+    <Window.Resources>
+        <Color x:Key="Color1">#FF075861</Color>
+        <Color x:Key="Color2">Black</Color>
+    </Window.Resources>
+    <Border Padding="5" BorderThickness="3" Background="#FF01897A">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
@@ -19,11 +23,11 @@
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical" Grid.Row="0">
                 <Label x:Name="label" Content="Foler ID(s):" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
-                <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding FolderIDs}" VerticalAlignment="Center" Width="650"/>
+                <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" Text="{Binding FolderIDs}" VerticalAlignment="Center" Width="650"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Grid.Row="1">
                 <Label  Content="Save Path:" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
-                <TextBox  HorizontalAlignment="Left" Height="23" Margin="10,0,0,10" TextWrapping="Wrap" Text="{Binding SavePath}" VerticalAlignment="Center" Width="650"/>
+                <TextBox  HorizontalAlignment="Left" Height="23" Margin="10,0,0,10" TextWrapping="Wrap" Text="{Binding SavePath}" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="650"/>
             </StackPanel>
 
             <Button x:Name="start_button" Grid.Row="3" Command="{Binding StartCommand}" Content="Start" Width="100" HorizontalAlignment="Center" />
@@ -32,7 +36,7 @@
             <StackPanel Grid.Row="4">
                 <TextBlock x:Name="status_textBlock" HorizontalAlignment="Left" Margin="75,5,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Status}" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF086C15"/>
             </StackPanel>
-
+            <CheckBox x:Name="hasubfolders_checkBox" IsChecked="{Binding HasSubFolders}" Content="HasSubfolders" HorizontalAlignment="Center"  Grid.Row="2" VerticalAlignment="Center"/>
 
         </Grid>
     </Border>

@@ -12,16 +12,15 @@ using System.Windows;
 
 namespace MarketoUI.ViewModel
 {
-
     public class MainViewModel : ViewModelBase
     {
-
         public MainViewModel()
         {
             this.Title = "MarketApiUI";
             this.StartCommand = new RelayCommand(Start);
         }
 
+        #region properties
         private string title;
 
         public string Title
@@ -70,10 +69,24 @@ namespace MarketoUI.ViewModel
             }
         }
 
+        private bool hasSubFolders;
 
+        public bool HasSubFolders
+        {
+            get { return hasSubFolders; }
+            set
+            {
+                hasSubFolders = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
 
+        #region commands
         public RelayCommand StartCommand { get; set; }
+        #endregion
 
+        #region methods
         private void Start()
         {
             if (string.IsNullOrEmpty(FolderIDs) || string.IsNullOrEmpty(SavePath))
@@ -86,22 +99,32 @@ namespace MarketoUI.ViewModel
             var host = apiConfig.Host;
             var clientId = apiConfig.ClientId;
             var clientSecret = apiConfig.ClientSecret;
+
             var folderIds = new List<string>();
             folderIds.Add(FolderIDs);
 
             var task = Task.Run(() =>
             {
-                DownFile(host, clientId, clientSecret, folderIds, SavePath);
+                DownFile(host, clientId, clientSecret, FolderIDs, SavePath);
             });
         }
-
-        private void DownFile(string host, string clientId, string clientSecret, List<string> folderIds, string savePath)
+        private void DownFile(string host, string clientId, string clientSecret, string folderId, string savePath)
         {
+            List<string> folderIds = new List<string>();
+            if (HasSubFolders)
+            {
+                folderIds = GetSubFolderIDs(host, clientId, clientSecret, folderId);
+            }
+            else
+            {
+                folderIds.Add(folderId);
+            }
+
             var client = new MarketoClient(host, clientId, clientSecret);
-            foreach (var folderId in folderIds)
+            foreach (var id in folderIds)
             {
                 this.Status = "Reading folder " + folderId + "...";
-                GetFilesResponse fileResult = client.GetFiles<GetFilesResponse>(folderId, "0");
+                GetFilesResponse fileResult = client.GetFiles(id, "0").Result;
                 var saveRootPath = Path.Combine(savePath, folderId);
 
                 if (fileResult?.Result != null)
@@ -115,7 +138,7 @@ namespace MarketoUI.ViewModel
                     if (fileResult.Result.Count >= 200)
                     {
                         var client200 = new MarketoClient(host, clientId, clientSecret);
-                        GetFilesResponse fileResult200 = client200.GetFiles<GetFilesResponse>(folderId, "200");
+                        GetFilesResponse fileResult200 = client200.GetFiles(id, "200").Result;
                         if (fileResult200?.Result != null)
                         {
                             WriteFileToDisk(fileResult200, saveRootPath);
@@ -136,5 +159,21 @@ namespace MarketoUI.ViewModel
                 Console.WriteLine(file?.Url);
             }
         }
+        private List<string> GetSubFolderIDs(string host, string clientId, string clientSecret, string rootFolderId)
+        {
+            var client = new MarketoClient(host, clientId, clientSecret);
+            var result = client.GetFolders(rootFolderId).Result;
+            var folderIDs = new List<string>();
+            if (result.Result != null)
+            {
+                foreach (var folder in result.Result)
+                {
+                    folderIDs.Add(folder.Id.ToString());
+                }
+            }
+            return folderIDs;
+            //string prettyJson = JToken.Parse(result).ToString(Formatting.Indented);
+        }
+        #endregion
     }
 }
