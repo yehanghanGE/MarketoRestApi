@@ -10,29 +10,29 @@ namespace MarketoRestApiLibrary.Service
 {
     public static class HttpProcessor
     {
-        public static async Task<string> GetFiles(GetFilesRequest request)
+        public static async Task<GetFilesResponse> GetFiles(GetFilesRequest request)
         {
-            //var qs = HttpUtility.ParseQueryString(string.Empty);
-            //qs.Add("access_token", request.Token);
-            //if (request.Folder != null)
-            //{
-            //    qs.Add("folder", JsonConvert.SerializeObject(request.Folder));
-            //}
-            //if (request.Offset > 0)
-            //{
-            //    qs.Add("offset", request.Offset.ToString());
-            //}
-            //if (request.MaxReturn > 0)
-            //{
-            //    qs.Add("maxReturn", request.MaxReturn.ToString());
-            //}
-            //string url = request.Host + "/rest/asset/v1/files.json?" + qs.ToString();
-            //var client = new HttpClient();
-            //var response = await client.GetAsync(url);
-            //response.EnsureSuccessStatusCode();
+            var qs = HttpUtility.ParseQueryString(string.Empty);
+            qs.Add("access_token", request.Token);
+            if (request.Folder != null)
+            {
+                qs.Add("folder", JsonConvert.SerializeObject(request.Folder));
+            }
+            if (request.Offset > 0)
+            {
+                qs.Add("offset", request.Offset.ToString());
+            }
+            if (request.MaxReturn > 0)
+            {
+                qs.Add("maxReturn", request.MaxReturn.ToString());
+            }
+            string url = request.Host + "/rest/asset/v1/files.json?" + qs.ToString();
+            var client = new HttpClient();
+            var response = await client.GetAsync(url);
+            response.EnsureSuccessStatusCode();
 
-            //string content = await response.Content.ReadAsStringAsync();
-            return "";
+            string content = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<GetFilesResponse>(content);
         }
 
         public static async Task<GetFoldersResponse> GetFolders(GetFoldersRequest request)

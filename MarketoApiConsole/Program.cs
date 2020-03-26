@@ -64,8 +64,7 @@ namespace MarketoApiConsole
         private static List<string> GetSubFolderIDs(string host, string clientId, string clientSecret, string rootFolderId)
         {
             var client = new MarketoClient(host, clientId, clientSecret);
-            bool isJson = true;
-            var result = client.GetFolders(isJson).Result;
+            var result = client.GetFolders(rootFolderId).Result;
             var folderIDs = new List<string>();
             if (result.Result != null)
             {
@@ -76,8 +75,6 @@ namespace MarketoApiConsole
             }
             return folderIDs;
             //string prettyJson = JToken.Parse(result).ToString(Formatting.Indented);
-            //Console.WriteLine(prettyJson);
-            //Console.ReadKey();
         }
         private static void DownFile(string host, string clientId, string clientSecret, List<string> folderIds, string savePath)
         {
@@ -85,7 +82,7 @@ namespace MarketoApiConsole
             foreach (var folderId in folderIds)
             {
                 Console.WriteLine(folderId);
-                GetFilesResponse fileResult = client.GetFiles<GetFilesResponse>(folderId, "0");
+                GetFilesResponse fileResult = client.GetFiles(folderId, "0").Result;
                 var saveRootPath = Path.Combine(savePath, folderId);
 
                 if (fileResult?.Result != null)
@@ -98,7 +95,7 @@ namespace MarketoApiConsole
                     if (fileResult.Result.Count >= 200)
                     {
                         var client200 = new MarketoClient(host, clientId, clientSecret);
-                        GetFilesResponse fileResult200 = client200.GetFiles<GetFilesResponse>(folderId, "200");
+                        GetFilesResponse fileResult200 = client200.GetFiles(folderId, "200").Result;
                         if (fileResult200?.Result != null)
                         {
                             WriteFileToDisk(fileResult200, saveRootPath);
