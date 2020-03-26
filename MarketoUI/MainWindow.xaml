@@ -10,8 +10,9 @@
         <Color x:Key="Color1">#FF075861</Color>
         <Color x:Key="Color2">Black</Color>
     </Window.Resources>
-    <Border Padding="5" BorderThickness="3" Background="#FF01897A">
-        <Grid>
+    <!--Background="#FF01897A"-->
+    <Border Padding="5" BorderThickness="3" >
+        <Grid Background="#FF01897A">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
@@ -26,17 +27,22 @@
                 <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" Text="{Binding FolderIDs}" VerticalAlignment="Center" Width="650"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Grid.Row="1">
-                <Label  Content="Save Path:" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
-                <TextBox  HorizontalAlignment="Left" Height="23" Margin="10,0,0,10" TextWrapping="Wrap" Text="{Binding SavePath}" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="650"/>
+                <Label  Content="Save Path:(double click to select)" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+                <TextBox x:Name="savepath_textbox" HorizontalAlignment="Left" Height="23" Margin="10,0,0,10" TextWrapping="Wrap" Text="{Binding SavePath}" VerticalContentAlignment="Center" 
+                          VerticalAlignment="Center" Width="650" MouseDoubleClick="TextBox_MouseDoubleClick"/>
             </StackPanel>
 
             <Button x:Name="start_button" Grid.Row="3" Command="{Binding StartCommand}" Content="Start" Width="100" HorizontalAlignment="Center" />
 
+            <ScrollViewer Grid.Row="6" VerticalScrollBarVisibility="Auto">
+                <TextBlock x:Name="status_textBlock" HorizontalAlignment="Stretch" Margin="10,10,10,10" TextWrapping="Wrap" Text="{Binding Status}" 
+                            FontWeight="Bold" Foreground="Green" Background="Black"/>
+            </ScrollViewer>
 
-            <StackPanel Grid.Row="4">
-                <TextBlock x:Name="status_textBlock" HorizontalAlignment="Left" Margin="75,5,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Status}" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF086C15"/>
-            </StackPanel>
             <CheckBox x:Name="hasubfolders_checkBox" IsChecked="{Binding HasSubFolders}" Content="HasSubfolders" HorizontalAlignment="Center"  Grid.Row="2" VerticalAlignment="Center"/>
+
+            <!--<ListBox x:Name="status_listBox" VirtualizingStackPanel.IsVirtualizing="True" HorizontalAlignment="Center" Height="150" Width ="650" 
+                     Grid.Row="6" VerticalAlignment="Center" ItemsSource="{Binding Status}"/>-->
 
         </Grid>
     </Border>

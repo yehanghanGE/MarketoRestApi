@@ -14,5 +14,12 @@ namespace MarketoUI
             InitializeComponent();
             DataContext = new MainViewModel();
         }
+
+        private void TextBox_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var dialog = new System.Windows.Forms.FolderBrowserDialog();
+            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+            savepath_textbox.Text = dialog.SelectedPath;
+        }
     }
 }
