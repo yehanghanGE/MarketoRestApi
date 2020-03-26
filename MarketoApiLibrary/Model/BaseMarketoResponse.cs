@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MarketoRestApiLibrary.Model
 {
-    public class BaseMarketoResponse
+    public class BaseMarketoResponse : IBaseMarketoResponse
     {
         [JsonProperty("success")]
         public bool Success { get; set; }

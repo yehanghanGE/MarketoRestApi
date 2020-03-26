@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MarketoRestApiLibrary.Model
 {
-    public class GetFilesResponse : BaseMarketoResponse
+    public class GetSmartListResponse : BaseMarketoResponse
     {
         [JsonProperty("result")]
-        public List<MarketoFile> Result { get; set; }
+        public List<MarketoSmartList> Result { get; set; }
     }
 }

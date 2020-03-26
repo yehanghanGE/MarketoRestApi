@@ -1,10 +1,7 @@
-﻿using MarketoRestApiLibrary.Request;
+﻿using MarketoRestApiLibrary.Model;
+using MarketoRestApiLibrary.Request;
 using Newtonsoft.Json;
-using RestSharp;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
@@ -13,7 +10,7 @@ namespace MarketoRestApiLibrary.Service
 {
     public static class HttpProcessor
     {
-        public static async Task<string> GetFiles(GetFilesRequest request)
+        public static async Task<GetFilesResponse> GetFiles(GetFilesRequest request)
         {
             var qs = HttpUtility.ParseQueryString(string.Empty);
             qs.Add("access_token", request.Token);
@@ -35,11 +32,10 @@ namespace MarketoRestApiLibrary.Service
             response.EnsureSuccessStatusCode();
 
             string content = await response.Content.ReadAsStringAsync();
-            return content;
-
+            return JsonConvert.DeserializeObject<GetFilesResponse>(content);
         }
 
-        public static async Task<string> GetFolders(GetFoldersRequest request)
+        public static async Task<GetFoldersResponse> GetFolders(GetFoldersRequest request)
         {
             var qs = HttpUtility.ParseQueryString(string.Empty);
             qs.Add("access_token", request.Token);
@@ -60,13 +56,13 @@ namespace MarketoRestApiLibrary.Service
             {
                 qs.Add("workSpace", request.WorkSpace);
             }
-            String url = request.Host + "/rest/asset/v1/folders.json?" + qs.ToString();
+            string url = request.Host + "/rest/asset/v1/folders.json?" + qs.ToString();
             var client = new HttpClient();
             var response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
             string content = await response.Content.ReadAsStringAsync();
-            return content;
+            return JsonConvert.DeserializeObject<GetFoldersResponse>(content);
         }
 
         public static async Task<string> GetActivityTypes(BaseRequest request)
