@@ -4,22 +4,19 @@ using MarketoApiLibrary;
 using MarketoRestApiLibrary;
 using MarketoRestApiLibrary.Model;
 using MarketoRestApiLibrary.Provider;
-using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 
 namespace MarketoUI.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        public MainViewModel()
-        {
-            this.Title = "MarketApiUI";
-            this.StartCommand = new RelayCommand(Start);
-        }
 
+        //private static object _lock = new object();
         #region properties
         private string title;
 
@@ -82,6 +79,14 @@ namespace MarketoUI.ViewModel
         }
         #endregion
 
+        public MainViewModel()
+        {
+            this.Title = "MarketApiUI";
+            this.StartCommand = new RelayCommand(Start);
+            //Application.Current.Dispatcher.Invoke(() => BindingOperations.EnableCollectionSynchronization(Status, _lock));
+            //BindingOperations.EnableCollectionSynchronization(Status, _lock);
+        }
+
         #region commands
         public RelayCommand StartCommand { get; set; }
         #endregion
@@ -91,9 +96,10 @@ namespace MarketoUI.ViewModel
         {
             if (string.IsNullOrEmpty(FolderIDs) || string.IsNullOrEmpty(SavePath))
             {
-                MessageBox.Show("FolderID or SavePath is invalid!");
+                this.Status = "FolderID or SavePath is invalid!";
                 return;
             }
+
             this.Status = "Loading api config...";
             var apiConfig = ConfigurationProvider.LoadConfig();
             var host = apiConfig.Host;
@@ -110,9 +116,11 @@ namespace MarketoUI.ViewModel
         }
         private void DownFile(string host, string clientId, string clientSecret, string folderId, string savePath)
         {
+            var statusLog = new List<string>();
             List<string> folderIds = new List<string>();
             if (HasSubFolders)
             {
+                Status += "\nGetting sub folders...";
                 folderIds = GetSubFolderIDs(host, clientId, clientSecret, folderId);
             }
             else
@@ -123,40 +131,39 @@ namespace MarketoUI.ViewModel
             var client = new MarketoClient(host, clientId, clientSecret);
             foreach (var id in folderIds)
             {
-                this.Status = "Reading folder " + folderId + "...";
+                Status += "\nReading folder " + id + "...";
                 GetFilesResponse fileResult = client.GetFiles(id, "0").Result;
-                var saveRootPath = Path.Combine(savePath, folderId);
+                var saveRootPath = Path.Combine(savePath, id);
 
                 if (fileResult?.Result != null)
                 {
                     if (!Directory.Exists(saveRootPath))
                     {
-                        this.Status = "Creating folder " + saveRootPath + "...";
+                        Status += "\nCreating folder " + saveRootPath + "...";
                         Directory.CreateDirectory(saveRootPath);
                     }
-                    WriteFileToDisk(fileResult, saveRootPath);
+                    WriteFileToDisk(id, fileResult, saveRootPath);
                     if (fileResult.Result.Count >= 200)
                     {
                         var client200 = new MarketoClient(host, clientId, clientSecret);
                         GetFilesResponse fileResult200 = client200.GetFiles(id, "200").Result;
                         if (fileResult200?.Result != null)
                         {
-                            WriteFileToDisk(fileResult200, saveRootPath);
+                            WriteFileToDisk(id, fileResult200, saveRootPath);
                         }
                     }
                 }
-                this.Status = "Done!";
+                Status += "\nDone!";
             }
 
         }
-        private void WriteFileToDisk(GetFilesResponse fileResult, string saveRootPath)
+        private void WriteFileToDisk(string folderId, GetFilesResponse fileResult, string saveRootPath)
         {
             foreach (var file in fileResult?.Result)
             {
                 var fileName = Path.Combine(saveRootPath, file.Name);
-                this.Status = "Downloading file " + file.Name + "...";
+                this.Status += "\n" + folderId + ": Downloading file " + file.Name + "...";
                 FileDownloader.DownFile(file.Url, fileName);
-                Console.WriteLine(file?.Url);
             }
         }
         private List<string> GetSubFolderIDs(string host, string clientId, string clientSecret, string rootFolderId)
@@ -172,7 +179,6 @@ namespace MarketoUI.ViewModel
                 }
             }
             return folderIDs;
-            //string prettyJson = JToken.Parse(result).ToString(Formatting.Indented);
         }
         #endregion
     }
