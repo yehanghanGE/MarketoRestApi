@@ -1,4 +1,4 @@
-### C# Library for Marketo Rest Api
+# C# Library for Marketo Rest Api
 ## TODO
-# add paralell download
-# add progressbar
+### add paralell download
+### add progressbar
