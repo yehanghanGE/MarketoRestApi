@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
@@ -67,6 +68,30 @@ namespace MarketoUI.ViewModel
             }
         }
 
+        private int folderStatus;
+
+        public int FolderStatus
+        {
+            get { return folderStatus; }
+            set
+            {
+                folderStatus = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private int fileStatus;
+
+        public int FileStatus
+        {
+            get { return fileStatus; }
+            set
+            {
+                fileStatus = value;
+                RaisePropertyChanged();
+            }
+        }
+
         private bool hasSubFolders;
 
         public bool HasSubFolders
@@ -78,6 +103,15 @@ namespace MarketoUI.ViewModel
                 RaisePropertyChanged();
             }
         }
+
+        private string currentFoler = "FileStatus";
+
+        public string CurrentFoler
+        {
+            get { return currentFoler; }
+            set { currentFoler = value; }
+        }
+
         #endregion
 
         public MainViewModel()
@@ -124,19 +158,31 @@ namespace MarketoUI.ViewModel
             var client = new MarketoClient(apiConfig.Host, apiConfig.ClientId, apiConfig.ClientSecret);
             var folderIds = await GetAllFolderIDs(folderId, client);
 
+            int processedFolderNums = 0;
+
             foreach (var id in folderIds)
             {
+                this.CurrentFoler = id;
                 Status += $"Reading folder {id}...{Environment.NewLine}";
                 var saveRootPath = Path.Combine(savePath, id);
                 var fileResults = await GetFileResults(client, id);
                 Progress<ProgressReportModel> progress = new Progress<ProgressReportModel>();
+                progress.ProgressChanged += ReportProgress;
                 CreatDir(saveRootPath);
-                await WriteFileToDiskParallelAsync(id, fileResults, saveRootPath);
+                WriteFileToDiskParallelAsync(id, fileResults, saveRootPath, progress);
                 Status += $"Done!{Environment.NewLine}";
+                processedFolderNums += 1;
+                this.FolderStatus = (processedFolderNums * 100) / folderIds.Count;
             }
             watch.Stop();
             var elapsedMs = watch.ElapsedMilliseconds;
             Status += $"Total execution time: { elapsedMs }...{Environment.NewLine}";
+        }
+
+        private void ReportProgress(object sender, ProgressReportModel e)
+        {
+            this.FileStatus = e.PercentageComplete;
+            ReportFileInfo(e.File.Name);
         }
 
         private async Task<List<string>> GetAllFolderIDs(string folderId, MarketoClient client)
@@ -193,27 +239,32 @@ namespace MarketoUI.ViewModel
             foreach (var file in fileResult?.Result)
             {
                 var fileName = Path.Combine(saveRootPath, file.Name);
-                ReportFileInfo(folderId, file);
+                //ReportFileInfo(folderId, file);
                 FileDownloader.DownFile(file.Url, fileName);
             }
         }
 
-        private async Task WriteFileToDiskParallelAsync(string folderId, List<MarketoFile> fileResult, string saveRootPath)
+        private async void WriteFileToDiskParallelAsync(string folderId, List<MarketoFile> fileResult, string saveRootPath, IProgress<ProgressReportModel> progress)
         {
+            ProgressReportModel report = new ProgressReportModel();
+            int processednum = 0;
             await Task.Run(() =>
             {
-                Parallel.ForEach<MarketoFile>(fileResult, (file) =>
+                Parallel.ForEach(fileResult, (file) =>
                 {
                     var fileName = Path.Combine(saveRootPath, file.Name);
-                    FileDownloader.DownFileAsync(file.Url, fileName);
-                    ReportFileInfo(folderId, file);
+                    FileDownloader.DownFile(file.Url, fileName);
+                    processednum += 1;
+                    report.PercentageComplete = (processednum * 100) / fileResult.Count;
+                    report.File = file;
+                    progress.Report(report);
                 });
             });
         }
 
-        private void ReportFileInfo(string folderId, MarketoFile file)
+        private void ReportFileInfo(string fileName)
         {
-            Status += $" { folderId }: Downloading file: {file.Name}...{Environment.NewLine}";
+            Status += $"Downloading file: {fileName}...{Environment.NewLine}";
         }
 
         private List<string> GetSubFolderIDs(string host, string clientId, string clientSecret, string rootFolderId)

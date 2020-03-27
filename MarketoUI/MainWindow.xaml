@@ -40,15 +40,15 @@
             </ScrollViewer>
 
             <CheckBox x:Name="hasubfolders_checkBox" IsChecked="{Binding HasSubFolders}" Content="HasSubfolders" HorizontalAlignment="Center"  Grid.Row="2" VerticalAlignment="Center"/>
-            <!--<StackPanel Grid.Row="4">
+            <StackPanel Grid.Row="4">
                 <Label Content="Folder status:"></Label>
-                <ProgressBar Name="folder_progressbar" HorizontalAlignment="Center" Height="15"  VerticalAlignment="Bottom" Width="650" />
+                <ProgressBar Name="folder_progressbar" HorizontalAlignment="Center" Height="15" Value="{Binding FolderStatus}" VerticalAlignment="Bottom" Width="650" />
             </StackPanel>
 
             <StackPanel Grid.Row="5">
-                <Label Content="File status:"></Label>
-                <ProgressBar Name="file_progressbar" HorizontalAlignment="Center" Height="15"  VerticalAlignment="Bottom" Width="650" />
-            </StackPanel>-->
+                <Label Content="{Binding CurrentFolder}"></Label>
+                <ProgressBar Name="file_progressbar" HorizontalAlignment="Center" Height="15" Value="{Binding FileStatus}" VerticalAlignment="Bottom" Width="650" />
+            </StackPanel>
 
 
             <!--<ListBox x:Name="status_listBox" VirtualizingStackPanel.IsVirtualizing="True" HorizontalAlignment="Center" Height="150" Width ="650" 
