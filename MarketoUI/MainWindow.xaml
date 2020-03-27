@@ -12,14 +12,14 @@
     </Window.Resources>
     <!--Background="#FF01897A"-->
     <Border Padding="5" BorderThickness="3" >
-        <Grid Background="#FF01897A">
+        <Grid Background="Azure">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical" Grid.Row="0">
@@ -40,6 +40,16 @@
             </ScrollViewer>
 
             <CheckBox x:Name="hasubfolders_checkBox" IsChecked="{Binding HasSubFolders}" Content="HasSubfolders" HorizontalAlignment="Center"  Grid.Row="2" VerticalAlignment="Center"/>
+            <!--<StackPanel Grid.Row="4">
+                <Label Content="Folder status:"></Label>
+                <ProgressBar Name="folder_progressbar" HorizontalAlignment="Center" Height="15"  VerticalAlignment="Bottom" Width="650" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="5">
+                <Label Content="File status:"></Label>
+                <ProgressBar Name="file_progressbar" HorizontalAlignment="Center" Height="15"  VerticalAlignment="Bottom" Width="650" />
+            </StackPanel>-->
+
 
             <!--<ListBox x:Name="status_listBox" VirtualizingStackPanel.IsVirtualizing="True" HorizontalAlignment="Center" Height="150" Width ="650" 
                      Grid.Row="6" VerticalAlignment="Center" ItemsSource="{Binding Status}"/>-->

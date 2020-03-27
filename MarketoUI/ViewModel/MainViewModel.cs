@@ -4,6 +4,7 @@ using MarketoApiLibrary;
 using MarketoRestApiLibrary;
 using MarketoRestApiLibrary.Model;
 using MarketoRestApiLibrary.Provider;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -30,7 +31,7 @@ namespace MarketoUI.ViewModel
             }
         }
 
-        private string folderIds;
+        private string folderIds = "30844";// for testing, need to remove
 
         public string FolderIDs
         {
@@ -42,7 +43,7 @@ namespace MarketoUI.ViewModel
             }
         }
 
-        private string savePath;
+        private string savePath = $"D:\\DownloadedImageFromMarketo";
 
         public string SavePath
         {
@@ -82,9 +83,7 @@ namespace MarketoUI.ViewModel
         public MainViewModel()
         {
             this.Title = "MarketApiUI";
-            this.StartCommand = new RelayCommand(Start);
-            //Application.Current.Dispatcher.Invoke(() => BindingOperations.EnableCollectionSynchronization(Status, _lock));
-            //BindingOperations.EnableCollectionSynchronization(Status, _lock);
+            StartCommand = new RelayCommand(Start);
         }
 
         #region commands
@@ -94,82 +93,148 @@ namespace MarketoUI.ViewModel
         #region methods
         private void Start()
         {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
             if (string.IsNullOrEmpty(FolderIDs) || string.IsNullOrEmpty(SavePath))
             {
-                this.Status = "FolderID or SavePath is invalid!";
+                this.Status = $"FolderID or SavePath is invalid!";
                 return;
             }
 
-            this.Status = "Loading api config...";
+            this.Status = $"Loading api config...{Environment.NewLine}";
             var apiConfig = ConfigurationProvider.LoadConfig();
-            var host = apiConfig.Host;
-            var clientId = apiConfig.ClientId;
-            var clientSecret = apiConfig.ClientSecret;
+
+            watch.Stop();
+            var elapsedMs = watch.ElapsedMilliseconds;
+            Status += $"Loading Api Config execution time: { elapsedMs }...{Environment.NewLine}";
 
             var folderIds = new List<string>();
             folderIds.Add(FolderIDs);
 
             var task = Task.Run(() =>
             {
-                DownFile(host, clientId, clientSecret, FolderIDs, SavePath);
+                DownFile(apiConfig, FolderIDs, SavePath);
             });
+
         }
-        private void DownFile(string host, string clientId, string clientSecret, string folderId, string savePath)
+        private async Task DownFile(ApiConfig apiConfig, string folderId, string savePath)
         {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
             var statusLog = new List<string>();
+
+            var client = new MarketoClient(apiConfig.Host, apiConfig.ClientId, apiConfig.ClientSecret);
+            var folderIds = await GetAllFolderIDs(folderId, client);
+
+            foreach (var id in folderIds)
+            {
+                Status += $"Reading folder {id}...{Environment.NewLine}";
+                var saveRootPath = Path.Combine(savePath, id);
+                var fileResults = await GetFileResults(client, id);
+                Progress<ProgressReportModel> progress = new Progress<ProgressReportModel>();
+                CreatDir(saveRootPath);
+                await WriteFileToDiskParallelAsync(id, fileResults, saveRootPath);
+                Status += $"Done!{Environment.NewLine}";
+            }
+            watch.Stop();
+            var elapsedMs = watch.ElapsedMilliseconds;
+            Status += $"Total execution time: { elapsedMs }...{Environment.NewLine}";
+        }
+
+        private async Task<List<string>> GetAllFolderIDs(string folderId, MarketoClient client)
+        {
             List<string> folderIds = new List<string>();
             if (HasSubFolders)
             {
-                Status += "\nGetting sub folders...";
-                folderIds = GetSubFolderIDs(host, clientId, clientSecret, folderId);
+                Status += $"Getting sub folders...{Environment.NewLine}";
+                folderIds = await GetSubFolderIDsAsync(client, folderId);
             }
             else
             {
                 folderIds.Add(folderId);
             }
 
-            var client = new MarketoClient(host, clientId, clientSecret);
-            foreach (var id in folderIds)
-            {
-                Status += "\nReading folder " + id + "...";
-                GetFilesResponse fileResult = client.GetFiles(id, "0").Result;
-                var saveRootPath = Path.Combine(savePath, id);
+            return folderIds;
+        }
 
-                if (fileResult?.Result != null)
+        private void CreatDir(string saveRootPath)
+        {
+            if (!Directory.Exists(saveRootPath))
+            {
+                Status += $"Creating folder { saveRootPath }...{Environment.NewLine}";
+                Directory.CreateDirectory(saveRootPath);
+            }
+        }
+
+        private async Task<List<MarketoFile>> GetFileResults(MarketoClient client, string id)
+        {
+            List<MarketoFile> fileResults = new List<MarketoFile>();
+            GetFilesResponse fileResult = await client.GetFiles(id, 0);
+            if (fileResult?.Result != null)
+            {
+                fileResults.AddRange(fileResult.Result);
+                var fileCounts = fileResult.Result.Count;
+                int call_times = 0;
+                while (fileCounts >= 200)
                 {
-                    if (!Directory.Exists(saveRootPath))
+                    call_times += 1;
+                    //var clientNext = new MarketoClient(host, clientId, clientSecret);
+                    GetFilesResponse fileResultNext = await client.GetFiles(id, call_times * 200);
+                    if (fileResultNext?.Result != null)
                     {
-                        Status += "\nCreating folder " + saveRootPath + "...";
-                        Directory.CreateDirectory(saveRootPath);
-                    }
-                    WriteFileToDisk(id, fileResult, saveRootPath);
-                    if (fileResult.Result.Count >= 200)
-                    {
-                        var client200 = new MarketoClient(host, clientId, clientSecret);
-                        GetFilesResponse fileResult200 = client200.GetFiles(id, "200").Result;
-                        if (fileResult200?.Result != null)
-                        {
-                            WriteFileToDisk(id, fileResult200, saveRootPath);
-                        }
+                        fileResults.AddRange(fileResultNext.Result);
+                        fileCounts = fileResultNext.Result.Count;
                     }
                 }
-                Status += "\nDone!";
             }
-
+            return fileResults;
         }
+
         private void WriteFileToDisk(string folderId, GetFilesResponse fileResult, string saveRootPath)
         {
             foreach (var file in fileResult?.Result)
             {
                 var fileName = Path.Combine(saveRootPath, file.Name);
-                this.Status += "\n" + folderId + ": Downloading file " + file.Name + "...";
+                ReportFileInfo(folderId, file);
                 FileDownloader.DownFile(file.Url, fileName);
             }
         }
+
+        private async Task WriteFileToDiskParallelAsync(string folderId, List<MarketoFile> fileResult, string saveRootPath)
+        {
+            await Task.Run(() =>
+            {
+                Parallel.ForEach<MarketoFile>(fileResult, (file) =>
+                {
+                    var fileName = Path.Combine(saveRootPath, file.Name);
+                    FileDownloader.DownFileAsync(file.Url, fileName);
+                    ReportFileInfo(folderId, file);
+                });
+            });
+        }
+
+        private void ReportFileInfo(string folderId, MarketoFile file)
+        {
+            Status += $" { folderId }: Downloading file: {file.Name}...{Environment.NewLine}";
+        }
+
         private List<string> GetSubFolderIDs(string host, string clientId, string clientSecret, string rootFolderId)
         {
             var client = new MarketoClient(host, clientId, clientSecret);
             var result = client.GetFolders(rootFolderId).Result;
+            var folderIDs = new List<string>();
+            if (result.Result != null)
+            {
+                foreach (var folder in result.Result)
+                {
+                    folderIDs.Add(folder.Id.ToString());
+                }
+            }
+            return folderIDs;
+        }
+
+        private async Task<List<string>> GetSubFolderIDsAsync(MarketoClient client, string rootFolderId)
+        {
+            //var client = new MarketoClient(apiConfig.Host, apiConfig.ClientId, apiConfig.ClientSecret);
+            var result = await client.GetFolders(rootFolderId);
             var folderIDs = new List<string>();
             if (result.Result != null)
             {

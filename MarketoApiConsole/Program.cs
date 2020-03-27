@@ -82,7 +82,7 @@ namespace MarketoApiConsole
             foreach (var folderId in folderIds)
             {
                 Console.WriteLine(folderId);
-                GetFilesResponse fileResult = client.GetFiles(folderId, "0").Result;
+                GetFilesResponse fileResult = client.GetFiles(folderId, 0).Result;
                 var saveRootPath = Path.Combine(savePath, folderId);
 
                 if (fileResult?.Result != null)
@@ -95,7 +95,7 @@ namespace MarketoApiConsole
                     if (fileResult.Result.Count >= 200)
                     {
                         var client200 = new MarketoClient(host, clientId, clientSecret);
-                        GetFilesResponse fileResult200 = client200.GetFiles(folderId, "200").Result;
+                        GetFilesResponse fileResult200 = client200.GetFiles(folderId, 200).Result;
                         if (fileResult200?.Result != null)
                         {
                             WriteFileToDisk(fileResult200, saveRootPath);

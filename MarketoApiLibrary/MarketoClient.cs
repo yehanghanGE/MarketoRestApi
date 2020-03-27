@@ -88,10 +88,10 @@ namespace MarketoApiLibrary
             }
         }
 
-        public Task<GetFilesResponse> GetFiles(string folderId, string offSet)
+        public async Task<GetFilesResponse> GetFiles(string folderId, int offSet)
         {
-            var request = requestFactorty.CreateGetFilesRequest(Host, Token, folderId);
-            var result = HttpProcessor.GetFiles(request);
+            var request = requestFactorty.CreateGetFilesRequest(Host, Token, folderId, offSet);
+            var result = await HttpProcessor.GetFiles(request);
             return result;
 
         }
