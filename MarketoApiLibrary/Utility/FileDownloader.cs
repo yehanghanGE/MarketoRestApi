@@ -52,16 +52,15 @@ namespace MarketoRestApiLibrary
         }
         public static void DownFile(string url, string savePath)
         {
-            try
-            {
-                WebClient webClient = new WebClient();
-                webClient.DownloadFile(url, savePath);
-            }
-            catch (Exception)
-            {
+            WebClient webClient = new WebClient();
+            webClient.DownloadFile(url, savePath);
+        }
 
-                throw;
-            }
+        public static Task DownFileAsync(string url, string savePath)
+        {
+            WebClient webClient = new WebClient();
+            var task = webClient.DownloadFileTaskAsync(url, savePath);
+            return task;
         }
     }
 }
