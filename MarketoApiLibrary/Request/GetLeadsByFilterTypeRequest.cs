@@ -1,8 +1,6 @@
-﻿using MarketoRestApiLibrary.Request;
-
-namespace MarketoApiLibrary.Request
+﻿namespace MarketoApiLibrary.Request
 {
-    public class GetLeadsByFilterTypeRequest: BaseRequest
+    public class GetLeadsByFilterTypeRequest : BaseRequest
     {
         public string FilterType { get; set; }
         public string[] FilterValues { get; set; }

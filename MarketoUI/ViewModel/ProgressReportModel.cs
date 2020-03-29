@@ -1,4 +1,4 @@
-﻿using MarketoRestApiLibrary.Model;
+﻿using MarketoApiLibrary.Model;
 
 namespace MarketoUI.ViewModel
 {
