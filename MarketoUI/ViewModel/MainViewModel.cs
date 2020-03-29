@@ -8,13 +8,14 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MarketoUI.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-
+        private CancellationTokenSource cts = new CancellationTokenSource();
         //private static object _lock = new object();
         #region properties
         private string _title;
@@ -29,7 +30,7 @@ namespace MarketoUI.ViewModel
             }
         }
 
-        private string _folderIds = "30844";// for testing, need to remove
+        private string _folderIds = "49792";// for testing, need to remove 30844"
 
         public string FolderIDs
         {
@@ -119,15 +120,21 @@ namespace MarketoUI.ViewModel
         {
             this.Title = "MarketApiUI";
             StartCommand = new RelayCommand(Start);
+            CancelCommand = new RelayCommand(Cancel);
         }
+
+        
 
         #region commands
         public RelayCommand StartCommand { get; set; }
+
+        public RelayCommand CancelCommand { get; set; }
         #endregion
 
         #region methods
         private void Start()
         {
+            cts = new CancellationTokenSource();
             System.Diagnostics.Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
             if (string.IsNullOrEmpty(FolderIDs) || string.IsNullOrEmpty(SavePath))
             {
@@ -141,7 +148,7 @@ namespace MarketoUI.ViewModel
             watch.Stop();
             long elapsedMs = watch.ElapsedMilliseconds;
             Status += $"Loading Api Config execution time: { elapsedMs }...{Environment.NewLine}";
-
+            
             List<string> folderIds = new List<string>();
             folderIds.Add(FolderIDs);
 
@@ -150,6 +157,11 @@ namespace MarketoUI.ViewModel
                 DownFile(apiConfig, FolderIDs, SavePath);
             });
 
+        }
+
+        private void Cancel()
+        {
+            cts.Cancel();
         }
         private async Task DownFile(ApiConfig apiConfig, string folderId, string savePath)
         {
@@ -160,17 +172,21 @@ namespace MarketoUI.ViewModel
             List<string> folderIds = await GetAllFolderIDs(folderId, client);
 
             int processedFolderNums = 0;
+            this.FolderStatus = 0;
 
-            foreach (string id in folderIds)
+            foreach (var id in folderIds)
             {
                 this.CurrentFolder = id;
                 Status += $"Reading folder {id}...{Environment.NewLine}";
-                string saveRootPath = Path.Combine(savePath, id);
+                var saveRootPath = Path.Combine(savePath, id);
                 List<MarketoFile> fileResults = await GetFileResults(client, id);
                 Progress<ProgressReportModel> progress = new Progress<ProgressReportModel>();
                 progress.ProgressChanged += ReportProgress;
                 CreateDir(saveRootPath);
-                await WriteFileToDiskParallelAsync(id, fileResults, saveRootPath, progress);
+               
+                await WriteFileToDiskParallelAsync(fileResults, saveRootPath, progress, cts.Token);
+                    //WriteFileToDisk(id, fileResults, saveRootPath, progress, cts.Token);
+                
                 Status += $"Done!{Environment.NewLine}";
                 processedFolderNums += 1;
                 this.FolderStatus = (processedFolderNums * 100) / folderIds.Count;
@@ -233,31 +249,54 @@ namespace MarketoUI.ViewModel
             return fileResults;
         }
 
-        private void WriteFileToDisk(string folderId, GetFilesResponse fileResult, string saveRootPath)
-        {
-            foreach (MarketoFile file in fileResult?.Result)
-            {
-                string fileName = Path.Combine(saveRootPath, file.Name);
-                //ReportFileInfo(folderId, file);
-                FileDownloader.DownFile(file.Url, fileName);
-            }
-        }
-
-        private async Task WriteFileToDiskParallelAsync(string folderId, List<MarketoFile> fileResult, string saveRootPath, IProgress<ProgressReportModel> progress)
+        private void WriteFileToDisk(string folderId, List<MarketoFile> fileResult, string saveRootPath, IProgress<ProgressReportModel> progress, CancellationToken cancellationToken)
         {
             ProgressReportModel report = new ProgressReportModel();
             int processedNum = 0;
+            foreach (var file in fileResult)
+            {
+                string fileName = Path.Combine(saveRootPath, file.Name);
+                FileDownloader.DownFile(file.Url, fileName);
+                cancellationToken.ThrowIfCancellationRequested();
+                processedNum += 1;
+                report.PercentageComplete = (processedNum * 100) / fileResult.Count;
+                report.File = file;
+                progress.Report(report);
+            }
+        }
+
+        private async Task WriteFileToDiskParallelAsync(List<MarketoFile> fileResult, string saveRootPath, IProgress<ProgressReportModel> progress, CancellationToken cancellationToken)
+        {
+            ProgressReportModel report = new ProgressReportModel();
+            int processedNum = 0;
+
+            var po = new ParallelOptions {CancellationToken = cancellationToken};
+
             await Task.Run(() =>
             {
-                Parallel.ForEach(fileResult, (file) =>
+                try
                 {
-                    string fileName = Path.Combine(saveRootPath, file.Name);
-                    FileDownloader.DownFile(file.Url, fileName);
-                    processedNum += 1;
-                    report.PercentageComplete = (processedNum * 100) / fileResult.Count;
-                    report.File = file;
-                    progress.Report(report);
-                });
+                    Parallel.ForEach(fileResult, po, (file) =>
+                    {
+                        string fileName = Path.Combine(saveRootPath, file.Name);
+                        FileDownloader.DownFile(file.Url, fileName);
+
+                        //po.CancellationToken.ThrowIfCancellationRequested();
+
+                        processedNum += 1;
+                        report.PercentageComplete = (processedNum * 100) / fileResult.Count;
+                        report.File = file;
+                        progress.Report(report);
+                    });
+                }
+                catch (OperationCanceledException)
+                {
+                    Status += $"Downloading is cancelled...{Environment.NewLine}";
+                }
+                finally
+                {
+                    cts.Dispose();
+                }
             });
         }
 
