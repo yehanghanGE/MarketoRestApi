@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace MarketoRestApiLibrary.Model
+namespace MarketoApiLibrary.Model
 {
     /*{
       "id": 518799,

@@ -1,4 +1,4 @@
-﻿namespace MarketoRestApiLibrary.Request
+﻿namespace MarketoApiLibrary.Request
 {
     public class BaseRequest
     {

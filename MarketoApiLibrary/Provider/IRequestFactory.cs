@@ -1,6 +1,6 @@
-﻿using MarketoRestApiLibrary.Request;
+﻿using MarketoApiLibrary.Request;
 
-namespace MarketoRestApiLibrary.Provider
+namespace MarketoApiLibrary.Provider
 {
     public interface IRequestFactory
     {

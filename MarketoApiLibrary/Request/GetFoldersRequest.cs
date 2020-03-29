@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace MarketoRestApiLibrary.Request
+namespace MarketoApiLibrary.Request
 {
-    public class GetFoldersRequest: BaseRequest
+    public class GetFoldersRequest : BaseRequest
     {
         public Dictionary<string, dynamic> Root = new Dictionary<string, dynamic>();
         public int Offset { get; set; }//integer offset for paging

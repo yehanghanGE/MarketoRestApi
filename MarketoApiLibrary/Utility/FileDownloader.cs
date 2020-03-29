@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace MarketoRestApiLibrary
+namespace MarketoApiLibrary.Utility
 {
     public class FileDownloader
     {
@@ -52,16 +52,15 @@ namespace MarketoRestApiLibrary
         }
         public static void DownFile(string url, string savePath)
         {
-            try
-            {
-                WebClient webClient = new WebClient();
-                webClient.DownloadFile(url, savePath);
-            }
-            catch (Exception)
-            {
+            WebClient webClient = new WebClient();
+            webClient.DownloadFile(new Uri(url), savePath);
+        }
 
-                throw;
-            }
+        public static Task DownFileAsync(string url, string savePath)
+        {
+            WebClient webClient = new WebClient();
+            Task task = webClient.DownloadFileTaskAsync(new Uri(url), savePath);
+            return task;
         }
     }
 }
