@@ -1,7 +1,7 @@
-﻿using MarketoRestApiLibrary.Request;
+﻿using MarketoApiLibrary.Request;
 using System.Collections.Generic;
 
-namespace MarketoRestApiLibrary.Provider
+namespace MarketoApiLibrary.Provider
 {
     public class RequestFactory : IRequestFactory
     {
@@ -14,7 +14,7 @@ namespace MarketoRestApiLibrary.Provider
             Dictionary<string, dynamic> folder = new Dictionary<string, dynamic>();
             folder.Add("id", folderId);
             folder.Add("type", "Folder");
-            var getFilesRequest = new GetFilesRequest()
+            GetFilesRequest getFilesRequest = new GetFilesRequest()
             {
                 Host = host,
                 Token = token,
@@ -31,7 +31,7 @@ namespace MarketoRestApiLibrary.Provider
             root.Add("id", 17445);
             root.Add("type", "folder");
 
-            var getFolderByNameRequest = new GetFolderByNameRequest()
+            GetFolderByNameRequest getFolderByNameRequest = new GetFolderByNameRequest()
             {
                 Host = host,
                 Token = token,
@@ -49,7 +49,7 @@ namespace MarketoRestApiLibrary.Provider
             root.Add("id", rootFolderId);
             root.Add("type", "folder");
 
-            var getFoldersRequest = new GetFoldersRequest()
+            GetFoldersRequest getFoldersRequest = new GetFoldersRequest()
             {
                 Host = host,
                 Token = token,
@@ -64,7 +64,7 @@ namespace MarketoRestApiLibrary.Provider
         }
         public BaseRequest CreategetActivityTypesResult(string host, string token)
         {
-            var request = new BaseRequest()
+            BaseRequest request = new BaseRequest()
             {
                 Host = host,
                 Token = token
@@ -74,7 +74,7 @@ namespace MarketoRestApiLibrary.Provider
         }
         public BaseRequest CreateGetSmartListRequest(string host, string token)
         {
-            var request = new BaseRequest()
+            BaseRequest request = new BaseRequest()
             {
                 Host = host,
                 Token = token
@@ -84,13 +84,13 @@ namespace MarketoRestApiLibrary.Provider
         }
         public LeadsExportRequest CreateGetLeadsExportRequest(string host, string token)
         {
-            var filter = new Dictionary<string, dynamic>();
+            Dictionary<string, dynamic> filter = new Dictionary<string, dynamic>();
             filter.Add("staticListName", "List Import");
 
             string outputFormat = "csv";
             string startAtTime = "2017-8-01T23:59:59-00:00";
             string endAt = "2017-8-30T23:59:59-00:00";
-            var request = new LeadsExportRequest()
+            LeadsExportRequest request = new LeadsExportRequest()
             {
                 Host = host,
                 Token = token,
@@ -106,15 +106,15 @@ namespace MarketoRestApiLibrary.Provider
             string outputFormat = "csv";
             string startAtTime = "2017-8-01T23:59:59-00:00";
             string endAt = "2017-8-30T23:59:59-00:00";
-            var filter = new Dictionary<string, dynamic>();
-            var createdAt = new Dictionary<string, string>();
+            Dictionary<string, dynamic> filter = new Dictionary<string, dynamic>();
+            Dictionary<string, string> createdAt = new Dictionary<string, string>();
             createdAt.Add("startAt", startAtTime);
             createdAt.Add("endAt", endAt);
             filter.Add("createdAt", createdAt);
-            int[] _activityTypeIds = new int[] { 1, 2, 10, 11, 22, 46 };
-            filter.Add("activityTypeIds", _activityTypeIds);
+            int[] activityTypeIds = new int[] { 1, 2, 10, 11, 22, 46 };
+            filter.Add("activityTypeIds", activityTypeIds);
 
-            var request = new ActivitiesExportRequest()
+            ActivitiesExportRequest request = new ActivitiesExportRequest()
             {
                 Host = host,
                 Token = token,
@@ -126,14 +126,14 @@ namespace MarketoRestApiLibrary.Provider
         }
         public CustomObjectsRequest CreateCustomObjectsRequest(string host, string token)
         {
-            var prod = new Dictionary<string, dynamic>();
+            Dictionary<string, dynamic> prod = new Dictionary<string, dynamic>();
             prod.Add("cart_id", "3121137123457");
             prod.Add("lead_id", "3121137");
             prod.Add("product_id", "123457");
             prod.Add("product_name", "prod_a");
             prod.Add("product_price", "123.48");
             prod.Add("quantity", "1");
-            var prod1 = new Dictionary<string, dynamic>();
+            Dictionary<string, dynamic> prod1 = new Dictionary<string, dynamic>();
             prod1.Add("cart_id", "3121137123458");
             prod1.Add("lead_id", "3121137");
             prod1.Add("product_id", "123458");
@@ -143,7 +143,7 @@ namespace MarketoRestApiLibrary.Provider
             List<Dictionary<string, dynamic>> input = new List<Dictionary<string, dynamic>>();
             input.Add(prod);
             input.Add(prod1);
-            var request = new CustomObjectsRequest()
+            CustomObjectsRequest request = new CustomObjectsRequest()
             {
                 Host = host,
                 Token = token,

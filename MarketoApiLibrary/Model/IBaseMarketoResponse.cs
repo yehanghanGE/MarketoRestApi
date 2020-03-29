@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MarketoRestApiLibrary.Model
+namespace MarketoApiLibrary.Model
 {
     public interface IBaseMarketoResponse
     {

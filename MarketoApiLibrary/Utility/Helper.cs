@@ -1,12 +1,9 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace MarketoRestApiLibrary
+namespace MarketoApiLibrary.Utility
 {
     public static class Helper
     {
@@ -29,14 +26,14 @@ namespace MarketoRestApiLibrary
             return sb.ToString();
         }
 
-        public static string JSONFormat(string jsonString)
+        public static string JsonFormat(string jsonString)
         {
             return JToken.Parse(jsonString).ToString(Formatting.Indented);
         }
 
         public static string BodyBuilder(string outputFormat, string[] fields, Dictionary<string, dynamic> filter)
         {
-            var requestBody = new Dictionary<string, dynamic>();
+            Dictionary<string, dynamic> requestBody = new Dictionary<string, dynamic>();
             requestBody.Add("format", outputFormat);
             requestBody.Add("fields", fields);
             requestBody.Add("filter", filter);
