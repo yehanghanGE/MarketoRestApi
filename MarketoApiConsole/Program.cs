@@ -106,6 +106,7 @@ namespace MarketoApiConsole
         }
         private static void WriteFileToDisk(GetFilesResponse fileResult, string saveRootPath)
         {
+            if (fileResult?.Result == null) return;
             foreach (MarketoFile file in fileResult?.Result)
             {
                 string fileName = Path.Combine(saveRootPath, file.Name);
