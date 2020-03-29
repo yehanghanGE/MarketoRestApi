@@ -32,7 +32,11 @@
                           VerticalAlignment="Center" Width="650" MouseDoubleClick="TextBox_MouseDoubleClick"/>
             </StackPanel>
 
-            <Button x:Name="_startButton" Grid.Row="3" Command="{Binding StartCommand}" Content="Start" Width="100" HorizontalAlignment="Center" />
+            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="_startButton"  Command="{Binding StartCommand}" Content="Start" Width="100" Margin="0,0,10,0" HorizontalAlignment="Center" />
+                <Button x:Name="_cancelButton" Command="{Binding CancelCommand}" Content="Cancel" Width="100" Margin="10,0,0,0"  HorizontalAlignment="Center" />
+            </StackPanel>
+           
 
             <ScrollViewer Grid.Row="6" VerticalScrollBarVisibility="Auto">
                 <TextBlock x:Name="_statusTextBlock" HorizontalAlignment="Stretch" Margin="10,10,10,10" TextWrapping="Wrap" Text="{Binding Status}" 
