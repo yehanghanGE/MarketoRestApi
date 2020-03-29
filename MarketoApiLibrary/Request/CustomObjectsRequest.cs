@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MarketoRestApiLibrary.Request
+namespace MarketoApiLibrary.Request
 {
     public class CustomObjectsRequest : BaseRequest
     {

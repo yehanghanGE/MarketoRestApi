@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace MarketoRestApiLibrary.Model
+namespace MarketoApiLibrary.Model
 {
     /*{
         "type": "Image",
@@ -22,11 +22,11 @@ namespace MarketoRestApiLibrary.Model
         [JsonProperty("folderType")]
         public string FolderType { get; set; }
         [JsonProperty("folderId")]
-        public Folder FolderID { get; set; }
+        public Folder FolderId { get; set; }
         [JsonProperty("parent")]
         public Folder Parent { get; set; }
         [JsonProperty("isArchive")]
-        public bool isArchive { get; set; }
+        public bool IsArchive { get; set; }
         [JsonProperty("isSystem")]
         public string IsSystem { get; set; }
         [JsonProperty("path")]
@@ -42,7 +42,7 @@ namespace MarketoRestApiLibrary.Model
     public class Folder
     {
         [JsonProperty("id")]
-        public int ID { get; set; }
+        public int Id { get; set; }
         [JsonProperty("type")]
         public string Type { get; set; }
     }

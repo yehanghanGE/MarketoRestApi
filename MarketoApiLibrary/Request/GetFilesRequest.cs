@@ -1,7 +1,6 @@
-﻿using MarketoApiLibrary.Request;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace MarketoRestApiLibrary.Request
+namespace MarketoApiLibrary.Request
 {
     public class GetFilesRequest : BaseRequest
     {

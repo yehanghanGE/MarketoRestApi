@@ -1,5 +1,4 @@
-﻿using MarketoRestApiLibrary.Provider;
-using MarketoUI.ViewModel;
+﻿using MarketoUI.ViewModel;
 using System.Windows;
 
 namespace MarketoUI
@@ -17,9 +16,9 @@ namespace MarketoUI
 
         private void TextBox_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            var dialog = new System.Windows.Forms.FolderBrowserDialog();
+            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
             System.Windows.Forms.DialogResult result = dialog.ShowDialog();
-            savepath_textbox.Text = dialog.SelectedPath;
+            _savePathTextBox.Text = dialog.SelectedPath;
         }
     }
 }

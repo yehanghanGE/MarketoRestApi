@@ -1,10 +1,10 @@
 ﻿<Window x:Class="MarketoUI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MarketoUI"
-        mc:Ignorable="d"
+        xmlns:D="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:Mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Local="clr-namespace:MarketoUI"
+        Mc:Ignorable="D"
         Title="{Binding Title}" Height="500" Width="700" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Color x:Key="Color1">#FF075861</Color>
@@ -23,31 +23,32 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical" Grid.Row="0">
-                <Label x:Name="label" Content="Foler ID(s):" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
-                <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" Text="{Binding FolderIDs}" VerticalAlignment="Center" Width="650"/>
+                <Label x:Name="_label" Content="Folder ID(s):" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+                <TextBox x:Name="_textBox" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" Text="{Binding FolderIDs}" VerticalAlignment="Center" Width="650"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Grid.Row="1">
                 <Label  Content="Save Path:(double click to select)" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
-                <TextBox x:Name="savepath_textbox" HorizontalAlignment="Left" Height="23" Margin="10,0,0,10" TextWrapping="Wrap" Text="{Binding SavePath}" VerticalContentAlignment="Center" 
+                <TextBox x:Name="_savePathTextBox" HorizontalAlignment="Left" Height="23" Margin="10,0,0,10" TextWrapping="Wrap" Text="{Binding SavePath}" VerticalContentAlignment="Center" 
                           VerticalAlignment="Center" Width="650" MouseDoubleClick="TextBox_MouseDoubleClick"/>
             </StackPanel>
 
-            <Button x:Name="start_button" Grid.Row="3" Command="{Binding StartCommand}" Content="Start" Width="100" HorizontalAlignment="Center" />
+            <Button x:Name="_startButton" Grid.Row="3" Command="{Binding StartCommand}" Content="Start" Width="100" HorizontalAlignment="Center" />
 
             <ScrollViewer Grid.Row="6" VerticalScrollBarVisibility="Auto">
-                <TextBlock x:Name="status_textBlock" HorizontalAlignment="Stretch" Margin="10,10,10,10" TextWrapping="Wrap" Text="{Binding Status}" 
+                <TextBlock x:Name="_statusTextBlock" HorizontalAlignment="Stretch" Margin="10,10,10,10" TextWrapping="Wrap" Text="{Binding Status}" 
                             FontWeight="Bold" Foreground="Green" Background="Black"/>
             </ScrollViewer>
 
-            <CheckBox x:Name="hasubfolders_checkBox" IsChecked="{Binding HasSubFolders}" Content="HasSubfolders" HorizontalAlignment="Center"  Grid.Row="2" VerticalAlignment="Center"/>
-            <StackPanel Grid.Row="4">
-                <Label Content="Folder status:"></Label>
-                <ProgressBar Name="folder_progressbar" HorizontalAlignment="Center" Height="15" Value="{Binding FolderStatus}" VerticalAlignment="Bottom" Width="650" />
+            <CheckBox x:Name="_hasSubFoldersCheckBox" IsChecked="{Binding HasSubFolders}" Content="HasSubfolders" HorizontalAlignment="Center"  
+                      Grid.Row="2" VerticalAlignment="Center"/>
+            <StackPanel Grid.Row="4" Orientation="Vertical">
+                <TextBlock Text="Folder status:"  Margin="13,0,0,0"></TextBlock>
+                <ProgressBar Name="_folderProgressbar" HorizontalAlignment="Center" Height="18" Value="{Binding FolderStatus}" VerticalAlignment="Bottom" Width="650" />
             </StackPanel>
 
-            <StackPanel Grid.Row="5">
-                <Label Content="{Binding CurrentFolder}"></Label>
-                <ProgressBar Name="file_progressbar" HorizontalAlignment="Center" Height="15" Value="{Binding FileStatus}" VerticalAlignment="Bottom" Width="650" />
+            <StackPanel Grid.Row="5" Orientation="Vertical"  >
+                <TextBlock Text="{Binding CurrentFolder}" Margin="13,0,0,0"></TextBlock>
+                <ProgressBar Name="_fileProgressbar" HorizontalAlignment="Center" Height="18" Value="{Binding FileStatus}" VerticalAlignment="Bottom" Width="650" />
             </StackPanel>
 
 

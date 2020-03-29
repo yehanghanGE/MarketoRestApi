@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace MarketoRestApiLibrary.Provider
+namespace MarketoApiLibrary.Provider
 {
     public interface ITokenProvider
     {
