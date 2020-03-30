@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace MarketoRestApiLibrary.Model
+namespace MarketoApiLibrary.Model
 {
     /*{
       "id": 518799,
@@ -39,6 +39,5 @@ namespace MarketoRestApiLibrary.Model
         public string CreatedAt { get; set; }
         [JsonProperty("updatedAt")]
         public string UpdatedAt { get; set; }
-
     }
 }

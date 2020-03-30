@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace MarketoApiLibrary.Model
 {
-    public class GetFilesResponse : BaseMarketoResponse
+    public class GetSmartListResponse : BaseMarketoResponse
     {
         [JsonProperty("result")]
-        public List<MarketoFile> Result { get; set; }
+        public List<MarketoSmartList> Result { get; set; }
     }
 }

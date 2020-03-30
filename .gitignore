@@ -9,4 +9,10 @@ Newtonsoft.Json.xml
 packageIcon.png
 v14
 packages
+<<<<<<< HEAD
 App.config
+=======
+v16
+obj
+/MarketoUI/App.config
+>>>>>>> develop

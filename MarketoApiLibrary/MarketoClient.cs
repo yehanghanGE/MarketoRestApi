@@ -1,45 +1,65 @@
-﻿using MarketoApiLibrary.Service;
-using MarketoRestApiLibrary.Provider;
-using MarketoRestApiLibrary.Request;
-using MarketoRestApiLibrary.Service;
+﻿using MarketoApiLibrary.Model;
+using MarketoApiLibrary.Provider;
+using MarketoApiLibrary.Request;
+using MarketoApiLibrary.Service;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MarketoApiLibrary
 {
     public class MarketoClient : IMarketoClient
     {
-        private readonly string Host;
-        private readonly string ClientId;
-        private readonly string ClientSecret;
-        private readonly string Token;
+        private readonly string _host;
+        private readonly string _clientId;
+        private readonly string _clientSecret;
+        private readonly string _token;
+        private readonly IRequestFactory _requestFactorty;
+        private readonly ITokenProvider _tokenProvider;
         public MarketoClient(string host, string clientId, string clientSecret)
         {
-            Host = host;
-            ClientId = clientId;
-            ClientSecret = clientSecret;
-            Token = TokenProvider.GetToken(host, clientId, clientSecret);
+            _host = host;
+            _clientId = clientId;
+            _clientSecret = clientSecret;
+            _tokenProvider = new TokenProvider();
+            _token = _tokenProvider.GetTokenAsync(host, clientId, clientSecret).Result;
+            _requestFactorty = new RequestFactory();
         }
         public async Task<string> GetSmartList()
         {
-            var getSmartListRequest = RequestFactory.CreateGetSmartListRequest(Host, Token);
-            var smartListResult = await HttpProcessor.GetSmartList(getSmartListRequest);
+            BaseRequest getSmartListRequest = _requestFactorty.CreateGetSmartListRequest(_host, _token);
+            string smartListResult = await HttpProcessor.GetSmartList(getSmartListRequest);
             return smartListResult;
         }
+        public T GetSmartList<T>(bool isJson)
+        {
+            GetSmartListRequest getSmartListRequest = new GetSmartListRequest()
+            {
+                Url = _host + "/rest/asset/v1/staticLists.json?access_token=" + _token
+            };
+            T result = getSmartListRequest.Run<T>();
+            return result;
+        }
+
+        public Task<GetFoldersResponse> GetFolders(string rootFolderId)
+        {
+            GetFoldersRequest request = _requestFactorty.CreateGetFoldersRequest(_host, _token, rootFolderId);
+            Task<GetFoldersResponse> folders = HttpProcessor.GetFolders(request);
+            return folders;
+        }
+
         public void BulkExportLeads()
         {
             Console.WriteLine("============================Getting token==============================");
             Console.WriteLine("============================Creating job==============================");
 
-            LeadsExportRequest leadsExportRequest = RequestFactory.CreateGetLeadsExportRequest(Host, Token);
+            LeadsExportRequest leadsExportRequest = _requestFactorty.CreateGetLeadsExportRequest(_host, _token);
 
             string job = LeadsHttpProcessor.CreateJob(leadsExportRequest);
             Console.WriteLine("============================Getting exportedId==============================");
             JObject jobObject = (JObject)JsonConvert.DeserializeObject(job);
-            var result = jobObject["result"];
+            JToken result = jobObject["result"];
             string exportedId = result[0]["exportId"].ToString();
             leadsExportRequest.ExportId = exportedId;
 
@@ -52,7 +72,6 @@ namespace MarketoApiLibrary
                 status = status = LeadsHttpProcessor.GetJobStatus(leadsExportRequest);
                 //Console.WriteLine("==============================Waiting job to be completed=====================================");
                 Console.WriteLine("==============================" + status + "=====================================");
-
             }
 
             if (LeadsHttpProcessor.GetJobStatus(leadsExportRequest) == "Completed")
@@ -65,16 +84,23 @@ namespace MarketoApiLibrary
             }
         }
 
+        public async Task<GetFilesResponse> GetFiles(string folderId, int offSet)
+        {
+            GetFilesRequest request = _requestFactorty.CreateGetFilesRequest(_host, _token, folderId, offSet);
+            GetFilesResponse result = await HttpProcessor.GetFiles(request);
+            return result;
+
+        }
         public void BulkExportActivities()
         {
             Console.WriteLine("============================Getting token==============================");
             Console.WriteLine("============================Creating job==============================");
 
-            var request = RequestFactory.CreateActivitiesExportRequest(Host, Token);
+            ActivitiesExportRequest request = _requestFactorty.CreateActivitiesExportRequest(_host, _token);
             string job = ActivitiesHttpProcessor.CreateJob(request);
             Console.WriteLine("============================Getting exportedId==============================");
             JObject jobObject = (JObject)JsonConvert.DeserializeObject(job);
-            var result = jobObject["result"];
+            JToken result = jobObject["result"];
             string exportedId = result[0]["exportId"].ToString();
             request.ExportId = exportedId;
             Console.WriteLine("============================Enqueuing job " + exportedId + "==============================");
@@ -92,25 +118,24 @@ namespace MarketoApiLibrary
             if (ActivitiesHttpProcessor.GetJobStatus(request) == "Completed")
             {
                 Console.WriteLine("==========================Job Completed, Start to retrieving===============================");
-                string extractedData = ActivitiesHttpProcessor.RetrieveData(request);
+                string extractedData = ActivitiesHttpProcessor.Export(request).Result;
                 System.IO.File.WriteAllText(@"D:\activitity_results001.csv", extractedData);
                 Console.WriteLine("==========================Done!===============================");
                 Console.ReadKey();
             }
         }
-
         public string DescribeCustomObjects()
         {
-            var request = RequestFactory.CreateCustomObjectsRequest(Host, Token);
-            var result = CustomObjectProcessor.DescribeCustomObjects(request);
+            CustomObjectsRequest request = _requestFactorty.CreateCustomObjectsRequest(_host, _token);
+            string result = CustomObjectProcessor.DescribeCustomObjects(request);
             return result;
         }
-
         public string SyncCustomObjects()
         {
-            var request = RequestFactory.CreateCustomObjectsRequest(Host, Token);
-            var result = CustomObjectProcessor.SyncCustomObjects(request);
+            CustomObjectsRequest request = _requestFactorty.CreateCustomObjectsRequest(_host, _token);
+            string result = CustomObjectProcessor.SyncCustomObjects(request);
             return result;
         }
     }
 }
+
