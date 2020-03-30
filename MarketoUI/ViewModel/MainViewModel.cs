@@ -123,7 +123,7 @@ namespace MarketoUI.ViewModel
             CancelCommand = new RelayCommand(Cancel);
         }
 
-        
+
 
         #region commands
         public RelayCommand StartCommand { get; set; }
@@ -148,7 +148,7 @@ namespace MarketoUI.ViewModel
             watch.Stop();
             long elapsedMs = watch.ElapsedMilliseconds;
             Status += $"Loading Api Config execution time: { elapsedMs }...{Environment.NewLine}";
-            
+
             List<string> folderIds = new List<string>();
             folderIds.Add(FolderIDs);
 
@@ -174,6 +174,7 @@ namespace MarketoUI.ViewModel
             int processedFolderNums = 0;
             this.FolderStatus = 0;
 
+            long elapsedMs;
             foreach (var id in folderIds)
             {
                 this.CurrentFolder = id;
@@ -183,16 +184,30 @@ namespace MarketoUI.ViewModel
                 Progress<ProgressReportModel> progress = new Progress<ProgressReportModel>();
                 progress.ProgressChanged += ReportProgress;
                 CreateDir(saveRootPath);
-               
-                await WriteFileToDiskParallelAsync(fileResults, saveRootPath, progress, cts.Token);
-                    //WriteFileToDisk(id, fileResults, saveRootPath, progress, cts.Token);
-                
+                try
+                {
+                    await WriteFileToDiskParallelAsync(fileResults, saveRootPath, progress, cts.Token);
+                }
+                catch (OperationCanceledException e)
+                {
+                    Status += $"Downloading is cancelled...{Environment.NewLine}";
+                    watch.Stop();
+                    elapsedMs = watch.ElapsedMilliseconds;
+                    Status += $"Total execution time: { elapsedMs }...{Environment.NewLine}";
+                    return;
+                }
+                finally
+                {
+                    cts.Dispose();
+                }
+                //WriteFileToDisk(id, fileResults, saveRootPath, progress, cts.Token);
+
                 Status += $"Done!{Environment.NewLine}";
                 processedFolderNums += 1;
                 this.FolderStatus = (processedFolderNums * 100) / folderIds.Count;
             }
             watch.Stop();
-            long elapsedMs = watch.ElapsedMilliseconds;
+            elapsedMs = watch.ElapsedMilliseconds;
             Status += $"Total execution time: { elapsedMs }...{Environment.NewLine}";
         }
 
@@ -270,33 +285,25 @@ namespace MarketoUI.ViewModel
             ProgressReportModel report = new ProgressReportModel();
             int processedNum = 0;
 
-            var po = new ParallelOptions {CancellationToken = cancellationToken};
+            var po = new ParallelOptions { CancellationToken = cancellationToken };
 
             await Task.Run(() =>
             {
-                try
-                {
-                    Parallel.ForEach(fileResult, po, (file) =>
-                    {
-                        string fileName = Path.Combine(saveRootPath, file.Name);
-                        FileDownloader.DownFile(file.Url, fileName);
+                Parallel.ForEach(fileResult, po, (file) =>
+                   {
+                       string fileName = Path.Combine(saveRootPath, file.Name);
+                       FileDownloader.DownFile(file.Url, fileName);
 
-                        //po.CancellationToken.ThrowIfCancellationRequested();
+                       if (po.CancellationToken.IsCancellationRequested)
+                       {
+                           return;
+                       }
 
-                        processedNum += 1;
-                        report.PercentageComplete = (processedNum * 100) / fileResult.Count;
-                        report.File = file;
-                        progress.Report(report);
-                    });
-                }
-                catch (OperationCanceledException)
-                {
-                    Status += $"Downloading is cancelled...{Environment.NewLine}";
-                }
-                finally
-                {
-                    cts.Dispose();
-                }
+                       processedNum += 1;
+                       report.PercentageComplete = (processedNum * 100) / fileResult.Count;
+                       report.File = file;
+                       progress.Report(report);
+                   });
             });
         }
 
