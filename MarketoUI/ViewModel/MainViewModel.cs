@@ -154,7 +154,7 @@ namespace MarketoUI.ViewModel
 
             Task task = Task.Run(() =>
             {
-                DownFile(apiConfig, FolderIDs, SavePath);
+                DownLoadFile(apiConfig, FolderIDs, SavePath);
             });
 
         }
@@ -163,7 +163,7 @@ namespace MarketoUI.ViewModel
         {
             cts.Cancel();
         }
-        private async Task DownFile(ApiConfig apiConfig, string folderId, string savePath)
+        private async Task DownLoadFile(ApiConfig apiConfig, string folderId, string savePath)
         {
             System.Diagnostics.Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
             List<string> statusLog = new List<string>();
