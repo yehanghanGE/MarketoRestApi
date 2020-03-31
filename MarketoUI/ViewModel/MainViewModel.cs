@@ -123,8 +123,6 @@ namespace MarketoUI.ViewModel
             CancelCommand = new RelayCommand(Cancel);
         }
 
-
-
         #region commands
         public RelayCommand StartCommand { get; set; }
 

@@ -49,11 +49,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="MarketoAssetClient.cs" />
     <Compile Include="Model\Error.cs" />
     <Compile Include="Model\GetFoldersResponse.cs" />
     <Compile Include="Model\GetSmartListResponse.cs" />
     <Compile Include="Model\IBaseMarketoResponse.cs" />
     <Compile Include="Model\MarketoSmartList.cs" />
+    <Compile Include="Provider\FilesRequestFactory.cs" />
+    <Compile Include="Provider\IFilesRequestFactory.cs" />
     <Compile Include="Request\BaseGetRequest.cs" />
     <Compile Include="Request\GetSmartListRequest.cs" />
     <Compile Include="IMarketoClient.cs" />
@@ -81,6 +84,7 @@
     <Compile Include="Service\ActivitiesHttpProcessor.cs" />
     <Compile Include="Service\CustomObjectProcessor.cs" />
     <Compile Include="Request\GetLeadsByFilterTypeRequest.cs" />
+    <Compile Include="Service\FilesHttpProcessor.cs" />
     <Compile Include="Service\HttpProcessor.cs" />
     <Compile Include="Service\LeadsHttpProcessor.cs" />
     <Compile Include="Utility\Helper.cs" />

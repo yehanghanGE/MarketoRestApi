@@ -1,10 +1,11 @@
 ﻿
-using MarketoApiLibrary.Model;
-using MarketoApiLibrary.Request;
-using Newtonsoft.Json;
+using System.Collections.Specialized;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
+using MarketoApiLibrary.Model;
+using MarketoApiLibrary.Request;
+using Newtonsoft.Json;
 
 namespace MarketoApiLibrary.Service
 {
@@ -12,7 +13,7 @@ namespace MarketoApiLibrary.Service
     {
         public static async Task<GetFilesResponse> GetFiles(GetFilesRequest request)
         {
-            System.Collections.Specialized.NameValueCollection qs = HttpUtility.ParseQueryString(string.Empty);
+            var qs = HttpUtility.ParseQueryString(string.Empty);
             qs.Add("access_token", request.Token);
             if (request.Folder != null)
             {
@@ -26,7 +27,7 @@ namespace MarketoApiLibrary.Service
             {
                 qs.Add("maxReturn", request.MaxReturn.ToString());
             }
-            string url = request.Host + "/rest/asset/v1/files.json?" + qs.ToString();
+            string url = request.Host + "/rest/asset/v1/files.json?" + qs;
             HttpClient client = new HttpClient();
             HttpResponseMessage response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
@@ -37,7 +38,7 @@ namespace MarketoApiLibrary.Service
 
         public static async Task<GetFoldersResponse> GetFolders(GetFoldersRequest request)
         {
-            System.Collections.Specialized.NameValueCollection qs = HttpUtility.ParseQueryString(string.Empty);
+            NameValueCollection qs = HttpUtility.ParseQueryString(string.Empty);
             qs.Add("access_token", request.Token);
             qs.Add("root", JsonConvert.SerializeObject(request.Root));
             if (request.Offset > 0)
@@ -56,7 +57,7 @@ namespace MarketoApiLibrary.Service
             {
                 qs.Add("workSpace", request.WorkSpace);
             }
-            string url = request.Host + "/rest/asset/v1/folders.json?" + qs.ToString();
+            string url = request.Host + "/rest/asset/v1/folders.json?" + qs;
             HttpClient client = new HttpClient();
             HttpResponseMessage response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
@@ -78,7 +79,7 @@ namespace MarketoApiLibrary.Service
 
         public static async Task<string> GetFolderByName(GetFolderByNameRequest request)
         {
-            System.Collections.Specialized.NameValueCollection qs = HttpUtility.ParseQueryString(string.Empty);
+            NameValueCollection qs = HttpUtility.ParseQueryString(string.Empty);
             qs.Add("access_token", request.Token);
             qs.Add("name", request.Name);
             if (request.Type != null)
@@ -93,7 +94,7 @@ namespace MarketoApiLibrary.Service
             {
                 qs.Add("workSpace", request.WorkSpace);
             }
-            string url = request.Host + "/rest/asset/v1/folder/byName.json?" + qs.ToString();
+            string url = request.Host + "/rest/asset/v1/folder/byName.json?" + qs;
             HttpClient client = new HttpClient();
             HttpResponseMessage response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
