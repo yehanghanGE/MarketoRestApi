@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 using System.Web;
 using MarketoApiLibrary.Model;
 using MarketoApiLibrary.Request;
+using MarketoApiLibrary.Response;
 using Newtonsoft.Json;
 
 namespace MarketoApiLibrary.Service
 {
     public static class HttpProcessor
     {
-        public static async Task<GetFilesResponse> GetFiles(GetFilesRequest request)
+        public static async Task<FilesResponse> GetFiles(GetFilesRequest request)
         {
             var qs = HttpUtility.ParseQueryString(string.Empty);
             qs.Add("access_token", request.Token);
@@ -33,7 +34,7 @@ namespace MarketoApiLibrary.Service
             response.EnsureSuccessStatusCode();
 
             string content = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<GetFilesResponse>(content);
+            return JsonConvert.DeserializeObject<FilesResponse>(content);
         }
 
         public static async Task<GetFoldersResponse> GetFolders(GetFoldersRequest request)

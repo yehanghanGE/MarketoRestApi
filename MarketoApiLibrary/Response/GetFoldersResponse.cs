@@ -1,7 +1,8 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using MarketoApiLibrary.Model;
+using Newtonsoft.Json;
 
-namespace MarketoApiLibrary.Model
+namespace MarketoApiLibrary.Response
 {
     public class GetFoldersResponse : BaseMarketoResponse
     {

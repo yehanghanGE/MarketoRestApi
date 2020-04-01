@@ -5,6 +5,9 @@ using MarketoApiLibrary.Utility;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using MarketoApiLibrary.Response;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MarketoApiConsole
 {
@@ -41,14 +44,22 @@ namespace MarketoApiConsole
                 //                                    "36037","49582","54150","37783","41502","44521","50537"};
 
                 //DownFile(host, clientId, clientSecret, folderIds, @"D:\DownloadedImageFromMarketo");
-                List<string> folderIds = GetSubFolderIDs(host, clientId, clientSecret, "76383");
-                DownFile(host, clientId, clientSecret, folderIds, @"D:\DownloadedImageFromMarketo");
-
+                //List<string> folderIds = GetSubFolderIDs(host, clientId, clientSecret, "76383");
+                //DownFile(host, clientId, clientSecret, folderIds, @"D:\DownloadedImageFromMarketo");
+                GetFileByName(host, clientId, clientSecret, "bg-blue.png");
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
+        }
+
+        private static void GetFileByName(string host, string clientId, string clientSecret, string fileName)
+        {
+            var client = new MarketoAssetClient(host, clientId, clientSecret);
+            var result = client.GetFileByName<FilesResponse>(fileName).Result;
+            Console.WriteLine(JToken.FromObject(result).ToString());
+            Console.ReadKey();
         }
         private static void GetSmartList(string host, string clientId, string clientSecret)
         {
@@ -80,7 +91,7 @@ namespace MarketoApiConsole
             foreach (string folderId in folderIds)
             {
                 Console.WriteLine(folderId);
-                GetFilesResponse fileResult = client.GetFiles(folderId, 0).Result;
+                FilesResponse fileResult = client.GetFiles(folderId, 0).Result;
                 string saveRootPath = Path.Combine(savePath, folderId);
 
                 if (fileResult?.Result != null)
@@ -93,7 +104,7 @@ namespace MarketoApiConsole
                     if (fileResult.Result.Count >= 200)
                     {
                         MarketoClient client200 = new MarketoClient(host, clientId, clientSecret);
-                        GetFilesResponse fileResult200 = client200.GetFiles(folderId, 200).Result;
+                        FilesResponse fileResult200 = client200.GetFiles(folderId, 200).Result;
                         if (fileResult200?.Result != null)
                         {
                             WriteFileToDisk(fileResult200, saveRootPath);
@@ -104,10 +115,10 @@ namespace MarketoApiConsole
             }
             Console.ReadKey();
         }
-        private static void WriteFileToDisk(GetFilesResponse fileResult, string saveRootPath)
+        private static void WriteFileToDisk(FilesResponse fileResult, string saveRootPath)
         {
             if (fileResult?.Result == null) return;
-            foreach (MarketoFile file in fileResult?.Result)
+            foreach (FileResponse file in fileResult?.Result)
             {
                 string fileName = Path.Combine(saveRootPath, file.Name);
                 FileDownloader.DownFile(file.Url, fileName);

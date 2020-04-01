@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Threading.Tasks;
+using MarketoApiLibrary.Response;
 
 namespace MarketoApiLibrary
 {
@@ -84,10 +85,10 @@ namespace MarketoApiLibrary
             }
         }
 
-        public async Task<GetFilesResponse> GetFiles(string folderId, int offSet)
+        public async Task<FilesResponse> GetFiles(string folderId, int offSet)
         {
             GetFilesRequest request = _requestFactorty.CreateGetFilesRequest(_host, _token, folderId, offSet);
-            GetFilesResponse result = await HttpProcessor.GetFiles(request);
+            FilesResponse result = await HttpProcessor.GetFiles(request);
             return result;
 
         }

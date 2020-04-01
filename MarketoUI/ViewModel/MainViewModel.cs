@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using MarketoApiLibrary.Response;
 
 namespace MarketoUI.ViewModel
 {
@@ -178,7 +179,7 @@ namespace MarketoUI.ViewModel
                 this.CurrentFolder = id;
                 Status += $"Reading folder {id}...{Environment.NewLine}";
                 var saveRootPath = Path.Combine(savePath, id);
-                List<MarketoFile> fileResults = await GetFileResults(client, id);
+                List<FileResponse> fileResults = await GetFileResults(client, id);
                 Progress<ProgressReportModel> progress = new Progress<ProgressReportModel>();
                 progress.ProgressChanged += ReportProgress;
                 CreateDir(saveRootPath);
@@ -212,7 +213,7 @@ namespace MarketoUI.ViewModel
         private void ReportProgress(object sender, ProgressReportModel e)
         {
             this.FileStatus = e.PercentageComplete;
-            ReportFileInfo(e.File.Name);
+            ReportFileInfo(e.FileResponse.Name);
         }
 
         private async Task<List<string>> GetAllFolderIDs(string folderId, MarketoClient client)
@@ -238,10 +239,10 @@ namespace MarketoUI.ViewModel
             Directory.CreateDirectory(saveRootPath);
         }
 
-        private async Task<List<MarketoFile>> GetFileResults(MarketoClient client, string id)
+        private async Task<List<FileResponse>> GetFileResults(MarketoClient client, string id)
         {
-            List<MarketoFile> fileResults = new List<MarketoFile>();
-            GetFilesResponse fileResult = await client.GetFiles(id, 0);
+            List<FileResponse> fileResults = new List<FileResponse>();
+            FilesResponse fileResult = await client.GetFiles(id, 0);
             if (fileResult?.Result != null)
             {
                 fileResults.AddRange(fileResult.Result);
@@ -251,7 +252,7 @@ namespace MarketoUI.ViewModel
                 {
                     callTimes += 1;
                     //var clientNext = new MarketoClient(host, clientId, clientSecret);
-                    GetFilesResponse fileResultNext = await client.GetFiles(id, callTimes * 200);
+                    FilesResponse fileResultNext = await client.GetFiles(id, callTimes * 200);
                     if (fileResultNext?.Result != null)
                     {
                         fileResults.AddRange(fileResultNext.Result);
@@ -262,7 +263,7 @@ namespace MarketoUI.ViewModel
             return fileResults;
         }
 
-        private void WriteFileToDisk(string folderId, List<MarketoFile> fileResult, string saveRootPath, IProgress<ProgressReportModel> progress, CancellationToken cancellationToken)
+        private void WriteFileToDisk(string folderId, List<FileResponse> fileResult, string saveRootPath, IProgress<ProgressReportModel> progress, CancellationToken cancellationToken)
         {
             ProgressReportModel report = new ProgressReportModel();
             int processedNum = 0;
@@ -273,12 +274,12 @@ namespace MarketoUI.ViewModel
                 cancellationToken.ThrowIfCancellationRequested();
                 processedNum += 1;
                 report.PercentageComplete = (processedNum * 100) / fileResult.Count;
-                report.File = file;
+                report.FileResponse = file;
                 progress.Report(report);
             }
         }
 
-        private async Task WriteFileToDiskParallelAsync(List<MarketoFile> fileResult, string saveRootPath, IProgress<ProgressReportModel> progress, CancellationToken cancellationToken)
+        private async Task WriteFileToDiskParallelAsync(List<FileResponse> fileResult, string saveRootPath, IProgress<ProgressReportModel> progress, CancellationToken cancellationToken)
         {
             ProgressReportModel report = new ProgressReportModel();
             int processedNum = 0;
@@ -299,7 +300,7 @@ namespace MarketoUI.ViewModel
 
                        processedNum += 1;
                        report.PercentageComplete = (processedNum * 100) / fileResult.Count;
-                       report.File = file;
+                       report.FileResponse = file;
                        progress.Report(report);
                    });
             });

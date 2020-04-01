@@ -19,7 +19,7 @@ namespace MarketoApiLibrary.Model
     }*/
 
 
-    public class MarketoFile
+    public class FileResponse : IFileResponse
     {
         [JsonProperty("id")]
         public int Id { get; set; }
@@ -30,7 +30,7 @@ namespace MarketoApiLibrary.Model
         [JsonProperty("url")]
         public string Url { get; set; }
         [JsonProperty("folder")]
-        public MarketoFolder MarketoFolder { get; set; }
+        public FileFolder Folder { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
         [JsonProperty("description")]

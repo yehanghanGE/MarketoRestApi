@@ -2,7 +2,7 @@
 
 namespace MarketoApiLibrary.Model
 {
-    public class Error
+    public class Error : IError
     {
         [JsonProperty("code")]
         public string Code { get; set; }

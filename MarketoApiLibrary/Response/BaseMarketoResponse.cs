@@ -1,7 +1,8 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using MarketoApiLibrary.Model;
+using Newtonsoft.Json;
 
-namespace MarketoApiLibrary.Model
+namespace MarketoApiLibrary.Response
 {
     public class BaseMarketoResponse : IBaseMarketoResponse
     {
@@ -10,6 +11,8 @@ namespace MarketoApiLibrary.Model
         [JsonProperty("requestId")]
         public string RequestId { get; set; }
         [JsonProperty("errors")]
-        public List<Dictionary<string, object>> Errors { get; set; }
+        public List<IError> Errors { get; set; }
+        [JsonProperty("warnings")]
+        public List<string> Warnings { get; set; }
     }
 }

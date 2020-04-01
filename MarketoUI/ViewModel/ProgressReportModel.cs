@@ -6,6 +6,6 @@ namespace MarketoUI.ViewModel
     {
         public int PercentageComplete { get; set; } = 0;
         public string FileName { get; set; }
-        public MarketoFile File { get; set; }
+        public FileResponse FileResponse { get; set; }
     }
 }

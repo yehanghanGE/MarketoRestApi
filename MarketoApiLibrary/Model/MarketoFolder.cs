@@ -22,9 +22,9 @@ namespace MarketoApiLibrary.Model
         [JsonProperty("folderType")]
         public string FolderType { get; set; }
         [JsonProperty("folderId")]
-        public Folder FolderId { get; set; }
+        public FileFolder FolderId { get; set; }
         [JsonProperty("parent")]
-        public Folder Parent { get; set; }
+        public FileFolder Parent { get; set; }
         [JsonProperty("isArchive")]
         public bool IsArchive { get; set; }
         [JsonProperty("isSystem")]
@@ -37,13 +37,5 @@ namespace MarketoApiLibrary.Model
         public string Url { get; set; }
         [JsonProperty("workspace")]
         public string Workspace { get; set; }
-    }
-
-    public class Folder
-    {
-        [JsonProperty("id")]
-        public int Id { get; set; }
-        [JsonProperty("type")]
-        public string Type { get; set; }
     }
 }

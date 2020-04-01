@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using MarketoApiLibrary.Model;
 using MarketoApiLibrary.Provider;
+using MarketoApiLibrary.Response;
 using MarketoApiLibrary.Service;
 
 namespace MarketoApiLibrary
@@ -24,9 +25,16 @@ namespace MarketoApiLibrary
         }
 
         // Files
-        public void GetFileByName(string fileName)
+        /// <summary>
+        /// GET /rest/asset/v1/file/byName.json
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public async Task<T> GetFileByName<T>(string fileName)
         {
-
+            var request = _fileRequestFactory.CreateGetFileByNameRequest(_host, _token, fileName);
+            var result = await FilesHttpProcessor.GetFileByName<T>(request);
+            return result;
         }
        
         public void GetFileById(string fileId)
@@ -40,7 +48,7 @@ namespace MarketoApiLibrary
         /// <param name="folderId"></param>
         /// <param name="offSet"></param>
         /// <returns></returns>
-        public async Task<GetFilesResponse> GetFiles(string folderId, int offSet)
+        public async Task<FilesResponse> GetFiles(string folderId, int offSet)
         {
             var request = _fileRequestFactory.CreateGetFilesRequest(_host, _token, folderId, offSet);
             var result = await FilesHttpProcessor.GetFiles(request);
