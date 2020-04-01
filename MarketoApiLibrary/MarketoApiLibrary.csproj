@@ -54,7 +54,7 @@
     <Compile Include="Model\FileFolder.cs" />
     <Compile Include="Model\IError.cs" />
     <Compile Include="Model\IFileFolder.cs" />
-    <Compile Include="Model\IFileResponse.cs" />
+    <Compile Include="Response\IFileResponse.cs" />
     <Compile Include="Request\GetFileByNameRequest.cs" />
     <Compile Include="Response\GetFoldersResponse.cs" />
     <Compile Include="Response\GetSmartListResponse.cs" />
@@ -69,7 +69,7 @@
     <Compile Include="Model\ApiConfig.cs" />
     <Compile Include="Response\BaseMarketoResponse.cs" />
     <Compile Include="Response\FilesResponse.cs" />
-    <Compile Include="Model\FileResponse.cs" />
+    <Compile Include="Response\FileResponse.cs" />
     <Compile Include="Model\MarketoFolder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider\ConfigurationProvider.cs" />

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using MarketoApiLibrary.Model;
+﻿using MarketoApiLibrary.Model;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace MarketoApiLibrary.Response
 {

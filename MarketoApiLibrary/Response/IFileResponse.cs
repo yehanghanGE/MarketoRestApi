@@ -1,4 +1,6 @@
-﻿namespace MarketoApiLibrary.Model
+﻿using MarketoApiLibrary.Model;
+
+namespace MarketoApiLibrary.Response
 {
     public interface IFileResponse
     {
