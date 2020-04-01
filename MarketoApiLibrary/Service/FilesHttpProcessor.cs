@@ -50,5 +50,19 @@ namespace MarketoApiLibrary.Service
             string content = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<T>(content);
         }
+
+        public static async Task<T> GetFileById<T>(GetFileByIdRequest request)
+        {
+            var qs = HttpUtility.ParseQueryString(string.Empty);
+            qs.Add("access_token", request.Token);
+
+            var url = request.Host + "/rest/asset/v1/file/" + request.FileId + ".json?" + qs;
+            var client = new HttpClient();
+            var response = await client.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+
+            var content = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<T>(content);
+        }
     }
 }

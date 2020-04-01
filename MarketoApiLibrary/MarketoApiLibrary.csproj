@@ -54,6 +54,7 @@
     <Compile Include="Model\FileFolder.cs" />
     <Compile Include="Model\IError.cs" />
     <Compile Include="Model\IFileFolder.cs" />
+    <Compile Include="Request\GetFileByIdRequest.cs" />
     <Compile Include="Response\IFileResponse.cs" />
     <Compile Include="Request\GetFileByNameRequest.cs" />
     <Compile Include="Response\GetFoldersResponse.cs" />

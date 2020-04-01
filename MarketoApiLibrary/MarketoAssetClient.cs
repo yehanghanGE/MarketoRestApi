@@ -9,16 +9,12 @@ namespace MarketoApiLibrary
     public class MarketoAssetClient
     {
         private readonly string _host;
-        private readonly string _clientId;
-        private readonly string _clientSecret;
         private readonly string _token;
         private readonly IFilesRequestFactory _fileRequestFactory;
 
         public MarketoAssetClient(string host, string clientId, string clientSecret)
         {
             _host = host;
-            _clientId = clientId;
-            _clientSecret = clientSecret;
             ITokenProvider tokenProvider = new TokenProvider();
             _token = tokenProvider.GetTokenAsync(host, clientId, clientSecret).Result;
             _fileRequestFactory = new FilesRequestFactory();
@@ -36,10 +32,15 @@ namespace MarketoApiLibrary
             var result = await FilesHttpProcessor.GetFileByName<T>(request);
             return result;
         }
-       
-        public void GetFileById(string fileId)
+        /// <summary>
+        /// GET /rest/asset/v1/file/{id}.json
+        /// </summary>
+        /// <param name="fileId"></param>
+        public async Task<T> GetFileById<T>(int fileId)
         {
-
+            var request = _fileRequestFactory.CreateGetFileByIdRequest(_host, _token, fileId);
+            var result = await FilesHttpProcessor.GetFileById<T>(request);
+            return result;
         }
 
         /// <summary>

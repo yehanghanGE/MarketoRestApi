@@ -29,5 +29,16 @@ namespace MarketoApiLibrary.Provider
             };
             return getFileByNameRequest;
         }
+
+        public GetFileByIdRequest CreateGetFileByIdRequest(string host, string token, int fileId)
+        {
+            var request = new GetFileByIdRequest()
+            {
+                Host = host,
+                Token = token,
+                FileId = fileId.ToString()
+            };
+            return request;
+        }
     }
 }

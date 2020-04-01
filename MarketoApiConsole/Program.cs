@@ -46,12 +46,21 @@ namespace MarketoApiConsole
                 //DownFile(host, clientId, clientSecret, folderIds, @"D:\DownloadedImageFromMarketo");
                 //List<string> folderIds = GetSubFolderIDs(host, clientId, clientSecret, "76383");
                 //DownFile(host, clientId, clientSecret, folderIds, @"D:\DownloadedImageFromMarketo");
-                GetFileByName(host, clientId, clientSecret, "bg-blue.png");
+                //GetFileByName(host, clientId, clientSecret, "bg-blue.png"); 1004103
+                GetFileById(host, clientId, clientSecret, 1004103);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
+        }
+
+        private static void GetFileById(string host, string clientId, string clientSecret, int fileId)
+        {
+            var client = new MarketoAssetClient(host, clientId, clientSecret);
+            var result = client.GetFileById<FilesResponse>(fileId).Result;
+            Console.WriteLine(JToken.FromObject(result).ToString());
+            Console.ReadKey();
         }
 
         private static void GetFileByName(string host, string clientId, string clientSecret, string fileName)
