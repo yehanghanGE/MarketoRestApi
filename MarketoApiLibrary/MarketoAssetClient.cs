@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using MarketoApiLibrary.Model;
 using MarketoApiLibrary.Provider;
 using MarketoApiLibrary.Response;
 using MarketoApiLibrary.Service;
@@ -49,17 +48,19 @@ namespace MarketoApiLibrary
         /// <param name="folderId"></param>
         /// <param name="offSet"></param>
         /// <returns></returns>
-        public async Task<FilesResponse> GetFiles(string folderId, int offSet)
+        public async Task<T> GetFiles<T>(string folderId, int offSet)
         {
             var request = _fileRequestFactory.CreateGetFilesRequest(_host, _token, folderId, offSet);
-            var result = await FilesHttpProcessor.GetFiles(request);
+            var result = await FilesHttpProcessor.GetFiles<T>(request);
             return result;
         }
-        
-        public void CreateFile()
-        {
 
+        public async Task<T> CreateFile<T>(string filePath)
+        {
+            var request = _fileRequestFactory.CreateCreateFileRequest(_host, _token, filePath);
+            var result = await FilesHttpProcessor.CreateFile<T>(request);
+            return result;
         }
-      
+
     }
 }

@@ -1,18 +1,16 @@
-﻿
-using System.Collections.Specialized;
+﻿using MarketoApiLibrary.Request;
+using Newtonsoft.Json;
+using System.IO;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
-using MarketoApiLibrary.Model;
-using MarketoApiLibrary.Request;
-using MarketoApiLibrary.Response;
-using Newtonsoft.Json;
 
 namespace MarketoApiLibrary.Service
 {
     public static class FilesHttpProcessor
     {
-        public static async Task<FilesResponse> GetFiles(GetFilesRequest request)
+        public static async Task<T> GetFiles<T>(GetFilesRequest request)
         {
             var qs = HttpUtility.ParseQueryString(string.Empty);
             qs.Add("access_token", request.Token);
@@ -33,8 +31,8 @@ namespace MarketoApiLibrary.Service
             HttpResponseMessage response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
-            string content = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<FilesResponse>(content);
+            var content = await response.Content.ReadAsAsync<T>();
+            return content;
         }
 
         public static async Task<T> GetFileByName<T>(GetFileByNameRequest request)
@@ -47,8 +45,8 @@ namespace MarketoApiLibrary.Service
             var response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
-            string content = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<T>(content);
+            var content = await response.Content.ReadAsAsync<T>();
+            return content;
         }
 
         public static async Task<T> GetFileById<T>(GetFileByIdRequest request)
@@ -61,8 +59,43 @@ namespace MarketoApiLibrary.Service
             var response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
-            var content = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<T>(content);
+            var content = await response.Content.ReadAsAsync<T>();
+            return content;
+        }
+        /// <summary>
+        /// POST /rest/asset/v1/files.json
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public static async Task<T> CreateFile<T>(CreateFileRequest request)
+        {
+            var qs = HttpUtility.ParseQueryString(string.Empty);
+            qs.Add("access_token", request.Token);
+
+            var url = request.Host + "/rest/asset/v1/files.json?" + qs;
+            var client = new HttpClient();
+            using (var form = new MultipartFormDataContent())
+            {
+                using (var fs = File.OpenRead(request.FilePath))
+                {
+                    using (var streamContent = new StreamContent(fs))
+                    {
+                        using (var fileContent = new ByteArrayContent(await streamContent.ReadAsByteArrayAsync()))
+                        {
+                            fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
+
+                            // "file" parameter name should be the same as the server side input parameter name
+                            form.Add(fileContent, "file", Path.GetFileName(request.FilePath));
+                            HttpResponseMessage response = await client.PostAsync(url, form);
+                            response.EnsureSuccessStatusCode();
+
+                            var content = await response.Content.ReadAsAsync<T>();
+                            return content;
+                        }
+                    }
+                }
+            }
         }
     }
 }

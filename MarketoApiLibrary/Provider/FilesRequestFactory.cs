@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MarketoApiLibrary.Provider
 {
-    public class FilesRequestFactory: IFilesRequestFactory
+    public class FilesRequestFactory : IFilesRequestFactory
     {
         public GetFilesRequest CreateGetFilesRequest(string host, string token, string folderId, int offSet = 0, int maxReturn = 200)
         {
@@ -37,6 +37,17 @@ namespace MarketoApiLibrary.Provider
                 Host = host,
                 Token = token,
                 FileId = fileId.ToString()
+            };
+            return request;
+        }
+
+        public CreateFileRequest CreateCreateFileRequest(string host, string token, string filePath)
+        {
+            var request = new CreateFileRequest()
+            {
+                Host = host,
+                Token = token,
+                FilePath = filePath
             };
             return request;
         }

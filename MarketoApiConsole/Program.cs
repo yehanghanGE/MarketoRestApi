@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 
 namespace MarketoApiConsole
 {
-    internal class Program
+    public class Program
     {
         public static void Main(string[] args)
         {
@@ -47,12 +47,21 @@ namespace MarketoApiConsole
                 //List<string> folderIds = GetSubFolderIDs(host, clientId, clientSecret, "76383");
                 //DownFile(host, clientId, clientSecret, folderIds, @"D:\DownloadedImageFromMarketo");
                 //GetFileByName(host, clientId, clientSecret, "bg-blue.png"); 1004103
-                GetFileById(host, clientId, clientSecret, 1004103);
+                //GetFileById(host, clientId, clientSecret, 1004103);
+                CreateFile(host, clientId, clientSecret, @"C:\\Projects\\MarketoRestApi\\MarketoApiLibrary\\Constants.cs");
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
+        }
+
+        private static void CreateFile(string host, string clientId, string clientSecret, string filePath)
+        {
+            var client = new MarketoAssetClient(host, clientId, clientSecret);
+            var result = client.CreateFile<FilesResponse>(filePath).Result;
+            Console.WriteLine(JToken.FromObject(result).ToString());
+            Console.ReadKey();
         }
 
         private static void GetFileById(string host, string clientId, string clientSecret, int fileId)
