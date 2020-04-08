@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using MarketoApiLibrary.Request;
 
-namespace MarketoApiLibrary.Request
+namespace MarketoApiLibrary.Asset.Files.Request
 {
     public class GetFileByIdRequest : BaseRequest
     {

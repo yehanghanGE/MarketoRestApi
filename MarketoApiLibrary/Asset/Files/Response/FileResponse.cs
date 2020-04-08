@@ -1,7 +1,7 @@
 ﻿using MarketoApiLibrary.Model;
 using Newtonsoft.Json;
 
-namespace MarketoApiLibrary.Response
+namespace MarketoApiLibrary.Asset.Files.Response
 {
     /*{
       "id": 518799,

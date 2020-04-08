@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using MarketoApiLibrary.Model;
+using MarketoApiLibrary.Request;
 
-namespace MarketoApiLibrary.Request
+namespace MarketoApiLibrary.Asset.Files.Request
 {
     public class CreateFileRequest : BaseRequest
     {
@@ -13,10 +14,10 @@ namespace MarketoApiLibrary.Request
     //    }
     //    
 
-        public string Description { get; set; }
+    public string Description { get; set; } = "default description";
         public string FilePath { get; set; }
         public Folder Folder { get; set; }
-        public bool InsertOnly { get; set; }
+        public bool InsertOnly { get; set; } = true;
         public string Name { get; set; }
     }
 }

@@ -10,6 +10,8 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using MarketoApiLibrary.Asset.Files.Response;
+using MarketoApiLibrary.Asset.Folders.Response;
 using MarketoApiLibrary.Response;
 
 namespace MarketoUI.ViewModel
@@ -314,11 +316,11 @@ namespace MarketoUI.ViewModel
         private List<string> GetSubFolderIDs(string host, string clientId, string clientSecret, string rootFolderId)
         {
             MarketoClient client = new MarketoClient(host, clientId, clientSecret);
-            GetFoldersResponse result = client.GetFolders(rootFolderId).Result;
+            var result = client.GetFolders(rootFolderId).Result;
             List<string> folderIDs = new List<string>();
             if (result.Result != null)
             {
-                foreach (MarketoFolder folder in result.Result)
+                foreach (FolderResponse folder in result.Result)
                 {
                     folderIDs.Add(folder.Id.ToString());
                 }
@@ -329,7 +331,7 @@ namespace MarketoUI.ViewModel
         private static async Task<List<string>> GetSubFolderIDsAsync(MarketoClient client, string rootFolderId)
         {
             //var client = new MarketoClient(apiConfig.Host, apiConfig.ClientId, apiConfig.ClientSecret);
-            GetFoldersResponse result = await client.GetFolders(rootFolderId);
+            var result = await client.GetFolders(rootFolderId);
             List<string> folderIDs = new List<string>();
             if (result.Result == null) return folderIDs;
             folderIDs.AddRange(result.Result.Select(folder => folder.Id.ToString()));

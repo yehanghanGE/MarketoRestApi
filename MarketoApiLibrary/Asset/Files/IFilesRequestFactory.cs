@@ -1,6 +1,6 @@
-﻿using MarketoApiLibrary.Request;
+﻿using MarketoApiLibrary.Asset.Files.Request;
 
-namespace MarketoApiLibrary.Provider
+namespace MarketoApiLibrary.Asset.Files
 {
     public interface IFilesRequestFactory
     {
@@ -8,5 +8,6 @@ namespace MarketoApiLibrary.Provider
         GetFileByNameRequest CreateGetFileByNameRequest(string host, string token, string fileName);
         GetFileByIdRequest CreateGetFileByIdRequest(string host, string token, int fileId);
         CreateFileRequest CreateCreateFileRequest(string host, string token, string file);
+        UpdateFileRequest CreateUpdateFileRequest(string host, string token, string filePath, string fileId);
     }
 }

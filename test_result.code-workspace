@@ -1,0 +1,23 @@
+{
+  "result": [
+    {
+      "id": 2470688,
+      "size": 209086,
+      "mimeType": "image/jpg",
+      "url": "http://landing1.gehealthcare.com/rs/generalhealthcare3/images/Robot.jpg",
+      "folder": {
+        "id": 17445,
+        "name": "Images and Files",
+        "type": "Image"
+      },
+      "name": "Robot.jpg",
+      "description": null,
+      "createdAt": "2020-04-07T14:21:38Z+0000",
+      "updatedAt": "2020-04-07T14:21:38Z+0000"
+    }
+  ],
+  "success": true,
+  "requestId": "4af7#17155049e0f",
+  "errors": [],
+  "warnings": []
+}

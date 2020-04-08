@@ -1,6 +1,6 @@
 ﻿using MarketoApiLibrary.Model;
 
-namespace MarketoApiLibrary.Response
+namespace MarketoApiLibrary.Asset.Files.Response
 {
     public interface IFileResponse
     {

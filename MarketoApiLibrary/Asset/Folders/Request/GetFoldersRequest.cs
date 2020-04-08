@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using MarketoApiLibrary.Request;
 
-namespace MarketoApiLibrary.Request
+namespace MarketoApiLibrary.Asset.Folders.Request
 {
     public class GetFoldersRequest : BaseRequest
     {

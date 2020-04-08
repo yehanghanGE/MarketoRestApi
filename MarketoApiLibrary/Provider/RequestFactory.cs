@@ -1,5 +1,7 @@
 ﻿using MarketoApiLibrary.Request;
 using System.Collections.Generic;
+using MarketoApiLibrary.Asset.Files.Request;
+using MarketoApiLibrary.Asset.Folders.Request;
 
 namespace MarketoApiLibrary.Provider
 {

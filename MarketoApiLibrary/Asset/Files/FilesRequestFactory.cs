@@ -1,7 +1,10 @@
-﻿using MarketoApiLibrary.Request;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using MarketoApiLibrary.Asset.Files.Request;
+using MarketoApiLibrary.Model;
+using MarketoApiLibrary.Provider;
+using MarketoApiLibrary.Request;
 
-namespace MarketoApiLibrary.Provider
+namespace MarketoApiLibrary.Asset.Files
 {
     public class FilesRequestFactory : IFilesRequestFactory
     {
@@ -47,8 +50,26 @@ namespace MarketoApiLibrary.Provider
             {
                 Host = host,
                 Token = token,
-                FilePath = filePath
+                FilePath = filePath,
+                Folder = new Folder()
+                {
+                    Id = 1,
+                    Type = "Folder"
+                }
             };
+            return request;
+        }
+
+        public UpdateFileRequest CreateUpdateFileRequest(string host, string token, string filePath, string fileId)
+        {
+            var request = new UpdateFileRequest()
+            {
+                Host = host,
+                Token = token,
+                FilePath = filePath,
+                FileId = fileId
+            };
+
             return request;
         }
     }

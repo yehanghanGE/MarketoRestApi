@@ -11,7 +11,7 @@ namespace MarketoApiLibrary.Response
         [JsonProperty("requestId")]
         public string RequestId { get; set; }
         [JsonProperty("errors")]
-        public List<IError> Errors { get; set; }
+        public List<Error> Errors { get; set; }
         [JsonProperty("warnings")]
         public List<string> Warnings { get; set; }
     }

@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using MarketoApiLibrary.Response;
 using Newtonsoft.Json;
 
-namespace MarketoApiLibrary.Response
+namespace MarketoApiLibrary.Asset.Files.Response
 {
     public class FilesResponse : BaseMarketoResponse
     {

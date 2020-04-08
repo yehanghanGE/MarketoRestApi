@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using MarketoApiLibrary.Asset.Folders.Response;
+using MarketoApiLibrary.Response;
+using Newtonsoft.Json;
 
 namespace MarketoApiLibrary.Model
 {
@@ -9,7 +11,7 @@ namespace MarketoApiLibrary.Model
         [JsonProperty("name")]
         public string Name { get; set; }
         [JsonProperty("folder")]
-        public MarketoFolder MarketoFolder { get; set; }
+        public FolderResponse MarketoFolder { get; set; }
         [JsonProperty("computedUrl")]
         public string ComputedUrl { get; set; }
         [JsonProperty("workspace")]

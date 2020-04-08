@@ -1,13 +1,14 @@
-﻿using Newtonsoft.Json;
+﻿using MarketoApiLibrary.Model;
+using Newtonsoft.Json;
 
-namespace MarketoApiLibrary.Model
+namespace MarketoApiLibrary.Asset.Folders.Response
 {
     /*{
         "type": "Image",
         "id": 29514,
         "name": "LATAM"
       }*/
-    public class MarketoFolder
+    public class FolderResponse
     {
         [JsonProperty("id")]
         public int Id { get; set; }

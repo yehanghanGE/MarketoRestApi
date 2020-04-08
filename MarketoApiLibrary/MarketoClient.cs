@@ -6,6 +6,12 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Threading.Tasks;
+using MarketoApiLibrary.Asset.Files;
+using MarketoApiLibrary.Asset.Files.Request;
+using MarketoApiLibrary.Asset.Files.Response;
+using MarketoApiLibrary.Asset.Folders;
+using MarketoApiLibrary.Asset.Folders.Request;
+using MarketoApiLibrary.Asset.Folders.Response;
 using MarketoApiLibrary.Response;
 
 namespace MarketoApiLibrary
@@ -43,10 +49,10 @@ namespace MarketoApiLibrary
             return result;
         }
 
-        public Task<GetFoldersResponse> GetFolders(string rootFolderId)
+        public Task<FoldersResponse> GetFolders(string rootFolderId)
         {
             GetFoldersRequest request = _requestFactorty.CreateGetFoldersRequest(_host, _token, rootFolderId);
-            Task<GetFoldersResponse> folders = HttpProcessor.GetFolders(request);
+            var folders = FoldersHttpProcessor.GetFolders<FoldersResponse>(request);
             return folders;
         }
 
@@ -88,7 +94,7 @@ namespace MarketoApiLibrary
         public async Task<FilesResponse> GetFiles(string folderId, int offSet)
         {
             GetFilesRequest request = _requestFactorty.CreateGetFilesRequest(_host, _token, folderId, offSet);
-            FilesResponse result = await HttpProcessor.GetFiles(request);
+            FilesResponse result = await FilesHttpProcessor.GetFiles<FilesResponse>(request);
             return result;
 
         }

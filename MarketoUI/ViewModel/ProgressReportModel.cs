@@ -1,4 +1,5 @@
-﻿using MarketoApiLibrary.Model;
+﻿using MarketoApiLibrary.Asset.Files.Response;
+using MarketoApiLibrary.Model;
 using MarketoApiLibrary.Response;
 
 namespace MarketoUI.ViewModel

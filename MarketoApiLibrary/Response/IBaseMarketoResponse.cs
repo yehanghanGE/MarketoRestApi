@@ -5,7 +5,7 @@ namespace MarketoApiLibrary.Response
 {
     public interface IBaseMarketoResponse
     {
-        List<IError> Errors { get; set; }
+        List<Error> Errors { get; set; }
         string RequestId { get; set; }
         bool Success { get; set; } 
         List<string> Warnings { get; set; }
