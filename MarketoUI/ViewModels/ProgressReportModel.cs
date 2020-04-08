@@ -1,8 +1,6 @@
 ﻿using MarketoApiLibrary.Asset.Files.Response;
-using MarketoApiLibrary.Model;
-using MarketoApiLibrary.Response;
 
-namespace MarketoUI.ViewModel
+namespace MarketoUI.ViewModels
 {
     public class ProgressReportModel
     {

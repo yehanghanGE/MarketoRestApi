@@ -1,38 +1,25 @@
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using MarketoApiLibrary;
-using MarketoApiLibrary.Model;
-using MarketoApiLibrary.Provider;
-using MarketoApiLibrary.Utility;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Caliburn.Micro;
+using MarketoApiLibrary;
 using MarketoApiLibrary.Asset.Files.Response;
 using MarketoApiLibrary.Asset.Folders.Response;
+using MarketoApiLibrary.Model;
+using MarketoApiLibrary.Provider;
+using MarketoApiLibrary.Utility;
 
-namespace MarketoUI.ViewModel
+namespace MarketoUI.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    public class DownloadFileViewModel : Screen
     {
         private CancellationTokenSource cts = new CancellationTokenSource();
-        //private static object _lock = new object();
         #region properties
-        private string _title;
 
-        public string Title
-        {
-            get { return _title; }
-            set
-            {
-                _title = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        private string _folderIds = "49792";// for testing, need to remove 30844"
+        private string _folderIds = "30844";// for testing, need to remove 30844"
 
         public string FolderIDs
         {
@@ -40,11 +27,12 @@ namespace MarketoUI.ViewModel
             set
             {
                 _folderIds = value;
-                RaisePropertyChanged();
+                NotifyOfPropertyChange(() => FolderIDs);
+                NotifyOfPropertyChange(() => CanStart);
             }
         }
 
-        private string _savePath = $"D:\\DownloadedImageFromMarketo";
+        private string _savePath;
 
         public string SavePath
         {
@@ -52,7 +40,8 @@ namespace MarketoUI.ViewModel
             set
             {
                 _savePath = value;
-                RaisePropertyChanged();
+                NotifyOfPropertyChange(() => SavePath);
+                NotifyOfPropertyChange(() => CanStart);
             }
         }
 
@@ -64,7 +53,7 @@ namespace MarketoUI.ViewModel
             set
             {
                 _status = value;
-                RaisePropertyChanged();
+                NotifyOfPropertyChange(() => Status);
             }
         }
 
@@ -76,7 +65,7 @@ namespace MarketoUI.ViewModel
             set
             {
                 _folderStatus = value;
-                RaisePropertyChanged();
+                NotifyOfPropertyChange(() => FolderStatus);
             }
         }
 
@@ -88,7 +77,7 @@ namespace MarketoUI.ViewModel
             set
             {
                 _fileStatus = value;
-                RaisePropertyChanged();
+                NotifyOfPropertyChange(() => FileStatus);
             }
         }
 
@@ -100,7 +89,7 @@ namespace MarketoUI.ViewModel
             set
             {
                 _hasSubFolders = value;
-                RaisePropertyChanged();
+                NotifyOfPropertyChange(() => HasSubFolders);
             }
         }
 
@@ -112,27 +101,24 @@ namespace MarketoUI.ViewModel
             set
             {
                 _currentFolder = value;
-                RaisePropertyChanged();
+                NotifyOfPropertyChange(() => CurrentFolder);
             }
         }
 
         #endregion
 
-        public MainViewModel()
+        public DownloadFileViewModel()
         {
-            this.Title = "MarketApiUI";
-            StartCommand = new RelayCommand(Start);
-            CancelCommand = new RelayCommand(Cancel);
+
         }
 
-        #region commands
-        public RelayCommand StartCommand { get; set; }
-
-        public RelayCommand CancelCommand { get; set; }
-        #endregion
+        public bool CanStart
+        {
+            get { return (!string.IsNullOrEmpty(FolderIDs) && !string.IsNullOrEmpty(SavePath)); }
+        }
 
         #region methods
-        private void Start()
+        public void Start()
         {
             cts = new CancellationTokenSource();
             System.Diagnostics.Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
@@ -151,15 +137,13 @@ namespace MarketoUI.ViewModel
 
             List<string> folderIds = new List<string>();
             folderIds.Add(FolderIDs);
-
             Task task = Task.Run(() =>
-            {
-                DownLoadFile(apiConfig, FolderIDs, SavePath);
-            });
-
+                {
+                    DownLoadFile(apiConfig, FolderIDs, SavePath);
+                });
         }
 
-        private void Cancel()
+        public void Cancel()
         {
             cts.Cancel();
         }

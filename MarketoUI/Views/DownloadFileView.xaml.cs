@@ -1,24 +1,22 @@
-﻿using MarketoUI.ViewModel;
-using System.Windows;
+﻿using System.Windows.Controls;
 
-namespace MarketoUI
+namespace MarketoUI.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for DownloadFileView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class DownloadFileView : UserControl
     {
-        public MainWindow()
+        public DownloadFileView()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
         }
 
         private void TextBox_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
             System.Windows.Forms.DialogResult result = dialog.ShowDialog();
-            _savePathTextBox.Text = dialog.SelectedPath;
+            SavePath.Text = dialog.SelectedPath;
         }
     }
 }
