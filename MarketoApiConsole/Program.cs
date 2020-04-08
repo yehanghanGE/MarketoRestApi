@@ -51,7 +51,9 @@ namespace MarketoApiConsole
                 //GetFileById(host, clientId, clientSecret, 1004103);2452142
                 //CreateFile(host, clientId, clientSecret, @"C:\\Users\\212616592\\Pictures\\Robot.jpg");
                 //UpdateFile(host, clientId, clientSecret, @"C:\\Projects\\MarketoRestApi\\MarketoApiLibrary\\Constants.cs", "2452142");
-                GetFolderByName(host, clientId, clientSecret, "Template images", 34407);
+                //GetFolderByName(host, clientId, clientSecret, "Template images", 34407);
+                var apiHelper = new ApiHelper();
+                var result  = apiHelper.Authenticate().Result;
 
             }
             catch (Exception ex)

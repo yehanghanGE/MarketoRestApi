@@ -12,7 +12,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using MarketoApiLibrary.Asset.Files.Response;
 using MarketoApiLibrary.Asset.Folders.Response;
-using MarketoApiLibrary.Response;
 
 namespace MarketoUI.ViewModel
 {

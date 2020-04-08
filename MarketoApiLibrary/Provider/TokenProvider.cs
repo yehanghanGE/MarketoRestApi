@@ -22,10 +22,9 @@ namespace MarketoApiLibrary.Provider
             HttpResponseMessage response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
-            string content = await response.Content.ReadAsStringAsync();
-            Dictionary<string, string> dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(content);
+            var result = await response.Content.ReadAsAsync<IdentityResponse>();
 
-            return dict["access_token"];
+            return result.AccessToken;
         }
 
     }

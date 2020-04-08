@@ -57,10 +57,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiHelper.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="IApiHelper.cs" />
+    <Compile Include="IdentityResponse.cs" />
     <Compile Include="MarketoAssetClient.cs" />
     <Compile Include="Model\Error.cs" />
     <Compile Include="Model\FileFolder.cs" />
+    <Compile Include="Model\IApiConfig.cs" />
     <Compile Include="Model\IError.cs" />
     <Compile Include="Model\IFileFolder.cs" />
     <Compile Include="Model\Folder.cs" />
