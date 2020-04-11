@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MarketoApiLibrary.Asset.Folders.Request;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Specialized;
-using System.IO;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using MarketoApiLibrary.Asset.Files.Request;
-using MarketoApiLibrary.Asset.Folders.Request;
-using MarketoApiLibrary.Model;
-using Newtonsoft.Json;
 
 namespace MarketoApiLibrary.Asset.Folders
 {
@@ -87,7 +82,7 @@ namespace MarketoApiLibrary.Asset.Folders
                 Console.WriteLine(e);
                 throw;
             }
-            
+
             return result;
         }
         /// <summary>
@@ -128,7 +123,7 @@ namespace MarketoApiLibrary.Asset.Folders
         {
             var qs = HttpUtility.ParseQueryString(string.Empty);
             qs.Add("access_token", request.Token);
-            qs.Add("type",request.FolderType);
+            qs.Add("type", request.FolderType);
             if (request.Offset > 0)
             {
                 qs.Add("offset", request.Offset.ToString());
@@ -137,7 +132,7 @@ namespace MarketoApiLibrary.Asset.Folders
             {
                 qs.Add("maxReturn", request.MaxReturn.ToString());
             }
-           
+
             var url = request.Host + $"/rest/asset/v1/folder/{request.FolderId}/content.json?" + qs;
             var client = new HttpClient();
             var response = await client.GetAsync(url);
@@ -166,14 +161,14 @@ namespace MarketoApiLibrary.Asset.Folders
             var qs = HttpUtility.ParseQueryString(string.Empty);
             qs.Add("access_token", request.Token);
             qs.Add("parent", JsonConvert.SerializeObject(request.Parent));
-            qs.Add("name",request.FolderName);
+            qs.Add("name", request.FolderName);
             qs.Add("description", request.Description);
 
             var url = request.Host + $"/rest/asset/v1/folders.json?" + qs;
             var client = new HttpClient();
             var content = new StringContent("", Encoding.UTF8, "application/json");
 
-            var response = await client.PostAsync(url,content);
+            var response = await client.PostAsync(url, content);
             response.EnsureSuccessStatusCode();
             T result;
             try
@@ -212,7 +207,7 @@ namespace MarketoApiLibrary.Asset.Folders
             var url = request.Host + $"/rest/asset/v1/folder/{request.FolderId}.json?" + qs;
             var client = new HttpClient();
             var content = new StringContent("", Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(url,content);
+            var response = await client.PostAsync(url, content);
             response.EnsureSuccessStatusCode();
             T result;
             try
@@ -246,7 +241,7 @@ namespace MarketoApiLibrary.Asset.Folders
             var url = request.Host + $"/rest/asset/v1/folder/{request.FolderId}/delete.json?" + qs;
             var client = new HttpClient();
             var content = new StringContent("", Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(url,content);
+            var response = await client.PostAsync(url, content);
             response.EnsureSuccessStatusCode();
             T result;
             try

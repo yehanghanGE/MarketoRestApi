@@ -67,6 +67,7 @@
     <Compile Include="Asset\Folders\Response\FolderDeleteResponse.cs" />
     <Compile Include="Asset\Folders\Response\FolderContentsResponse.cs" />
     <Compile Include="Asset\Folders\Response\IdResponse.cs" />
+    <Compile Include="Asset\SmartLists\SmartListsHttpProcessor.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="IApiHelper.cs" />
     <Compile Include="IdentityResponse.cs" />
@@ -130,7 +131,10 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Asset\SmartLists\Request\" />
+    <Folder Include="Asset\SmartLists\Response\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,12 +1,6 @@
-﻿
-using System.Collections.Specialized;
+﻿using MarketoApiLibrary.Request;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
-using MarketoApiLibrary.Model;
-using MarketoApiLibrary.Request;
-using MarketoApiLibrary.Response;
-using Newtonsoft.Json;
 
 namespace MarketoApiLibrary.Service
 {
@@ -23,16 +17,6 @@ namespace MarketoApiLibrary.Service
             return content;
         }
 
-        public static async Task<string> GetSmartList(BaseRequest request)
-        {
-            string url = request.Host + "/rest/asset/v1/staticLists.json?access_token=" + request.Token;
-
-            HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync(url);
-            response.EnsureSuccessStatusCode();
-
-            string content = await response.Content.ReadAsStringAsync();
-            return content;
-        }
+       
     }
 }
