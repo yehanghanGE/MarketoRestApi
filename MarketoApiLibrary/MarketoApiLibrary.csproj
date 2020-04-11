@@ -58,6 +58,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiHelper.cs" />
+    <Compile Include="Asset\Folders\Request\CreateFolderRequest.cs" />
+    <Compile Include="Asset\Folders\Request\DeleteFolderRequest.cs" />
+    <Compile Include="Asset\Folders\Request\UpdateFolderMetadataRequest.cs" />
+    <Compile Include="Asset\Folders\Request\GetFolderByIdRequest.cs" />
+    <Compile Include="Asset\Folders\Request\GetFolderContentsRequest.cs" />
+    <Compile Include="Asset\Folders\Response\FolderContentResponse.cs" />
+    <Compile Include="Asset\Folders\Response\FolderDeleteResponse.cs" />
+    <Compile Include="Asset\Folders\Response\FolderContentsResponse.cs" />
+    <Compile Include="Asset\Folders\Response\IdResponse.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="IApiHelper.cs" />
     <Compile Include="IdentityResponse.cs" />

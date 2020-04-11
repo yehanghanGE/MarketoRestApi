@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MarketoApiLibrary.Response
 {
-    public class BaseMarketoResponse : IBaseMarketoResponse
+    public class BaseResponse : IBaseResponse
     {
         [JsonProperty("success")]
         public bool Success { get; set; }

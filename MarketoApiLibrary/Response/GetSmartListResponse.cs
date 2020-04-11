@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace MarketoApiLibrary.Response
 {
-    public class GetSmartListResponse : BaseMarketoResponse
+    public class GetSmartListResponse : BaseResponse
     {
         [JsonProperty("result")]
         public List<MarketoSmartList> Result { get; set; }

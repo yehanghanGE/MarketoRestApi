@@ -3,7 +3,7 @@ using MarketoApiLibrary.Model;
 
 namespace MarketoApiLibrary.Response
 {
-    public interface IBaseMarketoResponse
+    public interface IBaseResponse
     {
         List<Error> Errors { get; set; }
         string RequestId { get; set; }

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace MarketoApiLibrary.Asset.Folders.Response
 {
-    public class FoldersResponse : BaseMarketoResponse
+    public class FoldersResponse : BaseResponse
     {
         [JsonProperty("result")]
         public List<FolderResponse> Result { get; set; }
