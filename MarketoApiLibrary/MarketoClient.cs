@@ -1,4 +1,10 @@
-﻿using MarketoApiLibrary.Model;
+﻿using MarketoApiLibrary.Asset.Files;
+using MarketoApiLibrary.Asset.Files.Request;
+using MarketoApiLibrary.Asset.Files.Response;
+using MarketoApiLibrary.Asset.Folders;
+using MarketoApiLibrary.Asset.Folders.Request;
+using MarketoApiLibrary.Asset.Folders.Response;
+using MarketoApiLibrary.Asset.SmartLists;
 using MarketoApiLibrary.Provider;
 using MarketoApiLibrary.Request;
 using MarketoApiLibrary.Service;
@@ -6,13 +12,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Threading.Tasks;
-using MarketoApiLibrary.Asset.Files;
-using MarketoApiLibrary.Asset.Files.Request;
-using MarketoApiLibrary.Asset.Files.Response;
-using MarketoApiLibrary.Asset.Folders;
-using MarketoApiLibrary.Asset.Folders.Request;
-using MarketoApiLibrary.Asset.Folders.Response;
-using MarketoApiLibrary.Response;
 
 namespace MarketoApiLibrary
 {
@@ -36,7 +35,7 @@ namespace MarketoApiLibrary
         public async Task<string> GetSmartList()
         {
             BaseRequest getSmartListRequest = _requestFactorty.CreateGetSmartListRequest(_host, _token);
-            string smartListResult = await HttpProcessor.GetSmartList(getSmartListRequest);
+            string smartListResult = await SmartListsHttpProcessor.GetSmartList(getSmartListRequest);
             return smartListResult;
         }
         public T GetSmartList<T>(bool isJson)

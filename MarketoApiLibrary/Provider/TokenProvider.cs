@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -22,7 +23,17 @@ namespace MarketoApiLibrary.Provider
             HttpResponseMessage response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
-            var result = await response.Content.ReadAsAsync<IdentityResponse>();
+            IdentityResponse result;
+
+            try
+            {
+                result = await response.Content.ReadAsAsync<IdentityResponse>();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
 
             return result.AccessToken;
         }

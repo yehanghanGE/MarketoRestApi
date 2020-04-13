@@ -21,7 +21,7 @@ namespace MarketoApiLibrary.Utility
 
                 WebResponse webResponse = webRequest.GetResponse();
 
-                System.IO.Stream stream = webResponse.GetResponseStream();
+                Stream stream = webResponse.GetResponseStream();
 
                 image = Image.FromStream(stream);
 
@@ -35,7 +35,7 @@ namespace MarketoApiLibrary.Utility
             return image;
         }
         //TODO
-        public static async Task HttpGetForLargeFiley(string url)
+        public static async Task HttpGetForLargeFile(string url)
         {
             using (HttpClient client = new HttpClient())
             {
