@@ -27,7 +27,7 @@ namespace MarketoApiLibrary.Utility
 
                 webResponse.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }

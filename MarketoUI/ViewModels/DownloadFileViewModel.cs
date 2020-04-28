@@ -172,7 +172,7 @@ namespace MarketoUI.ViewModels
                 {
                     await WriteFileToDiskParallelAsync(fileResults, saveRootPath, progress, cts.Token);
                 }
-                catch (OperationCanceledException e)
+                catch (OperationCanceledException)
                 {
                     Status += $"Downloading is cancelled...{Environment.NewLine}";
                     watch.Stop();
