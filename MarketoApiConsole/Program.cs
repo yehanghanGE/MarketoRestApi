@@ -102,11 +102,7 @@ namespace MarketoApiConsole
         }
         private static void GetSmartList(string host, string clientId, string clientSecret)
         {
-            MarketoClient client = new MarketoClient(host, clientId, clientSecret);
-            bool isJson = true;
-            GetSmartListResponse result = client.GetSmartList<GetSmartListResponse>(isJson);
-            Console.WriteLine(result);
-            Console.ReadKey();
+           
         }
 
         private static List<string> GetSubFolderIDs(string host, string clientId, string clientSecret, string rootFolderId)

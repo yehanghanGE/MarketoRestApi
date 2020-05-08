@@ -34,21 +34,7 @@ namespace MarketoApiLibrary
             _token = _tokenProvider.GetTokenAsync(host, clientId, clientSecret).Result;
             _requestFactorty = new RequestFactory();
         }
-        public async Task<string> GetSmartList()
-        {
-            BaseRequest getSmartListRequest = _requestFactorty.CreateGetSmartListRequest(_host, _token);
-            string smartListResult = await SmartListsHttpProcessor.GetSmartList(getSmartListRequest);
-            return smartListResult;
-        }
-        public T GetSmartList<T>(bool isJson)
-        {
-            GetSmartListRequest getSmartListRequest = new GetSmartListRequest()
-            {
-                Url = _host + "/rest/asset/v1/staticLists.json?access_token=" + _token
-            };
-            T result = getSmartListRequest.Run<T>();
-            return result;
-        }
+      
 
         public Task<FoldersResponse> GetFolders(string rootFolderId)
         {

@@ -2,6 +2,7 @@
 using MarketoApiLibrary.Asset.Folders;
 using MarketoApiLibrary.Provider;
 using System.Threading.Tasks;
+using MarketoApiLibrary.Asset.SmartLists;
 
 namespace MarketoApiLibrary
 {
@@ -11,6 +12,7 @@ namespace MarketoApiLibrary
         private readonly string _token;
         private readonly IFilesRequestFactory _fileRequestFactory;
         private readonly IFoldersRequestFactory _folderRequestFactory;
+        private readonly ISmartListsRequestFactory _smartListRequestFactory;
 
         public MarketoAssetClient(string host, string clientId, string clientSecret)
         {
@@ -104,6 +106,17 @@ namespace MarketoApiLibrary
             var result = await FoldersHttpProcessor.DeleteFolder<T>(request);
             return result;
         }
+        #endregion
+
+        #region SmartListsController
+        public async Task<T> GetSmartLists<T>()
+        {
+            var request = _smartListRequestFactory.CreateGetSmartListRequest();
+            var result = await SmartListsHttpProcessor.GetSmartList<T>(request);
+            return result;
+        }
+
+
         #endregion
     }
 }
