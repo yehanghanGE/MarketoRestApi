@@ -2,7 +2,7 @@
 using MarketoApiLibrary.Asset.Folders;
 using System.Threading.Tasks;
 using MarketoApiLibrary.Asset.SmartLists;
-using MarketoApiLibrary.Oauth;
+using MarketoApiLibrary.Http.Oauth;
 
 namespace MarketoApiLibrary
 {

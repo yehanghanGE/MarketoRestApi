@@ -1,18 +1,14 @@
-﻿using MarketoApiLibrary.Model;
-using MarketoApiLibrary.Services;
-using MarketoApiLibrary.Provider;
-using Newtonsoft.Json;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Runtime.InteropServices;
-using System.Web;
+using MarketoApiLibrary.Http.Services;
+using MarketoApiLibrary.Model;
+using MarketoApiLibrary.Provider;
 using static MarketoApiLibrary.Constants.OAuth;
-using UriBuilder = MarketoApiLibrary.Utility.UriBuilder;
-using HttpClientFactory = MarketoApiLibrary.Services.HttpClientFactory;
+using UriBuilder = MarketoApiLibrary.Http.Helper.UriBuilder;
+using HttpClientFactory = MarketoApiLibrary.Http.Services.HttpClientFactory;
 
-namespace MarketoApiLibrary.Oauth
+namespace MarketoApiLibrary.Http.Oauth
 {
 
     public class OAuthTokenRepository : IOAuthTokenRepository

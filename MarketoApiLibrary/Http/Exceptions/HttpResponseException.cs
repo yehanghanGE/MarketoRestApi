@@ -2,7 +2,7 @@
 using System.Net;
 using System.Runtime.Serialization;
 
-namespace MarketoApiLibrary.Exceptions
+namespace MarketoApiLibrary.Http.Exceptions
 {
     public sealed class HttpResponseException : Exception
     {

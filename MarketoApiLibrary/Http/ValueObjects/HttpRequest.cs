@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 
-namespace MarketoApiLibrary.ValueObjects
+namespace MarketoApiLibrary.Http.ValueObjects
 {
     public class HttpRequest
     {

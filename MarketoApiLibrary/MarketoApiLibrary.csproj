@@ -66,8 +66,8 @@
     <Compile Include="Asset\Folders\Response\FolderDeleteResponse.cs" />
     <Compile Include="Asset\Folders\Response\FolderContentsResponse.cs" />
     <Compile Include="Asset\SmartLists\Request\CloneSmartListRequest.cs" />
-    <Compile Include="Data\HttpApiDataProvider.cs" />
-    <Compile Include="Exceptions\HttpResponseException.cs" />
+    <Compile Include="Http\Data\HttpApiDataProvider.cs" />
+    <Compile Include="Http\Exceptions\HttpResponseException.cs" />
     <Compile Include="Model\IdResponse.cs" />
     <Compile Include="Asset\SmartLists\Request\DeleteSmartListRequest.cs" />
     <Compile Include="Asset\SmartLists\Request\GetSmartListByNameRequest.cs" />
@@ -101,15 +101,15 @@
     <Compile Include="Asset\Files\Response\IFileResponse.cs" />
     <Compile Include="Asset\Files\Request\GetFileByNameRequest.cs" />
     <Compile Include="Asset\Folders\Response\FoldersResponse.cs" />
-    <Compile Include="Oauth\AuthenticationToken.cs" />
-    <Compile Include="Oauth\AuthenticationTokenProvider.cs" />
-    <Compile Include="Oauth\IAuthenticationTokenProvider.cs" />
-    <Compile Include="Oauth\IOAuthTokenCacheService.cs" />
-    <Compile Include="Oauth\IOAuthTokenRepository.cs" />
-    <Compile Include="Oauth\OAuthParameters.cs" />
-    <Compile Include="Oauth\OAuthToken.cs" />
-    <Compile Include="Oauth\OAuthTokenCacheService.cs" />
-    <Compile Include="Oauth\OAuthTokenRepository.cs" />
+    <Compile Include="Http\Oauth\AuthenticationToken.cs" />
+    <Compile Include="Http\Oauth\AuthenticationTokenProvider.cs" />
+    <Compile Include="Http\Oauth\IAuthenticationTokenProvider.cs" />
+    <Compile Include="Http\Oauth\IOAuthTokenCacheService.cs" />
+    <Compile Include="Http\Oauth\IOAuthTokenRepository.cs" />
+    <Compile Include="Http\Oauth\OAuthParameters.cs" />
+    <Compile Include="Http\Oauth\OAuthToken.cs" />
+    <Compile Include="Http\Oauth\OAuthTokenCacheService.cs" />
+    <Compile Include="Http\Oauth\OAuthTokenRepository.cs" />
     <Compile Include="Response\GetSmartListResponse.cs" />
     <Compile Include="Response\IBaseMarketoResponse.cs" />
     <Compile Include="Model\MarketoSmartList.cs" />
@@ -136,11 +136,11 @@
     <Compile Include="Request\LeadsExportRequest.cs" />
     <Compile Include="Request\CustomObjectsRequest.cs" />
     <Compile Include="Request\ListCustomObjectsRequest.cs" />
-    <Compile Include="Services\HttpClientFactory.cs" />
-    <Compile Include="Services\HttpClientWrapper.cs" />
-    <Compile Include="Services\IHttpClientFactory.cs" />
-    <Compile Include="Services\IHttpClientWrapper.cs" />
-    <Compile Include="Services\ServicePointManagerUtility.cs" />
+    <Compile Include="Http\Services\HttpClientFactory.cs" />
+    <Compile Include="Http\Services\HttpClientWrapper.cs" />
+    <Compile Include="Http\Services\IHttpClientFactory.cs" />
+    <Compile Include="Http\Services\IHttpClientWrapper.cs" />
+    <Compile Include="Http\Services\ServicePointManagerUtility.cs" />
     <Compile Include="Service\ActivitiesHttpProcessor.cs" />
     <Compile Include="Service\CustomObjectProcessor.cs" />
     <Compile Include="Request\GetLeadsByFilterTypeRequest.cs" />
@@ -150,9 +150,9 @@
     <Compile Include="Service\LeadsHttpProcessor.cs" />
     <Compile Include="Utility\Helper.cs" />
     <Compile Include="Utility\FileDownloader.cs" />
-    <Compile Include="Utility\UriBuilder.cs" />
-    <Compile Include="ValueObjects\HttpRequest.cs" />
-    <Compile Include="ValueObjects\HttpResponse.cs" />
+    <Compile Include="Http\Helper\UriBuilder.cs" />
+    <Compile Include="Http\ValueObjects\HttpRequest.cs" />
+    <Compile Include="Http\ValueObjects\HttpResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

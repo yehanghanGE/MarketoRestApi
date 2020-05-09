@@ -1,8 +1,9 @@
-﻿namespace MarketoApiLibrary.Services
+﻿using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+namespace MarketoApiLibrary.Http.Services
 {
-    using System;
-    using System.Net.Http;
-    using System.Threading.Tasks;
     /// <summary>
     /// 
     /// </summary>

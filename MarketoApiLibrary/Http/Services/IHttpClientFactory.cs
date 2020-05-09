@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MarketoApiLibrary.Services
+namespace MarketoApiLibrary.Http.Services
 {
     /// <summary>
     /// Provides methods to get IHttpClientWrapper

@@ -1,4 +1,4 @@
-﻿namespace MarketoApiLibrary.Oauth
+﻿namespace MarketoApiLibrary.Http.Oauth
 {
     public interface IAuthenticationTokenProvider
     {

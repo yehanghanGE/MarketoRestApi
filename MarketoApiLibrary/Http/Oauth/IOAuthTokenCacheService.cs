@@ -1,4 +1,4 @@
-﻿namespace MarketoApiLibrary.Oauth
+﻿namespace MarketoApiLibrary.Http.Oauth
 {
     /// <summary>
     /// Provides methods for working with cached OAuth tokens

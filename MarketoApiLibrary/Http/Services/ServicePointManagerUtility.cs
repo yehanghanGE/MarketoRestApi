@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace MarketoApiLibrary.Services
+namespace MarketoApiLibrary.Http.Services
 {
     public static class ServicePointManagerUtility
     {

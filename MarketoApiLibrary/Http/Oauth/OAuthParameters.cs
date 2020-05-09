@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MarketoApiLibrary.Oauth
+namespace MarketoApiLibrary.Http.Oauth
 {
     public class OAuthParameters
     {

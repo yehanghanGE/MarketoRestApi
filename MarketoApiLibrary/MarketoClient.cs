@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Threading.Tasks;
-using MarketoApiLibrary.Oauth;
+using MarketoApiLibrary.Http.Oauth;
 
 namespace MarketoApiLibrary
 {

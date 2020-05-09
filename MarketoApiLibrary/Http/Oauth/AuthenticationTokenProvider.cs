@@ -2,7 +2,7 @@
 using MarketoApiLibrary.Model;
 using MarketoApiLibrary.Provider;
 
-namespace MarketoApiLibrary.Oauth
+namespace MarketoApiLibrary.Http.Oauth
 {
     public class AuthenticationTokenProvider : IAuthenticationTokenProvider
     {

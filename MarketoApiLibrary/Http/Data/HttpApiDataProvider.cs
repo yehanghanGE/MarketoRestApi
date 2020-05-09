@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Net.Http;
-using MarketoApiLibrary.Exceptions;
-using MarketoApiLibrary.Services;
-using MarketoApiLibrary.ValueObjects;
+using MarketoApiLibrary.Http.Exceptions;
+using MarketoApiLibrary.Http.Services;
+using MarketoApiLibrary.Http.ValueObjects;
 
-namespace MarketoApiLibrary.Data
+namespace MarketoApiLibrary.Http.Data
 {
     public class HttpApiDataProvider
     {

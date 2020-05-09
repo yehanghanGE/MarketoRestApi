@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace MarketoApiLibrary.Oauth
+namespace MarketoApiLibrary.Http.Oauth
 {
     public class OAuthToken
     {
