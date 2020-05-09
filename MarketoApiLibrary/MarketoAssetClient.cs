@@ -1,8 +1,8 @@
 ﻿using MarketoApiLibrary.Asset.Files;
 using MarketoApiLibrary.Asset.Folders;
-using MarketoApiLibrary.Provider;
 using System.Threading.Tasks;
 using MarketoApiLibrary.Asset.SmartLists;
+using MarketoApiLibrary.Oauth;
 
 namespace MarketoApiLibrary
 {
@@ -14,11 +14,12 @@ namespace MarketoApiLibrary
         private readonly IFoldersRequestFactory _folderRequestFactory;
         private readonly ISmartListsRequestFactory _smartListRequestFactory;
 
-        public MarketoAssetClient(string host, string clientId, string clientSecret)
+        public MarketoAssetClient(string host)
         {
             _host = host;
-            ITokenProvider tokenProvider = new TokenProvider();
-            _token = tokenProvider.GetTokenAsync(host, clientId, clientSecret).Result;
+            _smartListRequestFactory = new SmartListsRequestFactory();
+            IAuthenticationTokenProvider tokenProvider = new AuthenticationTokenProvider();
+            _token = tokenProvider.GetToken().Token;
             _fileRequestFactory = new FilesRequestFactory();
             _folderRequestFactory = new FoldersRequestFactory();
         }

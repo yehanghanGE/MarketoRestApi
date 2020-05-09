@@ -1,4 +1,9 @@
-﻿using MarketoApiLibrary.Model;
+﻿using MarketoApiLibrary.Asset.Files;
+using MarketoApiLibrary.Asset.Files.Request;
+using MarketoApiLibrary.Asset.Files.Response;
+using MarketoApiLibrary.Asset.Folders;
+using MarketoApiLibrary.Asset.Folders.Request;
+using MarketoApiLibrary.Asset.Folders.Response;
 using MarketoApiLibrary.Provider;
 using MarketoApiLibrary.Request;
 using MarketoApiLibrary.Service;
@@ -6,14 +11,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Threading.Tasks;
-using MarketoApiLibrary.Asset.Files;
-using MarketoApiLibrary.Asset.Files.Request;
-using MarketoApiLibrary.Asset.Files.Response;
-using MarketoApiLibrary.Asset.Folders;
-using MarketoApiLibrary.Asset.Folders.Request;
-using MarketoApiLibrary.Asset.Folders.Response;
-using MarketoApiLibrary.Asset.SmartLists;
-using MarketoApiLibrary.Response;
+using MarketoApiLibrary.Oauth;
 
 namespace MarketoApiLibrary
 {
@@ -24,17 +22,17 @@ namespace MarketoApiLibrary
         private readonly string _clientSecret;
         private readonly string _token;
         private readonly IRequestFactory _requestFactorty;
-        private readonly ITokenProvider _tokenProvider;
+        private readonly IAuthenticationTokenProvider _tokenProvider;
         public MarketoClient(string host, string clientId, string clientSecret)
         {
             _host = host;
             _clientId = clientId;
             _clientSecret = clientSecret;
-            _tokenProvider = new TokenProvider();
-            _token = _tokenProvider.GetTokenAsync(host, clientId, clientSecret).Result;
+            _tokenProvider = new AuthenticationTokenProvider();
+            _token = _tokenProvider.GetToken().Token;
             _requestFactorty = new RequestFactory();
         }
-      
+
 
         public Task<FoldersResponse> GetFolders(string rootFolderId)
         {

@@ -12,9 +12,11 @@ namespace MarketoApiLibrary.Provider
 
             ApiConfig apiConfig = new ApiConfig()
             {
-                Host = confCollection[ApiConfigCredentials.Host]?.Value,
-                ClientId = confCollection[ApiConfigCredentials.ClientId]?.Value,
-                ClientSecret = confCollection[ApiConfigCredentials.ClientSecret]?.Value
+                Host = confCollection[Constants.ApiConfigCredentials.Host]?.Value,
+                ClientId = confCollection[Constants.ApiConfigCredentials.ClientId]?.Value,
+                ClientSecret = confCollection[Constants.ApiConfigCredentials.ClientSecret]?.Value,
+                AuthorizeRelativePath = confCollection[Constants.ApiConfigCredentials.AuthorizeRelativePath]?.Value,
+                RequestTimeoutSeconds = confCollection[Constants.ApiConfigCredentials.RequestTimeoutSeconds]?.Value
             };
 
             return apiConfig;

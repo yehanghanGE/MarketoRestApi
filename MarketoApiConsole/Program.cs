@@ -64,7 +64,7 @@ namespace MarketoApiConsole
 
         private static void GetFolderByName(string host, string clientId, string clientSecret, string folderName, int parentFolderId)
         {
-            var client = new MarketoAssetClient(host, clientId, clientSecret);
+            var client = new MarketoAssetClient(host);
             var result = client.GetFolderByName<FoldersResponse>(folderName, parentFolderId).Result;
             Console.WriteLine(JToken.FromObject(result).ToString());
             Console.ReadKey();
@@ -72,14 +72,14 @@ namespace MarketoApiConsole
 
         private static void UpdateFile(string host, string clientId, string clientSecret, string filePath, string fileId)
         {
-            var client = new MarketoAssetClient(host, clientId, clientSecret);
+            var client = new MarketoAssetClient(host);
             var result = client.UpdateFile<FilesResponse>(filePath,fileId).Result;
             Console.WriteLine(JToken.FromObject(result).ToString());
             Console.ReadKey();
         }
         private static void CreateFile(string host, string clientId, string clientSecret, string filePath)
         {
-            var client = new MarketoAssetClient(host, clientId, clientSecret);
+            var client = new MarketoAssetClient(host);
             var result = client.CreateFile<FilesResponse>(filePath).Result;
             Console.WriteLine(JToken.FromObject(result).ToString());
             Console.ReadKey();
@@ -87,7 +87,7 @@ namespace MarketoApiConsole
 
         private static void GetFileById(string host, string clientId, string clientSecret, int fileId)
         {
-            var client = new MarketoAssetClient(host, clientId, clientSecret);
+            var client = new MarketoAssetClient(host);
             var result = client.GetFileById<FilesResponse>(fileId).Result;
             Console.WriteLine(JToken.FromObject(result).ToString());
             Console.ReadKey();
@@ -95,7 +95,7 @@ namespace MarketoApiConsole
 
         private static void GetFileByName(string host, string clientId, string clientSecret, string fileName)
         {
-            var client = new MarketoAssetClient(host, clientId, clientSecret);
+            var client = new MarketoAssetClient(host);
             var result = client.GetFileByName<FilesResponse>(fileName).Result;
             Console.WriteLine(JToken.FromObject(result).ToString());
             Console.ReadKey();
