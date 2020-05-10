@@ -91,8 +91,6 @@ namespace MarketoApiLibrary.Mis.Provider
             filter.Add("staticListName", "List Import");
 
             string outputFormat = "csv";
-            string startAtTime = "2017-8-01T23:59:59-00:00";
-            string endAt = "2017-8-30T23:59:59-00:00";
             LeadsExportRequest request = new LeadsExportRequest()
             {
                 Host = host,
