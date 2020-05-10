@@ -66,7 +66,7 @@
     <Compile Include="Asset\Folders\Response\FolderDeleteResponse.cs" />
     <Compile Include="Asset\Folders\Response\FolderContentsResponse.cs" />
     <Compile Include="Asset\SmartLists\GetSmartListByNameProcessor.cs" />
-    <Compile Include="Asset\SmartLists\GetSmartListsProcessor.cs" />
+    <Compile Include="Asset\SmartLists\RequestProcessor\GetSmartListsProcessor.cs" />
     <Compile Include="Asset\SmartLists\RequestProvider\GetSmartListsRequestProvider.cs" />
     <Compile Include="Asset\SmartLists\Request\CloneSmartListRequest.cs" />
     <Compile Include="Common\Logging\CommerceLog.cs" />
@@ -134,7 +134,6 @@
     <Compile Include="Common\Http\Oauth\OAuthTokenCacheService.cs" />
     <Compile Include="Common\Http\Oauth\OAuthTokenRepository.cs" />
     <Compile Include="Mis\Response\GetSmartListResponse.cs" />
-    <Compile Include="Mis\Response\IBaseMarketoResponse.cs" />
     <Compile Include="Common\Model\MarketoSmartList.cs" />
     <Compile Include="Asset\Files\FilesRequestFactory.cs" />
     <Compile Include="Asset\Files\IFilesRequestFactory.cs" />
@@ -183,9 +182,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Asset\SmartLists\RequestProcessor\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -2,6 +2,8 @@
 using MarketoApiLibrary.Asset.Folders;
 using System.Threading.Tasks;
 using MarketoApiLibrary.Asset.SmartLists;
+using MarketoApiLibrary.Asset.SmartLists.RequestProcessor;
+using MarketoApiLibrary.Asset.SmartLists.Response;
 using MarketoApiLibrary.Common.Http.Oauth;
 
 namespace MarketoApiLibrary
@@ -110,10 +112,11 @@ namespace MarketoApiLibrary
         #endregion
 
         #region SmartListsController
-        public async Task<T> GetSmartLists<T>()
+        public async Task<SmartListResponseWithRules> GetSmartLists<T>()
         {
+            var processor = new GetSmartListsProcessor();
             var request = _smartListRequestFactory.CreateGetSmartListRequest();
-            var result = await SmartListsHttpProcessor.GetSmartList<T>(request);
+            var result = processor.Process(request);
             return result;
         }
         #endregion

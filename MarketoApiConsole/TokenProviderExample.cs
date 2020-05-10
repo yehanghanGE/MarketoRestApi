@@ -12,6 +12,8 @@ namespace MarketoApiConsole
             {
                 var authoProvider = new AuthenticationTokenProvider();
                 var result = authoProvider.GetToken();
+
+                
                 Console.WriteLine(JToken.FromObject(result).ToString());
                 Console.ReadKey();
             }
