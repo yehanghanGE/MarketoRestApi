@@ -1,9 +1,10 @@
-﻿using MarketoApiLibrary.Model;
+﻿using MarketoApiLibrary.Common.Model;
+using MarketoApiLibrary.Mis.Response;
 using Newtonsoft.Json;
 
 namespace MarketoApiLibrary.Asset.SmartLists.Response
 {
-    public class SmartListResponse
+    public class SmartListResponse: BaseResponse
     {
         [JsonProperty("id")] 
         public int Id { get; set; }

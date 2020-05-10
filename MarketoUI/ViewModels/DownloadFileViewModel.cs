@@ -2,15 +2,16 @@ using Caliburn.Micro;
 using MarketoApiLibrary;
 using MarketoApiLibrary.Asset.Files.Response;
 using MarketoApiLibrary.Asset.Folders.Response;
-using MarketoApiLibrary.Model;
-using MarketoApiLibrary.Provider;
-using MarketoApiLibrary.Utility;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using MarketoApiLibrary.Common.Configuration;
+using MarketoApiLibrary.Common.Model;
+using MarketoApiLibrary.Mis.Provider;
+using MarketoApiLibrary.Mis.Utility;
 
 namespace MarketoUI.ViewModels
 {

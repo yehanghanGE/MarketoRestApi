@@ -1,4 +1,4 @@
-﻿using MarketoApiLibrary.Model;
+﻿using MarketoApiLibrary.Common.Model;
 
 namespace MarketoApiLibrary.Asset.Files.Response
 {

@@ -1,13 +1,10 @@
 ﻿using MarketoApiLibrary;
-using MarketoApiLibrary.Model;
-using MarketoApiLibrary.Provider;
-using MarketoApiLibrary.Utility;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using MarketoApiLibrary.Asset.Files.Response;
 using MarketoApiLibrary.Asset.Folders.Response;
-using MarketoApiLibrary.Response;
+using MarketoApiLibrary.Mis.Utility;
 using Newtonsoft.Json.Linq;
 
 namespace MarketoApiConsole

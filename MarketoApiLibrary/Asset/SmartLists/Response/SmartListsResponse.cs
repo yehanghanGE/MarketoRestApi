@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MarketoApiLibrary.Asset.Files.Response;
-using MarketoApiLibrary.Response;
+﻿using MarketoApiLibrary.Common.Model;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace MarketoApiLibrary.Asset.SmartLists.Response
 {
-    public class SmartListsResponse: BaseResponse
+    public class SmartListsResponse : BaseResponse
     {
         [JsonProperty("result")]
         public List<SmartListResponse> Result { get; set; }

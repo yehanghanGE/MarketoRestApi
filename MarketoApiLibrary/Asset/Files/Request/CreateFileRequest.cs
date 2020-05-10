@@ -1,5 +1,5 @@
-﻿using MarketoApiLibrary.Model;
-using MarketoApiLibrary.Request;
+﻿using MarketoApiLibrary.Common.Model;
+using MarketoApiLibrary.Mis.Request;
 
 namespace MarketoApiLibrary.Asset.Files.Request
 {

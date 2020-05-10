@@ -1,11 +1,12 @@
-﻿using MarketoApiLibrary.Model;
-using MarketoApiLibrary.Provider;
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using MarketoApiLibrary.Common.Configuration;
+using MarketoApiLibrary.Common.Model;
+using MarketoApiLibrary.Mis.Provider;
 
 namespace MarketoApiLibrary
 {

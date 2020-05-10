@@ -2,7 +2,7 @@
 using MarketoApiLibrary.Asset.Folders;
 using System.Threading.Tasks;
 using MarketoApiLibrary.Asset.SmartLists;
-using MarketoApiLibrary.Http.Oauth;
+using MarketoApiLibrary.Common.Http.Oauth;
 
 namespace MarketoApiLibrary
 {
@@ -116,8 +116,6 @@ namespace MarketoApiLibrary
             var result = await SmartListsHttpProcessor.GetSmartList<T>(request);
             return result;
         }
-
-
         #endregion
     }
 }

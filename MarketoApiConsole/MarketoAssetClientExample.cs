@@ -1,6 +1,5 @@
 ﻿using MarketoApiLibrary;
 using MarketoApiLibrary.Asset.Folders.Response;
-using MarketoApiLibrary.Provider;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Runtime.CompilerServices;

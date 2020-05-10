@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
-using MarketoApiLibrary.Http.Oauth;
+using MarketoApiLibrary.Common.Http.Oauth;
 
 namespace MarketoApiConsole
 {

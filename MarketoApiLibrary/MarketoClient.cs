@@ -4,14 +4,14 @@ using MarketoApiLibrary.Asset.Files.Response;
 using MarketoApiLibrary.Asset.Folders;
 using MarketoApiLibrary.Asset.Folders.Request;
 using MarketoApiLibrary.Asset.Folders.Response;
-using MarketoApiLibrary.Provider;
-using MarketoApiLibrary.Request;
-using MarketoApiLibrary.Service;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Threading.Tasks;
-using MarketoApiLibrary.Http.Oauth;
+using MarketoApiLibrary.Common.Http.Oauth;
+using MarketoApiLibrary.Mis.Provider;
+using MarketoApiLibrary.Mis.Request;
+using MarketoApiLibrary.Mis.Service;
 
 namespace MarketoApiLibrary
 {
