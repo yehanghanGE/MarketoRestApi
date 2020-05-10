@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using MarketoApiLibrary.Asset.Files.Request;
-using MarketoApiLibrary.Model;
-using MarketoApiLibrary.Provider;
-using MarketoApiLibrary.Request;
+using MarketoApiLibrary.Common.Model;
 
 namespace MarketoApiLibrary.Asset.Files
 {

@@ -1,4 +1,4 @@
-﻿using MarketoApiLibrary.Model;
+﻿using MarketoApiLibrary.Common.Model;
 using Newtonsoft.Json;
 
 namespace MarketoApiLibrary.Asset.Folders.Response

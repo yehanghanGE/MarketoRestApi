@@ -1,5 +1,6 @@
 ﻿using System.Security.Permissions;
-using MarketoApiLibrary.Request;
+using MarketoApiLibrary.Common.Model;
+using MarketoApiLibrary.Mis.Request;
 
 namespace MarketoApiLibrary.Asset.Folders.Request
 {
