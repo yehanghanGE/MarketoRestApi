@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using MarketoApiLibrary.Asset.Folders.Request;
-using MarketoApiLibrary.Model;
+using MarketoApiLibrary.Common.Model;
 
 namespace MarketoApiLibrary.Asset.Folders
 {

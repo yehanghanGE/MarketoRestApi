@@ -1,7 +1,10 @@
 ﻿using MarketoApiLibrary.Asset.Files;
 using MarketoApiLibrary.Asset.Folders;
-using MarketoApiLibrary.Provider;
 using System.Threading.Tasks;
+using MarketoApiLibrary.Asset.SmartLists;
+using MarketoApiLibrary.Asset.SmartLists.RequestProcessor;
+using MarketoApiLibrary.Asset.SmartLists.Response;
+using MarketoApiLibrary.Common.Http.Oauth;
 
 namespace MarketoApiLibrary
 {
@@ -11,12 +14,14 @@ namespace MarketoApiLibrary
         private readonly string _token;
         private readonly IFilesRequestFactory _fileRequestFactory;
         private readonly IFoldersRequestFactory _folderRequestFactory;
+        private readonly ISmartListsRequestFactory _smartListRequestFactory;
 
-        public MarketoAssetClient(string host, string clientId, string clientSecret)
+        public MarketoAssetClient(string host)
         {
             _host = host;
-            ITokenProvider tokenProvider = new TokenProvider();
-            _token = tokenProvider.GetTokenAsync(host, clientId, clientSecret).Result;
+            _smartListRequestFactory = new SmartListsRequestFactory();
+            IAuthenticationTokenProvider tokenProvider = new AuthenticationTokenProvider();
+            _token = tokenProvider.GetToken().Token;
             _fileRequestFactory = new FilesRequestFactory();
             _folderRequestFactory = new FoldersRequestFactory();
         }
@@ -102,6 +107,16 @@ namespace MarketoApiLibrary
         {
             var request = _folderRequestFactory.CreateDeleteFolderRequest(_host, _token, folderId);
             var result = await FoldersHttpProcessor.DeleteFolder<T>(request);
+            return result;
+        }
+        #endregion
+
+        #region SmartListsController
+        public async Task<SmartListResponseWithRules> GetSmartLists<T>()
+        {
+            var processor = new GetSmartListsProcessor();
+            var request = _smartListRequestFactory.CreateGetSmartListRequest();
+            var result = processor.Process(request);
             return result;
         }
         #endregion
