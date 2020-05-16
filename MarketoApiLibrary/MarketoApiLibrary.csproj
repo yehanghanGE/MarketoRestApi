@@ -33,14 +33,14 @@
     <Reference Include="Autofac, Version=5.1.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.5.1.4\lib\net461\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -81,6 +81,8 @@
     <Compile Include="Asset\Folders\Response\FolderContentResponse.cs" />
     <Compile Include="Asset\Folders\Response\FolderDeleteResponse.cs" />
     <Compile Include="Asset\Folders\Response\FolderContentsResponse.cs" />
+    <Compile Include="Asset\SmartLists\ISmartListController.cs" />
+    <Compile Include="Asset\SmartLists\SmartListController.cs" />
     <Compile Include="Asset\SmartLists\GetSmartListByNameProcessor.cs" />
     <Compile Include="Asset\SmartLists\RequestProcessor\GetSmartListsProcessor.cs" />
     <Compile Include="Asset\SmartLists\RequestProvider\GetSmartListsRequestProvider.cs" />
@@ -92,14 +94,17 @@
     <Compile Include="Common\DI\Events\GenericEventArgs.cs" />
     <Compile Include="Common\DI\IMarketoApiContainer.cs" />
     <Compile Include="Common\DI\IMarketoApiModule.cs" />
+    <Compile Include="Common\DI\MarketoApiContainer.cs" />
     <Compile Include="Common\DI\MarketoApiContainerEventArgs.cs" />
     <Compile Include="Common\DI\MarketoApiControllerModule.cs" />
     <Compile Include="Common\DI\OverridableContainer.cs" />
     <Compile Include="Common\DI\RegistrationLifetime.cs" />
     <Compile Include="Common\DI\MarketoApiModule.cs" />
-    <Compile Include="Common\DI\ServiceLocator.cs" />
     <Compile Include="Common\Logging\CommerceLog.cs" />
+    <Compile Include="Common\Logging\CommerceLogService.cs" />
+    <Compile Include="Common\Logging\LoggingService.cs" />
     <Compile Include="Common\Logging\SynchronizationLog.cs" />
+    <Compile Include="Common\Logging\SynchronizationLogService.cs" />
     <Compile Include="Common\Model\Entity.cs" />
     <Compile Include="Common\Processor\BaseMarketoHttpRequestProcessor.cs" />
     <Compile Include="Common\Configuration\IConfigurationProvider.cs" />
