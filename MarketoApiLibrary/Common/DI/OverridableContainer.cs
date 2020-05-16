@@ -44,6 +44,11 @@ namespace MarketoApiLibrary.Common.DI
             _container.RegisterInstance(T, value);
         }
 
+        public void RegisterType<T>(RegistrationLifetime registrationLifetime = RegistrationLifetime.InstancePerResolve)
+        {
+            _container.RegisterType<T>(registrationLifetime);
+        }
+
         public T Resolve<T>(params IConstructorNamedParameter[] parameters)
         {
             return _container.Resolve<T>(parameters);
