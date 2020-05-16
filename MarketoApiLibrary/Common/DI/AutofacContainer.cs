@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using System;
 using System.Collections.Generic;
-using MarketoApiLibrary.Common.DI.Events;
 
 namespace MarketoApiLibrary.Common.DI
 {
@@ -32,7 +31,7 @@ namespace MarketoApiLibrary.Common.DI
 
         public bool IsInitialized => _container != null;
 
-        public event EventHandler<MarketoApiContainerEventArgs> BeforeRegistrationCompletes;
+        //public event EventHandler<MarketoApiContainerEventArgs> BeforeRegistrationCompletes;
 
         public void Initialize()
         {
@@ -42,8 +41,8 @@ namespace MarketoApiLibrary.Common.DI
             RegisterModules();
             InitializeModules();
 
-            var overridableContainer = new OverridableContainer(this);
-            this.Raise(BeforeRegistrationCompletes, new MarketoApiContainerEventArgs(overridableContainer));
+            //var overridableContainer = new OverridableContainer(this);
+            //this.Raise(BeforeRegistrationCompletes, new MarketoApiContainerEventArgs(overridableContainer));
 
             _container = _containerBuilder.Build();
         }
@@ -84,6 +83,22 @@ namespace MarketoApiLibrary.Common.DI
             }
         }
 
+        public void RegisterType<T>(RegistrationLifetime registrationLifetime = RegistrationLifetime.InstancePerResolve)
+        {
+            switch (registrationLifetime)
+            {
+                case RegistrationLifetime.InstancePerResolve:
+                    _containerBuilder.RegisterType<T>().AsSelf();
+                    return;
+                case RegistrationLifetime.InstancePerThread:
+                    _containerBuilder.RegisterType<T>().AsSelf().InstancePerLifetimeScope();
+                    return;
+                case RegistrationLifetime.InstancePerApplication:
+                    _containerBuilder.RegisterType<T>().AsSelf().SingleInstance();
+                    return;
+            }
+        }
+
         public virtual void RegisterGeneric(Type sourceType, Type targetType, RegistrationLifetime registrationLifetime = RegistrationLifetime.InstancePerResolve)
         {
             switch (registrationLifetime)
@@ -104,6 +119,8 @@ namespace MarketoApiLibrary.Common.DI
         {
             _containerBuilder.RegisterInstance(value).As(targetType).ExternallyOwned();
         }
+
+
 
         public T Resolve<T>(params IConstructorNamedParameter[] parameters)
         {

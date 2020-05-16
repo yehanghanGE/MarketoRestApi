@@ -2,11 +2,10 @@
 using MarketoApiLibrary.Common.Http.ValueObjects;
 using MarketoApiLibrary.Common.Logging;
 using MarketoApiLibrary.Common.Model;
-using MarketoApiLibrary.Mis.Request;
 
 namespace MarketoApiLibrary.Common.Processor
 {
-    public abstract class BaseMarketoHttpRequestProcessor<TRequest> 
+    public abstract class BaseMarketoHttpRequestProcessor<TRequest>
         where TRequest : BaseRequest
     {
         private readonly IHttpRequestProvider<TRequest> _requestProvider;
