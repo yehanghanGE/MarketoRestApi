@@ -41,11 +41,6 @@ namespace MarketoApiLibrary.Common.DI
             throw new NotImplementedException();
         }
 
-        public void RegisterType<T>(RegistrationLifetime registrationLifetime = RegistrationLifetime.InstancePerResolve)
-        {
-            throw new NotImplementedException();
-        }
-
         public T Resolve<T>(params IConstructorNamedParameter[] parameters)
         {
             return _container.Resolve<T>(parameters.Select(p => new NamedParameter(p.Name, p.Value)));

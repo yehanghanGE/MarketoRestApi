@@ -112,7 +112,13 @@ namespace MarketoApiLibrary
         #endregion
 
         #region SmartListsController
-        
+        public async Task<SmartListResponseWithRules> GetSmartLists<T>()
+        {
+            var processor = new GetSmartListsProcessor();
+            var request = _smartListRequestFactory.CreateGetSmartListRequest();
+            var result = processor.Process(request);
+            return result;
+        }
         #endregion
     }
 }
