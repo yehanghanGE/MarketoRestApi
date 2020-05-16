@@ -1,10 +1,9 @@
-﻿using System;
-using System.Net.Http;
-using MarketoApiLibrary.Common.Http.Exceptions;
+﻿using MarketoApiLibrary.Common.Http.Exceptions;
 using MarketoApiLibrary.Common.Http.Services;
 using MarketoApiLibrary.Common.Http.ValueObjects;
 using MarketoApiLibrary.Common.Logging;
-using Microsoft.SqlServer.Server;
+using System;
+using System.Net.Http;
 
 namespace MarketoApiLibrary.Common.Http.Data
 {
