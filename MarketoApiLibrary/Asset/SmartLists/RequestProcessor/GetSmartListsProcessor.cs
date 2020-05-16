@@ -11,15 +11,13 @@ namespace MarketoApiLibrary.Asset.SmartLists.RequestProcessor
 {
     public class GetSmartListsProcessor : MarketoHttpRequestProcessor<GetSmartListsRequest, SmartListResponseWithRules, SmartListResponseWithRules, ApiModel>
     {
-        public GetSmartListsProcessor(IEntityMapperService entityMapperService, IHttpRequestProvider<GetSmartListsRequest> requestProvider,
-            IMarketoDataProvider dataProvider, ILoggingService<CommerceLog> commerceLogger, ILoggingService<SynchronizationLog> syncLogger)
+        public GetSmartListsProcessor(IEntityMapperService entityMapperService, 
+            IHttpRequestProvider<GetSmartListsRequest> requestProvider,
+            IMarketoDataProvider dataProvider, 
+            ILoggingService<CommerceLog> commerceLogger, 
+            ILoggingService<SynchronizationLog> syncLogger)
             : base(entityMapperService, requestProvider, dataProvider, commerceLogger, syncLogger)
         {
-        }
-
-        public GetSmartListsProcessor()
-        {
-            
         }
     }
 }
