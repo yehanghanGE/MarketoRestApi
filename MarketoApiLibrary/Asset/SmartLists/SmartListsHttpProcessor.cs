@@ -1,4 +1,5 @@
 ﻿using MarketoApiLibrary.Asset.SmartLists.Request;
+using MarketoApiLibrary.Common.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,8 +8,6 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using MarketoApiLibrary.Common.Configuration;
-using MarketoApiLibrary.Mis.Provider;
 using HttpClientFactory = MarketoApiLibrary.Common.Http.Services.HttpClientFactory;
 using HttpRequest = MarketoApiLibrary.Common.Http.ValueObjects.HttpRequest;
 using UriBuilder = MarketoApiLibrary.Common.Http.Helper.UriBuilder;
