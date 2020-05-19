@@ -77,10 +77,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Program.cs" />
     <Compile Include="SmartListExample.cs" />
     <Compile Include="TokenProviderExample.cs" />
-    <Compile Include="MarketoAssetClientExample.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

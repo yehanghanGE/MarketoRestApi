@@ -15,13 +15,19 @@ namespace MarketoApiLibrary.Common.Http.Oauth
     public class OAuthTokenRepository : IOAuthTokenRepository
     {
         private const string Key = "oauth";
-        private readonly IApiConfig _oauthConfig;
+        private readonly IConfigurationProvider _configurationProvider;
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public OAuthTokenRepository()
+        private readonly IApiConfig _oauthConfig;
+
+        public OAuthTokenRepository(IConfigurationProvider configurationProvider, IHttpClientFactory httpClientFactory)
         {
-            _oauthConfig = ConfigurationProvider.LoadConfig();
-            _httpClientFactory = new HttpClientFactory();
+            _configurationProvider = configurationProvider;
+            _httpClientFactory = httpClientFactory;
+
+
+            _oauthConfig = _configurationProvider.LoadConfig();
+            
         }
 
         public AuthenticationToken GetToken(OAuthParameters parameters, string refreshToken = null)

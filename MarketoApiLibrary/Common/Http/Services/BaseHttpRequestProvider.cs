@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using MarketoApiLibrary.Common.Http.Oauth;
 using UriBuilder = MarketoApiLibrary.Common.Http.Helper.UriBuilder;
 
 namespace MarketoApiLibrary.Common.Http.Services
@@ -12,15 +13,17 @@ namespace MarketoApiLibrary.Common.Http.Services
     public abstract class BaseHttpRequestProvider<T> : IHttpRequestProvider<T> where T : BaseRequest
     {
         private readonly IConfigurationProvider _configuration;
+        private readonly IAuthenticationTokenProvider _authenticationTokenProvider;
 
-        protected BaseHttpRequestProvider(IConfigurationProvider configuration)
+        protected BaseHttpRequestProvider(IConfigurationProvider configuration, IAuthenticationTokenProvider authenticationTokenProvider)
         {
-            //Assert.ArgumentNotNull(configuration, nameof(configuration));
             this._configuration = configuration;
+            _authenticationTokenProvider = authenticationTokenProvider;
         }
 
-        protected BaseHttpRequestProvider()
+        protected BaseHttpRequestProvider(IAuthenticationTokenProvider authenticationTokenProvider)
         {
+            _authenticationTokenProvider = authenticationTokenProvider;
             _configuration = new ConfigurationProvider2();
         }
 
@@ -76,10 +79,8 @@ namespace MarketoApiLibrary.Common.Http.Services
         protected virtual AuthenticationHeaderValue GetAuthHeader(T request)
         {
             //Assert.ArgumentNotNull(request, nameof(request));
-
-            var token = request.AuthenticationToken;
-            if (token == null)
-                throw new InvalidOperationException("Token is null");
+            var token = request.AuthenticationToken ?? _authenticationTokenProvider.GetToken();
+            // throw new InvalidOperationException("Token is null");
 
             var authHeader = new AuthenticationHeaderValue(token.TokenType, token.Token);
             return authHeader;

@@ -144,7 +144,6 @@
     <Compile Include="Constants.cs" />
     <Compile Include="IApiHelper.cs" />
     <Compile Include="IdentityResponse.cs" />
-    <Compile Include="MarketoAssetClient.cs" />
     <Compile Include="Common\Model\Error.cs" />
     <Compile Include="Common\Model\FileFolder.cs" />
     <Compile Include="Common\Model\IApiConfig.cs" />
@@ -168,13 +167,14 @@
     <Compile Include="Common\Http\Oauth\OAuthToken.cs" />
     <Compile Include="Common\Http\Oauth\OAuthTokenCacheService.cs" />
     <Compile Include="Common\Http\Oauth\OAuthTokenRepository.cs" />
+    <Compile Include="MarketoAssetClient.cs" />
+    <Compile Include="MarketoClient.cs" />
     <Compile Include="Mis\Response\GetSmartListResponse.cs" />
     <Compile Include="Common\Model\MarketoSmartList.cs" />
     <Compile Include="Asset\Files\FilesRequestFactory.cs" />
     <Compile Include="Asset\Files\IFilesRequestFactory.cs" />
     <Compile Include="Mis\Request\BaseGetRequest.cs" />
     <Compile Include="IMarketoClient.cs" />
-    <Compile Include="MarketoClient.cs" />
     <Compile Include="Common\Model\ApiConfig.cs" />
     <Compile Include="Common\Model\BaseResponse.cs" />
     <Compile Include="Asset\Files\Response\FilesResponse.cs" />

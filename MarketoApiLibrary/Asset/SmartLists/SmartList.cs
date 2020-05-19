@@ -20,7 +20,6 @@ namespace MarketoApiLibrary.Asset.SmartLists
             }
         }
 
-
         static SmartList()
         {
             Initialize();

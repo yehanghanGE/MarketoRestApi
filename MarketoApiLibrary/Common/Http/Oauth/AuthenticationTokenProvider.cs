@@ -1,7 +1,6 @@
-﻿using System;
+﻿using MarketoApiLibrary.Common.Model;
+using System;
 using MarketoApiLibrary.Common.Configuration;
-using MarketoApiLibrary.Common.Model;
-using MarketoApiLibrary.Mis.Provider;
 
 namespace MarketoApiLibrary.Common.Http.Oauth
 {
@@ -9,20 +8,21 @@ namespace MarketoApiLibrary.Common.Http.Oauth
     {
         private readonly IOAuthTokenCacheService _tokenCacheService;
         private readonly IOAuthTokenRepository _tokenRepository;
+        private readonly IConfigurationProvider _configurationProvider;
         private readonly IApiConfig _oauthConfig;
 
         private static readonly object LockObject = new object();
-        public AuthenticationTokenProvider()
+        public AuthenticationTokenProvider(IOAuthTokenCacheService tokenCacheService, IOAuthTokenRepository tokenRepository, IConfigurationProvider configurationProvider)
         {
-            _tokenRepository = new OAuthTokenRepository();
-            _tokenCacheService = new OAuthTokenCacheService();
-            _oauthConfig = ConfigurationProvider.LoadConfig();
+            _tokenCacheService = tokenCacheService;
+            _tokenRepository = tokenRepository;
+            _configurationProvider = configurationProvider;
+
+            _oauthConfig = _configurationProvider.LoadConfig();
         }
 
         public AuthenticationToken GetToken()
         {
-            //  Assert.ArgumentNotNull(shop, nameof(shop));
-
             try
             {
                 var parameters = this.GetParameters();
