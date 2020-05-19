@@ -7,6 +7,5 @@ namespace MarketoApiLibrary
 
         void BulkExportActivities();
         void BulkExportLeads();
-        Task<string> GetSmartList();
     }
 }

@@ -5,7 +5,6 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using MarketoApiLibrary.Asset.Files.Request;
-using MarketoApiLibrary.Request;
 using Newtonsoft.Json;
 
 namespace MarketoApiLibrary.Asset.Files
