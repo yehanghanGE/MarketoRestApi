@@ -8,7 +8,6 @@ using MarketoApiLibrary.Common.Http.Data;
 using MarketoApiLibrary.Common.Http.Oauth;
 using MarketoApiLibrary.Common.Http.Services;
 using MarketoApiLibrary.Common.Logging;
-using MarketoApiLibrary.Common.Services;
 
 namespace MarketoApiLibrary.Common.DI
 {
@@ -18,9 +17,6 @@ namespace MarketoApiLibrary.Common.DI
         {
             container.RegisterType<ISmartListController, SmartListController>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<GetSmartListsProcessor>(RegistrationLifetime.InstancePerThread);
-            container.RegisterType<IEntityMapperService, EntityMapperService>(RegistrationLifetime.InstancePerThread);
-            
-            container.RegisterType<IApiModelFactory, ApiModelFactory>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IMarketoDataProvider, MarketoDataProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IHttpRequestProvider<GetSmartListsRequest>, GetSmartListsRequestProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IConfigurationProvider, ConfigurationProvider2>(RegistrationLifetime.InstancePerThread);

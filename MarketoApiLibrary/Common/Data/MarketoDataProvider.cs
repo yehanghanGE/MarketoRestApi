@@ -3,7 +3,6 @@ using MarketoApiLibrary.Common.Http.Exceptions;
 using MarketoApiLibrary.Common.Http.ValueObjects;
 using MarketoApiLibrary.Common.Logging;
 using MarketoApiLibrary.Common.Model;
-using MarketoApiLibrary.Common.Services;
 using System;
 using System.Net.Http;
 
@@ -13,7 +12,7 @@ namespace MarketoApiLibrary.Common.Data
     {
         private readonly IHttpApiDataProvider _apiDataProvider;
 
-        public MarketoDataProvider(IHttpApiDataProvider apiDataProvider, IApiModelFactory modelFactory)
+        public MarketoDataProvider(IHttpApiDataProvider apiDataProvider)
         {
             this._apiDataProvider = apiDataProvider;
         }
@@ -29,7 +28,7 @@ namespace MarketoApiLibrary.Common.Data
 
             var model = response.Content.ReadAsAsync<T>().Result;
             if (model == null)
-                throw new InvalidOperationException($"Could not get api model {typeof(T).FullName}");
+                throw new InvalidOperationException($"Could not get the response model {typeof(T).FullName}");
             return model;
         }
 

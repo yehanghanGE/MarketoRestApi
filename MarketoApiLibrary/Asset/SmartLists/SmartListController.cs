@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using MarketoApiLibrary.Asset.SmartLists.Request;
+﻿using MarketoApiLibrary.Asset.SmartLists.Request;
 using MarketoApiLibrary.Asset.SmartLists.RequestProcessor;
 using MarketoApiLibrary.Asset.SmartLists.Response;
 

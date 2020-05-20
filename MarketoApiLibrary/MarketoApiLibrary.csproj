@@ -121,9 +121,6 @@
     <Compile Include="Common\Logging\ILoggingService.cs" />
     <Compile Include="Common\Logging\LogNotificationLevel.cs" />
     <Compile Include="Common\Processor\MarketoHttpRequestProcessor.cs" />
-    <Compile Include="Common\Services\ApiModelFactory.cs" />
-    <Compile Include="Common\Services\EntityMapperService.cs" />
-    <Compile Include="Common\Services\IApiModelFactory.cs" />
     <Compile Include="Common\Model\ApiModel.cs" />
     <Compile Include="Common\Model\IdResponse.cs" />
     <Compile Include="Asset\SmartLists\Request\DeleteSmartListRequest.cs" />
@@ -138,7 +135,6 @@
     <Compile Include="Asset\SmartLists\Response\SmartListsResponse.cs" />
     <Compile Include="Asset\SmartLists\Response\SmartListResponse.cs" />
     <Compile Include="Asset\SmartLists\SmartListsHttpProcessor.cs" />
-    <Compile Include="Common\Services\IEntityMapperService.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="IApiHelper.cs" />
     <Compile Include="IdentityResponse.cs" />
@@ -215,7 +211,9 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Common\Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

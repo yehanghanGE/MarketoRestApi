@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MarketoApiLibrary.Asset.SmartLists;
-using MarketoApiLibrary.Common.Http.Oauth;
 using Newtonsoft.Json.Linq;
 
 namespace MarketoApiConsole
