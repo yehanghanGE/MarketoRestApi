@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
-using MarketoApiLibrary.Asset.SmartLists.Request;
+﻿using MarketoApiLibrary.Asset.SmartLists.Request;
 using MarketoApiLibrary.Common.Configuration;
 using MarketoApiLibrary.Common.Http.Oauth;
 using MarketoApiLibrary.Common.Http.Services;
-using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Net.Http;
 
 namespace MarketoApiLibrary.Asset.SmartLists.RequestProvider
 {

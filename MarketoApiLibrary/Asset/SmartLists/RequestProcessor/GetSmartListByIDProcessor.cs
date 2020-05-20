@@ -1,5 +1,4 @@
-﻿using MarketoApiLibrary.Asset.Files.Request;
-using MarketoApiLibrary.Asset.SmartLists.Request;
+﻿using MarketoApiLibrary.Asset.SmartLists.Request;
 using MarketoApiLibrary.Asset.SmartLists.Response;
 using MarketoApiLibrary.Common.Data;
 using MarketoApiLibrary.Common.Http.Services;
