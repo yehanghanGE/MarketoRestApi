@@ -12,12 +12,10 @@ namespace MarketoApiLibrary.Common.Data
     public class MarketoDataProvider : IMarketoDataProvider
     {
         private readonly IHttpApiDataProvider _apiDataProvider;
-        private readonly IApiModelFactory _modelFactory;
 
         public MarketoDataProvider(IHttpApiDataProvider apiDataProvider, IApiModelFactory modelFactory)
         {
             this._apiDataProvider = apiDataProvider;
-            this._modelFactory = modelFactory;
         }
 
         public T ExecuteRequest<T>(HttpRequest request, ILoggingService<ILogInstance> logger) where T : ApiModel
@@ -28,13 +26,11 @@ namespace MarketoApiLibrary.Common.Data
                 var stringContent = response.Content.ReadAsStringAsync().Result;
                 throw new HttpResponseException(response.Code, stringContent);
             }
-            else
-            {
-                var model = response.Content.ReadAsAsync<T>().Result;
-                if (model == null)
-                    throw new InvalidOperationException($"Could not get api model {typeof(T).FullName}");
-                return model;
-            }
+
+            var model = response.Content.ReadAsAsync<T>().Result;
+            if (model == null)
+                throw new InvalidOperationException($"Could not get api model {typeof(T).FullName}");
+            return model;
         }
 
         public void ExecuteRequest(HttpRequest request, ILoggingService<ILogInstance> logger)
