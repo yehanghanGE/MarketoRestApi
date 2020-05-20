@@ -82,6 +82,7 @@
     <Compile Include="Asset\Folders\Response\FolderDeleteResponse.cs" />
     <Compile Include="Asset\Folders\Response\FolderContentsResponse.cs" />
     <Compile Include="Asset\SmartLists\ISmartListController.cs" />
+    <Compile Include="Asset\SmartLists\SmartList.cs" />
     <Compile Include="Asset\SmartLists\SmartListController.cs" />
     <Compile Include="Asset\SmartLists\GetSmartListByNameProcessor.cs" />
     <Compile Include="Asset\SmartLists\RequestProcessor\GetSmartListsProcessor.cs" />
@@ -120,30 +121,23 @@
     <Compile Include="Common\Logging\ILoggingService.cs" />
     <Compile Include="Common\Logging\LogNotificationLevel.cs" />
     <Compile Include="Common\Processor\MarketoHttpRequestProcessor.cs" />
-    <Compile Include="Common\Services\ApiModelFactory.cs" />
-    <Compile Include="Common\Services\EntityMapperService.cs" />
-    <Compile Include="Common\Services\IApiModelFactory.cs" />
     <Compile Include="Common\Model\ApiModel.cs" />
     <Compile Include="Common\Model\IdResponse.cs" />
     <Compile Include="Asset\SmartLists\Request\DeleteSmartListRequest.cs" />
     <Compile Include="Asset\SmartLists\Request\GetSmartListByNameRequest.cs" />
-    <Compile Include="Asset\SmartLists\ISmartListsRequestFactory.cs" />
     <Compile Include="Asset\SmartLists\Request\GetSmartListByIdRequest.cs" />
     <Compile Include="Asset\SmartLists\Response\SmartListDeleteResponse.cs" />
     <Compile Include="Asset\SmartLists\Response\SmartListConditions.cs" />
     <Compile Include="Asset\SmartLists\Response\SmartListFilters.cs" />
     <Compile Include="Asset\SmartLists\Response\SmartListResponseWithRules.cs" />
     <Compile Include="Asset\SmartLists\Response\SmartListRules.cs" />
-    <Compile Include="Asset\SmartLists\SmartListsRequestFactory.cs" />
     <Compile Include="Asset\SmartLists\Request\GetSmartListsRequest.cs" />
     <Compile Include="Asset\SmartLists\Response\SmartListsResponse.cs" />
     <Compile Include="Asset\SmartLists\Response\SmartListResponse.cs" />
     <Compile Include="Asset\SmartLists\SmartListsHttpProcessor.cs" />
-    <Compile Include="Common\Services\IEntityMapperService.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="IApiHelper.cs" />
     <Compile Include="IdentityResponse.cs" />
-    <Compile Include="MarketoAssetClient.cs" />
     <Compile Include="Common\Model\Error.cs" />
     <Compile Include="Common\Model\FileFolder.cs" />
     <Compile Include="Common\Model\IApiConfig.cs" />
@@ -167,13 +161,14 @@
     <Compile Include="Common\Http\Oauth\OAuthToken.cs" />
     <Compile Include="Common\Http\Oauth\OAuthTokenCacheService.cs" />
     <Compile Include="Common\Http\Oauth\OAuthTokenRepository.cs" />
+    <Compile Include="MarketoAssetClient.cs" />
+    <Compile Include="MarketoClient.cs" />
     <Compile Include="Mis\Response\GetSmartListResponse.cs" />
     <Compile Include="Common\Model\MarketoSmartList.cs" />
     <Compile Include="Asset\Files\FilesRequestFactory.cs" />
     <Compile Include="Asset\Files\IFilesRequestFactory.cs" />
     <Compile Include="Mis\Request\BaseGetRequest.cs" />
     <Compile Include="IMarketoClient.cs" />
-    <Compile Include="MarketoClient.cs" />
     <Compile Include="Common\Model\ApiConfig.cs" />
     <Compile Include="Common\Model\BaseResponse.cs" />
     <Compile Include="Asset\Files\Response\FilesResponse.cs" />
@@ -216,7 +211,9 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Common\Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

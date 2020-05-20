@@ -7,6 +7,5 @@ namespace MarketoApiLibrary.Common.Data
     public interface IMarketoDataProvider
     {
         T ExecuteRequest<T>(HttpRequest request, ILoggingService<ILogInstance> logger) where T : ApiModel;
-        void ExecuteRequest(HttpRequest request, ILoggingService<ILogInstance> logger);
     }
 }

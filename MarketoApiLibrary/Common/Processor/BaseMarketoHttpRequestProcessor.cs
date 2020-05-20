@@ -14,20 +14,10 @@ namespace MarketoApiLibrary.Common.Processor
 
         protected BaseMarketoHttpRequestProcessor(IHttpRequestProvider<TRequest> requestProvider, ILoggingService<CommerceLog> commerceLogger, ILoggingService<SynchronizationLog> syncLogger)
         {
-            //Assert.ArgumentNotNull(requestProvider, nameof(requestProvider));
-            //Assert.ArgumentNotNull(commerceLogger, nameof(commerceLogger));
-            //Assert.ArgumentNotNull(syncLogger, nameof(syncLogger));
-
             this._requestProvider = requestProvider;
             this.CommerceLogger = commerceLogger;
             this.SyncLogger = syncLogger;
         }
-
-        protected BaseMarketoHttpRequestProcessor()
-        {
-            throw new System.NotImplementedException();
-        }
-
 
         protected virtual HttpRequest GetHttpRequest(TRequest request)
         {

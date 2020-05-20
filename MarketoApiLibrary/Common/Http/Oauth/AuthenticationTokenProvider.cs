@@ -1,7 +1,7 @@
-﻿using System;
+﻿using MarketoApiLibrary.Common.Model;
+using System;
 using MarketoApiLibrary.Common.Configuration;
-using MarketoApiLibrary.Common.Model;
-using MarketoApiLibrary.Mis.Provider;
+using MarketoApiLibrary.Common.Logging;
 
 namespace MarketoApiLibrary.Common.Http.Oauth
 {
@@ -9,20 +9,23 @@ namespace MarketoApiLibrary.Common.Http.Oauth
     {
         private readonly IOAuthTokenCacheService _tokenCacheService;
         private readonly IOAuthTokenRepository _tokenRepository;
+        private readonly IConfigurationProvider _configurationProvider;
         private readonly IApiConfig _oauthConfig;
+        private readonly ILoggingService<CommerceLog> _logger;
 
         private static readonly object LockObject = new object();
-        public AuthenticationTokenProvider()
+        public AuthenticationTokenProvider(IOAuthTokenCacheService tokenCacheService, IOAuthTokenRepository tokenRepository, IConfigurationProvider configurationProvider, ILoggingService<CommerceLog> logger)
         {
-            _tokenRepository = new OAuthTokenRepository();
-            _tokenCacheService = new OAuthTokenCacheService();
-            _oauthConfig = ConfigurationProvider.LoadConfig();
+            _tokenCacheService = tokenCacheService;
+            _tokenRepository = tokenRepository;
+            _configurationProvider = configurationProvider;
+            _logger = logger;
+
+            _oauthConfig = _configurationProvider.LoadConfig();
         }
 
         public AuthenticationToken GetToken()
         {
-            //  Assert.ArgumentNotNull(shop, nameof(shop));
-
             try
             {
                 var parameters = this.GetParameters();
@@ -50,7 +53,7 @@ namespace MarketoApiLibrary.Common.Http.Oauth
             catch (Exception exception)
             {
                 Console.WriteLine(exception.Message, exception);
-                //this.logger.Error(exception.Message, exception);
+                this._logger.Error(exception.Message, exception);
                 return null;
             }
         }

@@ -8,19 +8,14 @@ namespace MarketoApiLibrary.Common.Http.Oauth
 
         public AuthenticationToken GetToken(OAuthParameters parameters)
         {
-            //Assert.ArgumentNotNull(parameters, nameof(parameters));
-
             AuthenticationToken value;
-            var token = !OAuthTokenCacheService.Cache.TryGetValue(parameters, out value) ? null : value;
+            var token = !Cache.TryGetValue(parameters, out value) ? null : value;
             return token;
         }
 
         public void SetToken(OAuthParameters parameters, AuthenticationToken token)
         {
-            //Assert.ArgumentNotNull(parameters, nameof(parameters));
-            //Assert.ArgumentNotNull(token, nameof(token));
-
-            OAuthTokenCacheService.Cache.AddOrUpdate(parameters, token, (key, existingToken) => token);
+            Cache.AddOrUpdate(parameters, token, (key, existingToken) => token);
         }
     }
 }

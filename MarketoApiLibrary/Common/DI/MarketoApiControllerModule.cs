@@ -4,9 +4,10 @@ using MarketoApiLibrary.Asset.SmartLists.RequestProcessor;
 using MarketoApiLibrary.Asset.SmartLists.RequestProvider;
 using MarketoApiLibrary.Common.Configuration;
 using MarketoApiLibrary.Common.Data;
+using MarketoApiLibrary.Common.Http.Data;
+using MarketoApiLibrary.Common.Http.Oauth;
 using MarketoApiLibrary.Common.Http.Services;
 using MarketoApiLibrary.Common.Logging;
-using MarketoApiLibrary.Common.Services;
 
 namespace MarketoApiLibrary.Common.DI
 {
@@ -16,13 +17,17 @@ namespace MarketoApiLibrary.Common.DI
         {
             container.RegisterType<ISmartListController, SmartListController>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<GetSmartListsProcessor>(RegistrationLifetime.InstancePerThread);
-            container.RegisterType<IEntityMapperService,EntityMapperService>(RegistrationLifetime.InstancePerThread);
-            container.RegisterType<IApiModelFactory, ApiModelFactory>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IMarketoDataProvider, MarketoDataProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IHttpRequestProvider<GetSmartListsRequest>, GetSmartListsRequestProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IConfigurationProvider, ConfigurationProvider2>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<ILoggingService<CommerceLog>, CommerceLogService>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<ILoggingService<SynchronizationLog>, SynchronizationLogService>(RegistrationLifetime.InstancePerThread);
+            container.RegisterType<IHttpApiDataProvider, HttpApiDataProvider>(RegistrationLifetime.InstancePerThread);
+            container.RegisterType<IHttpClientFactory, HttpClientFactory>(RegistrationLifetime.InstancePerThread);
+            container.RegisterType<IAuthenticationTokenProvider, AuthenticationTokenProvider>(RegistrationLifetime.InstancePerThread);
+            container.RegisterType<IOAuthTokenCacheService, OAuthTokenCacheService>(RegistrationLifetime.InstancePerThread);
+            container.RegisterType<IOAuthTokenRepository, OAuthTokenRepository>(RegistrationLifetime.InstancePerThread);
+            container.RegisterType<IConfigurationProvider, ConfigurationProvider2>(RegistrationLifetime.InstancePerThread);
         }
     }
 }
