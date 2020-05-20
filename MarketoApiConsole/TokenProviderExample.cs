@@ -1,8 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
-using MarketoApiLibrary.Common.Http.Oauth;
-
-namespace MarketoApiConsole
+﻿namespace MarketoApiConsole
 {
     public class TokenProviderExample
     {
@@ -13,7 +9,7 @@ namespace MarketoApiConsole
         //        var authoProvider = new AuthenticationTokenProvider();
         //        var result = authoProvider.GetToken();
 
-                
+
         //        Console.WriteLine(JToken.FromObject(result).ToString());
         //        Console.ReadKey();
         //    }
@@ -22,6 +18,6 @@ namespace MarketoApiConsole
         //        Console.WriteLine(ex.ToString());
         //    }
         //}
-        
+
     }
 }

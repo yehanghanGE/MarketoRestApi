@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using MarketoApiLibrary.Common.Model;
-using MarketoApiLibrary.Mis.Request;
+﻿using MarketoApiLibrary.Common.Model;
 
 namespace MarketoApiLibrary.Asset.SmartLists.Request
 {
