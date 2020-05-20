@@ -27,14 +27,20 @@ namespace MarketoApiLibrary.Asset.SmartLists.RequestProvider
 
         protected override Dictionary<string, string> GetQueryString(GetSmartListsRequest request)
         {
-            return new Dictionary<string, string>
+            var qs = new Dictionary<string, string>
             {
-                { Constants.QueryParameters.Asset.SmartList.Keys.Folder, JsonConvert.SerializeObject(request.Folder)},
                 { Constants.QueryParameters.Asset.SmartList.Keys.Offset, request.Offset.ToString()},
                 { Constants.QueryParameters.Asset.SmartList.Keys.MaxReturn, request.MaxReturn.ToString()},
                 { Constants.QueryParameters.Asset.SmartList.Keys.EarliestUpdatedAt, request.EarliestUpdatedAt},
                 { Constants.QueryParameters.Asset.SmartList.Keys.LatestUpdatedAt, request.LatestUpdatedAt}
             };
+
+            if (request.Folder.Count > 0)
+            {
+                qs.Add(Constants.QueryParameters.Asset.SmartList.Keys.Folder, JsonConvert.SerializeObject(request.Folder));
+            }
+
+            return qs;
         }
     }
 }

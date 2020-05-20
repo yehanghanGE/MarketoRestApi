@@ -9,7 +9,7 @@ using MarketoApiLibrary.Common.Services;
 
 namespace MarketoApiLibrary.Asset.SmartLists.RequestProcessor
 {
-    public class GetSmartListsProcessor : MarketoHttpRequestProcessor<GetSmartListsRequest, SmartListResponseWithRules, SmartListResponseWithRules, ApiModel>
+    public class GetSmartListsProcessor : MarketoHttpRequestProcessor<GetSmartListsRequest, SmartListsResponse, SmartListsResponse, ApiModel>
     {
         public GetSmartListsProcessor(IEntityMapperService entityMapperService, 
             IHttpRequestProvider<GetSmartListsRequest> requestProvider,

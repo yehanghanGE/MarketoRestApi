@@ -33,9 +33,9 @@ namespace MarketoApiLibrary.Asset.SmartLists
         /// GET /rest/asset/v1/smartLists.json
         /// </summary>
         /// <returns></returns>
-        public static SmartListResponseWithRules GetSmartList()
+        public static SmartListsResponse GetSmartList()
         {
-            return SmartListController.GetSmartLists<SmartListResponseWithRules>().Result;
+            return SmartListController.GetSmartLists<SmartListsResponse>().Result;
         }
     }
 }

@@ -5,6 +5,6 @@ namespace MarketoApiLibrary.Asset.SmartLists
 {
     public interface ISmartListController
     {
-        Task<SmartListResponseWithRules> GetSmartLists<T>();
+        Task<SmartListsResponse> GetSmartLists<T>();
     }
 }

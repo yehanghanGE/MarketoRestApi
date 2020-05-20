@@ -15,9 +15,7 @@ namespace MarketoApiConsole
         {
             try
             {
-
                 var result = SmartList.GetSmartList();
-
                 Console.WriteLine(JToken.FromObject(result).ToString());
                 Console.ReadKey();
             }
