@@ -23,6 +23,7 @@
             public const string Asset = "asset";
             public const string Version = "v1";
             public const string SmartLists = "smartLists.json";
+            public const string SmartList = "smartList";
         }
 
         public static class QueryParameters
@@ -38,6 +39,7 @@
                         public const string MaxReturn = "maxReturn";
                         public const string EarliestUpdatedAt = "earliestUpdatedAt";
                         public const string LatestUpdatedAt = "latestUpdatedAt";
+                        public const string IncludeRules = "includeRules";
                     }
 
                     public static class Values

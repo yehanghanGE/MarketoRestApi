@@ -19,6 +19,7 @@ namespace MarketoApiLibrary.Common.DI
             container.RegisterType<GetSmartListsProcessor>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IMarketoDataProvider, MarketoDataProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IHttpRequestProvider<GetSmartListsRequest>, GetSmartListsRequestProvider>(RegistrationLifetime.InstancePerThread);
+            container.RegisterType<IHttpRequestProvider<GetSmartListByIdRequest>, GetSmartListByIdRequestProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IConfigurationProvider, ConfigurationProvider2>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<ILoggingService<CommerceLog>, CommerceLogService>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<ILoggingService<SynchronizationLog>, SynchronizationLogService>(RegistrationLifetime.InstancePerThread);
@@ -28,6 +29,7 @@ namespace MarketoApiLibrary.Common.DI
             container.RegisterType<IOAuthTokenCacheService, OAuthTokenCacheService>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IOAuthTokenRepository, OAuthTokenRepository>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IConfigurationProvider, ConfigurationProvider2>(RegistrationLifetime.InstancePerThread);
+            container.RegisterType<GetSmartListByIdProcessor>(RegistrationLifetime.InstancePerThread);
         }
     }
 }
