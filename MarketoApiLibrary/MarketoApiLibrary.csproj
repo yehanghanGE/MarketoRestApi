@@ -128,14 +128,12 @@
     <Compile Include="Common\Model\IdResponse.cs" />
     <Compile Include="Asset\SmartLists\Request\DeleteSmartListRequest.cs" />
     <Compile Include="Asset\SmartLists\Request\GetSmartListByNameRequest.cs" />
-    <Compile Include="Asset\SmartLists\ISmartListsRequestFactory.cs" />
     <Compile Include="Asset\SmartLists\Request\GetSmartListByIdRequest.cs" />
     <Compile Include="Asset\SmartLists\Response\SmartListDeleteResponse.cs" />
     <Compile Include="Asset\SmartLists\Response\SmartListConditions.cs" />
     <Compile Include="Asset\SmartLists\Response\SmartListFilters.cs" />
     <Compile Include="Asset\SmartLists\Response\SmartListResponseWithRules.cs" />
     <Compile Include="Asset\SmartLists\Response\SmartListRules.cs" />
-    <Compile Include="Asset\SmartLists\SmartListsRequestFactory.cs" />
     <Compile Include="Asset\SmartLists\Request\GetSmartListsRequest.cs" />
     <Compile Include="Asset\SmartLists\Response\SmartListsResponse.cs" />
     <Compile Include="Asset\SmartLists\Response\SmartListResponse.cs" />

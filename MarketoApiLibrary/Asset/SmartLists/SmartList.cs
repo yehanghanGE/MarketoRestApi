@@ -35,7 +35,7 @@ namespace MarketoApiLibrary.Asset.SmartLists
         /// <returns></returns>
         public static SmartListsResponse GetSmartList()
         {
-            return SmartListController.GetSmartLists<SmartListsResponse>();
+            return SmartListController.GetSmartLists();
         }
     }
 }
