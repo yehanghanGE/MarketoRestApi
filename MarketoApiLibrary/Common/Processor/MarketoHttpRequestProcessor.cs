@@ -20,9 +20,6 @@ namespace MarketoApiLibrary.Common.Processor
             IMarketoDataProvider dataProvider, ILoggingService<CommerceLog> commerceLogger, ILoggingService<SynchronizationLog> syncLogger)
             : base(requestProvider, commerceLogger, syncLogger)
         {
-            //Assert.ArgumentNotNull(entityMapperService, nameof(entityMapperService));
-            //Assert.ArgumentNotNull(dataProvider, nameof(dataProvider));
-
             this._entityMapperService = entityMapperService;
             this._dataProvider = dataProvider;
         }

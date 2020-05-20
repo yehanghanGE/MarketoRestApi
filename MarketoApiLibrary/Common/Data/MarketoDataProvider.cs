@@ -2,10 +2,10 @@
 using MarketoApiLibrary.Common.Http.Exceptions;
 using MarketoApiLibrary.Common.Http.ValueObjects;
 using MarketoApiLibrary.Common.Logging;
-using MarketoApiLibrary.Common.Services;
-using Newtonsoft.Json;
-using System;
 using MarketoApiLibrary.Common.Model;
+using MarketoApiLibrary.Common.Services;
+using System;
+using System.Net.Http;
 
 namespace MarketoApiLibrary.Common.Data
 {
@@ -16,36 +16,29 @@ namespace MarketoApiLibrary.Common.Data
 
         public MarketoDataProvider(IHttpApiDataProvider apiDataProvider, IApiModelFactory modelFactory)
         {
-            //Assert.ArgumentNotNull(apiDataProvider, nameof(apiDataProvider));
-            //Assert.ArgumentNotNull(modelFactory, nameof(modelFactory));
-
             this._apiDataProvider = apiDataProvider;
             this._modelFactory = modelFactory;
         }
 
         public T ExecuteRequest<T>(HttpRequest request, ILoggingService<ILogInstance> logger) where T : ApiModel
         {
-            //Assert.ArgumentNotNull(request, nameof(request));
-            //Assert.ArgumentNotNull(logger, nameof(logger));
-
             var response = this._apiDataProvider.SendRequest(request, logger);
-            var stringContent = response.Content.ReadAsStringAsync().Result;
             if (!response.IsSuccessCode)
+            {
+                var stringContent = response.Content.ReadAsStringAsync().Result;
                 throw new HttpResponseException(response.Code, stringContent);
-
-            var model = this._modelFactory.GetApiModel<T>();
-            if (model == null)
-                throw new InvalidOperationException($"Could not get api model {typeof(T).FullName}");
-
-            JsonConvert.PopulateObject(stringContent, model);
-            return model;
+            }
+            else
+            {
+                var model = response.Content.ReadAsAsync<T>().Result;
+                if (model == null)
+                    throw new InvalidOperationException($"Could not get api model {typeof(T).FullName}");
+                return model;
+            }
         }
 
         public void ExecuteRequest(HttpRequest request, ILoggingService<ILogInstance> logger)
         {
-            //Assert.ArgumentNotNull(request, nameof(request));
-            //Assert.ArgumentNotNull(logger, nameof(logger));
-
             var response = this._apiDataProvider.SendRequest(request, logger);
             if (!response.IsSuccessCode)
                 throw new HttpResponseException(response.Code);
