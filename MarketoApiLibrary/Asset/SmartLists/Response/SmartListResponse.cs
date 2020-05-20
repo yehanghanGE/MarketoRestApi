@@ -1,22 +1,21 @@
 ﻿using MarketoApiLibrary.Common.Model;
-using MarketoApiLibrary.Mis.Response;
 using Newtonsoft.Json;
 
 namespace MarketoApiLibrary.Asset.SmartLists.Response
 {
-    public class SmartListResponse: BaseResponse
+    public class SmartListResponse : BaseResponse
     {
-        [JsonProperty("id")] 
+        [JsonProperty("id")]
         public int Id { get; set; }
-        [JsonProperty("name")] 
+        [JsonProperty("name")]
         public string Name { get; set; }
-        [JsonProperty("description")] 
+        [JsonProperty("description")]
         public string Description { get; set; }
-        [JsonProperty("createdAt")] 
+        [JsonProperty("createdAt")]
         public string CreatedAt { get; set; }
-        [JsonProperty("updatedAt")] 
+        [JsonProperty("updatedAt")]
         public string UpdatedAt { get; set; }
-        [JsonProperty("url")] 
+        [JsonProperty("url")]
         public string Url { get; set; }
         [JsonProperty("folder")]
         public Folder Folder { get; set; }

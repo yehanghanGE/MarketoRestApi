@@ -6,18 +6,30 @@ namespace MarketoApiLibrary.Asset.SmartLists
 {
     public class SmartListController : ISmartListController
     {
-        private readonly GetSmartListsProcessor _processor;
+        private readonly GetSmartListsProcessor _getSmartListsProcessor;
+        private readonly GetSmartListByIdProcessor _getSmartListByIdProcessor;
 
-        public SmartListController(GetSmartListsProcessor processor)
+        public SmartListController(GetSmartListsProcessor getSmartListsProcessor, GetSmartListByIdProcessor getSmartListByIdProcessor)
         {
-            _processor = processor;
+            _getSmartListsProcessor = getSmartListsProcessor;
+            _getSmartListByIdProcessor = getSmartListByIdProcessor;
         }
 
         public SmartListsResponse GetSmartLists()
         {
             var request = new GetSmartListsRequest {Offset = 0, MaxReturn = 20};
 
-            var result = _processor.Process(request);
+            var result = _getSmartListsProcessor.Process(request);
+            return result;
+        }
+
+        public SmartListsResponseWithRules GetSmartListById(long id, bool includeRules)
+        {
+            var request = new GetSmartListByIdRequest();
+            request.Id = id;
+            request.IncludeRules = includeRules;
+            var result = _getSmartListByIdProcessor.Process(request);
+
             return result;
         }
     }
