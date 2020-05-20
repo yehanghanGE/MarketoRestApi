@@ -15,7 +15,7 @@ namespace MarketoApiLibrary.Asset.SmartLists
             _processor = processor;
         }
 
-        public async Task<SmartListsResponse> GetSmartLists<T>()
+        public SmartListsResponse GetSmartLists<T>()
         {
             var request = _smartListRequestFactory.CreateGetSmartListRequest();
             var result = _processor.Process(request);
