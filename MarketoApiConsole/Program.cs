@@ -59,103 +59,103 @@ namespace MarketoApiConsole
         //    }
         //}
 
-        private static void GetFolderByName(string host, string clientId, string clientSecret, string folderName, int parentFolderId)
-        {
-            var client = new MarketoAssetClient(host);
-            var result = client.GetFolderByName<FoldersResponse>(folderName, parentFolderId).Result;
-            Console.WriteLine(JToken.FromObject(result).ToString());
-            Console.ReadKey();
-        }
+        //private static void GetFolderByName(string host, string clientId, string clientSecret, string folderName, int parentFolderId)
+        //{
+        //    var client = new MarketoAssetClient(host);
+        //    var result = client.GetFolderByName<FoldersResponse>(folderName, parentFolderId).Result;
+        //    Console.WriteLine(JToken.FromObject(result).ToString());
+        //    Console.ReadKey();
+        //}
 
-        private static void UpdateFile(string host, string clientId, string clientSecret, string filePath, string fileId)
-        {
-            var client = new MarketoAssetClient(host);
-            var result = client.UpdateFile<FilesResponse>(filePath,fileId).Result;
-            Console.WriteLine(JToken.FromObject(result).ToString());
-            Console.ReadKey();
-        }
-        private static void CreateFile(string host, string clientId, string clientSecret, string filePath)
-        {
-            var client = new MarketoAssetClient(host);
-            var result = client.CreateFile<FilesResponse>(filePath).Result;
-            Console.WriteLine(JToken.FromObject(result).ToString());
-            Console.ReadKey();
-        }
+        //private static void UpdateFile(string host, string clientId, string clientSecret, string filePath, string fileId)
+        //{
+        //    var client = new MarketoAssetClient(host);
+        //    var result = client.UpdateFile<FilesResponse>(filePath,fileId).Result;
+        //    Console.WriteLine(JToken.FromObject(result).ToString());
+        //    Console.ReadKey();
+        //}
+        //private static void CreateFile(string host, string clientId, string clientSecret, string filePath)
+        //{
+        //    var client = new MarketoAssetClient(host);
+        //    var result = client.CreateFile<FilesResponse>(filePath).Result;
+        //    Console.WriteLine(JToken.FromObject(result).ToString());
+        //    Console.ReadKey();
+        //}
 
-        private static void GetFileById(string host, string clientId, string clientSecret, int fileId)
-        {
-            var client = new MarketoAssetClient(host);
-            var result = client.GetFileById<FilesResponse>(fileId).Result;
-            Console.WriteLine(JToken.FromObject(result).ToString());
-            Console.ReadKey();
-        }
+        //private static void GetFileById(string host, string clientId, string clientSecret, int fileId)
+        //{
+        //    var client = new MarketoAssetClient(host);
+        //    var result = client.GetFileById<FilesResponse>(fileId).Result;
+        //    Console.WriteLine(JToken.FromObject(result).ToString());
+        //    Console.ReadKey();
+        //}
 
-        private static void GetFileByName(string host, string clientId, string clientSecret, string fileName)
-        {
-            var client = new MarketoAssetClient(host);
-            var result = client.GetFileByName<FilesResponse>(fileName).Result;
-            Console.WriteLine(JToken.FromObject(result).ToString());
-            Console.ReadKey();
-        }
-        private static void GetSmartList(string host, string clientId, string clientSecret)
-        {
+        //private static void GetFileByName(string host, string clientId, string clientSecret, string fileName)
+        //{
+        //    var client = new MarketoAssetClient(host);
+        //    var result = client.GetFileByName<FilesResponse>(fileName).Result;
+        //    Console.WriteLine(JToken.FromObject(result).ToString());
+        //    Console.ReadKey();
+        //}
+        //private static void GetSmartList(string host, string clientId, string clientSecret)
+        //{
            
-        }
+        //}
 
-        private static List<string> GetSubFolderIDs(string host, string clientId, string clientSecret, string rootFolderId)
-        {
-            MarketoClient client = new MarketoClient(host, clientId, clientSecret);
-            var result = client.GetFolders(rootFolderId).Result;
-            List<string> folderIDs = new List<string>();
-            if (result.Result != null)
-            {
-                foreach (FolderResponse folder in result.Result)
-                {
-                    folderIDs.Add(folder.Id.ToString());
-                }
-            }
-            return folderIDs;
-            //string prettyJson = JToken.Parse(result).ToString(Formatting.Indented);
-        }
-        private static void DownFile(string host, string clientId, string clientSecret, List<string> folderIds, string savePath)
-        {
-            MarketoClient client = new MarketoClient(host, clientId, clientSecret);
-            foreach (string folderId in folderIds)
-            {
-                Console.WriteLine(folderId);
-                FilesResponse fileResult = client.GetFiles(folderId, 0).Result;
-                string saveRootPath = Path.Combine(savePath, folderId);
+        //private static List<string> GetSubFolderIDs(string host, string clientId, string clientSecret, string rootFolderId)
+        //{
+        //    MarketoClient client = new MarketoClient(host, clientId, clientSecret);
+        //    var result = client.GetFolders(rootFolderId).Result;
+        //    List<string> folderIDs = new List<string>();
+        //    if (result.Result != null)
+        //    {
+        //        foreach (FolderResponse folder in result.Result)
+        //        {
+        //            folderIDs.Add(folder.Id.ToString());
+        //        }
+        //    }
+        //    return folderIDs;
+        //    //string prettyJson = JToken.Parse(result).ToString(Formatting.Indented);
+        //}
+        //private static void DownFile(string host, string clientId, string clientSecret, List<string> folderIds, string savePath)
+        //{
+        //    MarketoClient client = new MarketoClient(host, clientId, clientSecret);
+        //    foreach (string folderId in folderIds)
+        //    {
+        //        Console.WriteLine(folderId);
+        //        FilesResponse fileResult = client.GetFiles(folderId, 0).Result;
+        //        string saveRootPath = Path.Combine(savePath, folderId);
 
-                if (fileResult?.Result != null)
-                {
-                    if (!Directory.Exists(saveRootPath))
-                    {
-                        Directory.CreateDirectory(saveRootPath);
-                    }
-                    WriteFileToDisk(fileResult, saveRootPath);
-                    if (fileResult.Result.Count >= 200)
-                    {
-                        MarketoClient client200 = new MarketoClient(host, clientId, clientSecret);
-                        FilesResponse fileResult200 = client200.GetFiles(folderId, 200).Result;
-                        if (fileResult200?.Result != null)
-                        {
-                            WriteFileToDisk(fileResult200, saveRootPath);
-                        }
-                    }
-                }
-                Console.WriteLine("Done!");
-            }
-            Console.ReadKey();
-        }
-        private static void WriteFileToDisk(FilesResponse fileResult, string saveRootPath)
-        {
-            if (fileResult?.Result == null) return;
-            foreach (FileResponse file in fileResult?.Result)
-            {
-                string fileName = Path.Combine(saveRootPath, file.Name);
-                FileDownloader.DownFile(file.Url, fileName);
-                Console.WriteLine(file?.Url);
-            }
-        }
+        //        if (fileResult?.Result != null)
+        //        {
+        //            if (!Directory.Exists(saveRootPath))
+        //            {
+        //                Directory.CreateDirectory(saveRootPath);
+        //            }
+        //            WriteFileToDisk(fileResult, saveRootPath);
+        //            if (fileResult.Result.Count >= 200)
+        //            {
+        //                MarketoClient client200 = new MarketoClient(host, clientId, clientSecret);
+        //                FilesResponse fileResult200 = client200.GetFiles(folderId, 200).Result;
+        //                if (fileResult200?.Result != null)
+        //                {
+        //                    WriteFileToDisk(fileResult200, saveRootPath);
+        //                }
+        //            }
+        //        }
+        //        Console.WriteLine("Done!");
+        //    }
+        //    Console.ReadKey();
+        //}
+        //private static void WriteFileToDisk(FilesResponse fileResult, string saveRootPath)
+        //{
+        //    if (fileResult?.Result == null) return;
+        //    foreach (FileResponse file in fileResult?.Result)
+        //    {
+        //        string fileName = Path.Combine(saveRootPath, file.Name);
+        //        FileDownloader.DownFile(file.Url, fileName);
+        //        Console.WriteLine(file?.Url);
+        //    }
+        //}
     }
 }
