@@ -21,12 +21,6 @@ namespace MarketoApiLibrary.Common.Http.Services
             _authenticationTokenProvider = authenticationTokenProvider;
         }
 
-        protected BaseHttpRequestProvider(IAuthenticationTokenProvider authenticationTokenProvider)
-        {
-            _authenticationTokenProvider = authenticationTokenProvider;
-            _configuration = new ConfigurationProvider2();
-        }
-
         public virtual HttpRequest GetRequest(T serviceProviderRequest)
         {
             var baseUri = this.GetMarketoBaseUri();
