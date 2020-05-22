@@ -48,5 +48,14 @@ namespace MarketoApiLibrary.Asset.SmartLists
         {
             return SmartListController.GetSmartListById(id, includeRules);
         }
+        /// <summary>
+        /// GET /rest/asset/v1/smartList/byName.json
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static SmartListsResponse GetSmartListByName(string name)
+        {
+            return SmartListController.GetSmartListByName(name);
+        }
     }
 }

@@ -32,5 +32,10 @@ namespace MarketoApiLibrary.Asset.SmartLists
 
             return result;
         }
+
+        public SmartListsResponse GetSmartListByName(string name)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
