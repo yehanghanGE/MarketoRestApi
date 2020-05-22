@@ -24,6 +24,7 @@
             public const string Version = "v1";
             public const string SmartLists = "smartLists.json";
             public const string SmartList = "smartList";
+            public const string ByName = "byName.json";
         }
 
         public static class QueryParameters
@@ -40,6 +41,7 @@
                         public const string EarliestUpdatedAt = "earliestUpdatedAt";
                         public const string LatestUpdatedAt = "latestUpdatedAt";
                         public const string IncludeRules = "includeRules";
+                        public const string SmartListName = "name";
                     }
 
                     public static class Values

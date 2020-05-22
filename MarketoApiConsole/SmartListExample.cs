@@ -11,7 +11,8 @@ namespace MarketoApiConsole
             try
             {
                 //var result = SmartList.GetSmartList();
-                var result = SmartList.GetSmartListById(1266, false);
+                //var result = SmartList.GetSmartListById(1266, false);
+                var result = SmartList.GetSmartListByName("SL SFDC Contact Sync");
                 Console.WriteLine(JToken.FromObject(result).ToString());
                 Console.ReadKey();
             }

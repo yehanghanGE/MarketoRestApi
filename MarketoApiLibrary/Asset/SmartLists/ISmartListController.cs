@@ -6,5 +6,6 @@ namespace MarketoApiLibrary.Asset.SmartLists
     {
         SmartListsResponse GetSmartLists();
         SmartListsResponseWithRules GetSmartListById(long id, bool includeRules);
+        SmartListsResponse GetSmartListByName(string name);
     }
 }
