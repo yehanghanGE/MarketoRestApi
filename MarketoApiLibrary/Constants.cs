@@ -26,7 +26,7 @@
             public const string SmartList = "smartList";
             public const string ByName = "byName.json";
             public const string Delete = "delete.json";
-
+            public const string Clone = "clone.json";
         }
 
         public static class QueryParameters
