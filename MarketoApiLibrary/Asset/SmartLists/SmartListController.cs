@@ -60,5 +60,11 @@ namespace MarketoApiLibrary.Asset.SmartLists
                                                 
             return result;
         }
+
+        public SmartListsResponse CloneSmartList(int id, string clonedSmartListName, int parentFolderId, string parentFolderType,
+            string description)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
