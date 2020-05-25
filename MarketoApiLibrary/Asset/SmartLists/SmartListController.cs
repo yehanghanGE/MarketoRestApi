@@ -48,5 +48,10 @@ namespace MarketoApiLibrary.Asset.SmartLists
 
             return result;
         }
+
+        public SmartListDeleteResponse DeleteSmartList(long id)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
