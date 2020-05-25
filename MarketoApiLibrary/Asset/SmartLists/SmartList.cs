@@ -1,4 +1,5 @@
-﻿using MarketoApiLibrary.Asset.SmartLists.Response;
+﻿using MarketoApiLibrary.Asset.SmartLists.Request;
+using MarketoApiLibrary.Asset.SmartLists.Response;
 using MarketoApiLibrary.Common.DI;
 
 namespace MarketoApiLibrary.Asset.SmartLists
@@ -56,6 +57,16 @@ namespace MarketoApiLibrary.Asset.SmartLists
         public static SmartListsResponse GetSmartListByName(string name)
         {
             return SmartListController.GetSmartListByName(name);
+        }
+
+        /// <summary>
+        /// POST /rest/asset/v1/smartList/{id}/delete.json
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static SmartListDeleteResponse DeleteSmartList(long id)
+        {
+            return SmartListController.DeleteSmartList(id);
         }
     }
 }
