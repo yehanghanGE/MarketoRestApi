@@ -1,6 +1,7 @@
 ﻿using MarketoApiLibrary.Asset.SmartLists.Request;
 using MarketoApiLibrary.Asset.SmartLists.RequestProcessor;
 using MarketoApiLibrary.Asset.SmartLists.Response;
+using MarketoApiLibrary.Common.Model;
 
 namespace MarketoApiLibrary.Asset.SmartLists
 {
@@ -10,16 +11,19 @@ namespace MarketoApiLibrary.Asset.SmartLists
         private readonly GetSmartListByIdProcessor _getSmartListByIdProcessor;
         private readonly GetSmartListByNameProcessor _getSmartListByNameProcessor;
         private readonly DeleteSmartListProcessor _deleteSmartListProcessor;
+        private readonly CloneSmartListProcessor _cloneSmartListProcessor;
 
         public SmartListController(GetSmartListsProcessor getSmartListsProcessor,
             GetSmartListByIdProcessor getSmartListByIdProcessor,
             GetSmartListByNameProcessor getSmartListByNameProcessor, 
-            DeleteSmartListProcessor deleteSmartListProcessor)
+            DeleteSmartListProcessor deleteSmartListProcessor, 
+            CloneSmartListProcessor cloneSmartListProcessor)
         {
             _getSmartListsProcessor = getSmartListsProcessor;
             _getSmartListByIdProcessor = getSmartListByIdProcessor;
             _getSmartListByNameProcessor = getSmartListByNameProcessor;
             _deleteSmartListProcessor = deleteSmartListProcessor;
+            _cloneSmartListProcessor = cloneSmartListProcessor;
         }
 
         public SmartListsResponse GetSmartLists()
@@ -64,7 +68,17 @@ namespace MarketoApiLibrary.Asset.SmartLists
         public SmartListsResponse CloneSmartList(int id, string clonedSmartListName, int parentFolderId, string parentFolderType,
             string description)
         {
-            throw new System.NotImplementedException();
+            var request = new CloneSmartListRequest
+            {
+                Id = id,
+                Name = clonedSmartListName,
+                Description = description,
+                Folder = new Folder {Id = parentFolderId, Type = parentFolderType}
+            };
+
+            var result = _cloneSmartListProcessor.Process(request);
+
+            return result;
         }
     }
 }

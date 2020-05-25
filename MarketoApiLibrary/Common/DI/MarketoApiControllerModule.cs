@@ -35,7 +35,7 @@ namespace MarketoApiLibrary.Common.DI
             container.RegisterType<GetSmartListByIdProcessor>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<GetSmartListByNameProcessor>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<DeleteSmartListProcessor>(RegistrationLifetime.InstancePerThread);
-
+            container.RegisterType<CloneSmartListProcessor>(RegistrationLifetime.InstancePerThread);
         }
     }
 }
