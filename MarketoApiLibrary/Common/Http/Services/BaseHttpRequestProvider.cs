@@ -72,9 +72,7 @@ namespace MarketoApiLibrary.Common.Http.Services
 
         protected virtual AuthenticationHeaderValue GetAuthHeader(T request)
         {
-            //Assert.ArgumentNotNull(request, nameof(request));
             var token = request.AuthenticationToken ?? _authenticationTokenProvider.GetToken();
-            // throw new InvalidOperationException("Token is null");
 
             var authHeader = new AuthenticationHeaderValue(token.TokenType, token.Token);
             return authHeader;

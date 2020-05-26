@@ -1,5 +1,4 @@
-﻿using MarketoApiLibrary.Asset.SmartLists.Request;
-using MarketoApiLibrary.Asset.SmartLists.Response;
+﻿using MarketoApiLibrary.Asset.SmartLists.Response;
 using MarketoApiLibrary.Common.DI;
 
 namespace MarketoApiLibrary.Asset.SmartLists
@@ -67,6 +66,20 @@ namespace MarketoApiLibrary.Asset.SmartLists
         public static SmartListDeleteResponse DeleteSmartList(long id)
         {
             return SmartListController.DeleteSmartList(id);
+        }
+
+        /// <summary>
+        /// POST /rest/asset/v1/smartList/{id}/clone.json
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="clonedSmartListName"></param>
+        /// <param name="parentFolderId"></param>
+        /// <param name="parentFolderType"></param>
+        /// <param name="description"></param>
+        /// <returns></returns>
+        public static SmartListsResponse CloneSmartList(int id, string clonedSmartListName, int parentFolderId, string parentFolderType = "Folder", string description = "")
+        {
+            return SmartListController.CloneSmartList(id, clonedSmartListName, parentFolderId, parentFolderType, description);
         }
     }
 }

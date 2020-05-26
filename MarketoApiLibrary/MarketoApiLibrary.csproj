@@ -82,8 +82,10 @@
     <Compile Include="Asset\Folders\Response\FolderDeleteResponse.cs" />
     <Compile Include="Asset\Folders\Response\FolderContentsResponse.cs" />
     <Compile Include="Asset\SmartLists\ISmartListController.cs" />
+    <Compile Include="Asset\SmartLists\RequestProcessor\CloneSmartListProcessor.cs" />
     <Compile Include="Asset\SmartLists\RequestProcessor\DeleteSmartListProcessor.cs" />
     <Compile Include="Asset\SmartLists\RequestProcessor\GetSmartListByIdProcessor.cs" />
+    <Compile Include="Asset\SmartLists\RequestProvider\CloneSmartListRequestProvider.cs" />
     <Compile Include="Asset\SmartLists\RequestProvider\GetSmartListByNameRequestProvider.cs" />
     <Compile Include="Asset\SmartLists\RequestProvider\GetSmartListByIdRequestProvider.cs" />
     <Compile Include="Asset\SmartLists\RequestProvider\DeleteSmartListRequestProvider.cs" />

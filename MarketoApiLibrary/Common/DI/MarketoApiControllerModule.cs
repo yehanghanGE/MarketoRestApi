@@ -31,11 +31,12 @@ namespace MarketoApiLibrary.Common.DI
             container.RegisterType<IHttpRequestProvider<GetSmartListByIdRequest>, GetSmartListByIdRequestProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IHttpRequestProvider<GetSmartListByNameRequest>, GetSmartListByNameRequestProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IHttpRequestProvider<DeleteSmartListRequest>, DeleteSmartListRequestProvider>(RegistrationLifetime.InstancePerThread);
+            container.RegisterType<IHttpRequestProvider<CloneSmartListRequest>, CloneSmartListRequestProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<GetSmartListsProcessor>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<GetSmartListByIdProcessor>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<GetSmartListByNameProcessor>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<DeleteSmartListProcessor>(RegistrationLifetime.InstancePerThread);
-
+            container.RegisterType<CloneSmartListProcessor>(RegistrationLifetime.InstancePerThread);
         }
     }
 }
