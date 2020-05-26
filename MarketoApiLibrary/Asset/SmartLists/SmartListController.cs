@@ -9,14 +9,17 @@ namespace MarketoApiLibrary.Asset.SmartLists
         private readonly GetSmartListsProcessor _getSmartListsProcessor;
         private readonly GetSmartListByIdProcessor _getSmartListByIdProcessor;
         private readonly GetSmartListByNameProcessor _getSmartListByNameProcessor;
+        private readonly DeleteSmartListProcessor _deleteSmartListProcessor;
 
         public SmartListController(GetSmartListsProcessor getSmartListsProcessor,
             GetSmartListByIdProcessor getSmartListByIdProcessor,
-            GetSmartListByNameProcessor getSmartListByNameProcessor)
+            GetSmartListByNameProcessor getSmartListByNameProcessor, 
+            DeleteSmartListProcessor deleteSmartListProcessor)
         {
             _getSmartListsProcessor = getSmartListsProcessor;
             _getSmartListByIdProcessor = getSmartListByIdProcessor;
             _getSmartListByNameProcessor = getSmartListByNameProcessor;
+            _deleteSmartListProcessor = deleteSmartListProcessor;
         }
 
         public SmartListsResponse GetSmartLists()
@@ -46,6 +49,15 @@ namespace MarketoApiLibrary.Asset.SmartLists
             };
             var result = _getSmartListByNameProcessor.Process(request);
 
+            return result;
+        }
+
+        public SmartListDeleteResponse DeleteSmartList(long id)
+        {
+            var request = new DeleteSmartListRequest {Id = id};
+
+            var result = _deleteSmartListProcessor.Process(request);
+                                                
             return result;
         }
     }
