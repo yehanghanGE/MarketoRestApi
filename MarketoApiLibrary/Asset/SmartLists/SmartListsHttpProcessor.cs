@@ -11,76 +11,7 @@ namespace MarketoApiLibrary.Asset.SmartLists
 {
     public static class SmartListsHttpProcessor
     {
-        /// <summary>
-        /// GET /rest/asset/v1/smartList/{id}.json
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        public static async Task<T> GetSmartListById<T>(GetSmartListByIdRequest request)
-        {
-            var qs = HttpUtility.ParseQueryString(string.Empty);
-            qs.Add("access_token", request.Token);
-            qs.Add("includeRules", request.IncludeRules.ToString());
-
-            var url = request.Host + $"/rest/asset/v1/smartLists/{request.Id}.json" + qs;
-
-            var client = new HttpClient();
-            var response = await client.GetAsync(url);
-            response.EnsureSuccessStatusCode();
-
-            var content = await response.Content.ReadAsAsync<T>();
-            return content;
-        }
-        /// <summary>
-        /// GET /rest/asset/v1/smartList/byName.json
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public static async Task<T> GetSmartListByName<T>(GetSmartListByNameRequest request)
-        {
-            var qs = HttpUtility.ParseQueryString(string.Empty);
-            qs.Add("access_token", request.Token);
-            qs.Add("name", request.Name);
-
-            var url = request.Host + $"/rest/asset/v1/smartList/byName.json" + qs;
-
-            var client = new HttpClient();
-            var response = await client.GetAsync(url);
-            response.EnsureSuccessStatusCode();
-
-            var content = await response.Content.ReadAsAsync<T>();
-            return content;
-        }
-        /// <summary>
-        /// POST /rest/asset/v1/smartList/{id}/delete.json
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        public static async Task<T> DeleteSmartList<T>(DeleteSmartListRequest request)
-        {
-            var qs = HttpUtility.ParseQueryString(string.Empty);
-            qs.Add("access_token", request.Token);
-
-            var url = request.Host + $"/rest/asset/v1/smartList/{request.Id}/delete.json?" + qs;
-            var client = new HttpClient();
-            var content = new StringContent("", Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(url, content);
-            response.EnsureSuccessStatusCode();
-            T result;
-            try
-            {
-                result = await response.Content.ReadAsAsync<T>();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-
-            return result;
-        }
+      
         /// <summary>
         /// POST /rest/asset/v1/smartList/{id}/clone.json
         /// </summary>
@@ -113,7 +44,6 @@ namespace MarketoApiLibrary.Asset.SmartLists
             }
 
             return result;
-
         }
     }
 }
