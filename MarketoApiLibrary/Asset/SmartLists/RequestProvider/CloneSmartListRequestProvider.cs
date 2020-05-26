@@ -1,4 +1,5 @@
-﻿using MarketoApiLibrary.Asset.SmartLists.Request;
+﻿using System.Collections.Generic;
+using MarketoApiLibrary.Asset.SmartLists.Request;
 using MarketoApiLibrary.Common.Configuration;
 using MarketoApiLibrary.Common.Http.Oauth;
 using MarketoApiLibrary.Common.Http.Services;
@@ -30,15 +31,15 @@ namespace MarketoApiLibrary.Asset.SmartLists.RequestProvider
 
         protected override HttpContent GetBody(CloneSmartListRequest request)
         {
-            var sb = new StringBuilder();
-            sb.Append("&name=" + request.Name);
-            sb.Append("&folder=" + JsonConvert.SerializeObject(request.Folder));
-            if (request.Description != null)
-            {
-                sb.Append("&description=" + request.Description);
-            }
 
-            return new StringContent(sb.ToString(), Encoding.UTF8, "application/json");
+            var dict = new Dictionary<string, string>
+            {
+                {Constants.QueryParameters.Asset.SmartList.Keys.SmartListName, request.Name},
+                {Constants.QueryParameters.Asset.SmartList.Keys.Description, request.Description},
+                {Constants.QueryParameters.Asset.SmartList.Keys.Folder, JsonConvert.SerializeObject(request.Folder)}
+            };
+
+            return new FormUrlEncodedContent(dict);
         }
     }
 }

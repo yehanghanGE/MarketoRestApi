@@ -44,6 +44,7 @@
                         public const string LatestUpdatedAt = "latestUpdatedAt";
                         public const string IncludeRules = "includeRules";
                         public const string SmartListName = "name";
+                        public const string Description = "description";
                     }
 
                     public static class Values
