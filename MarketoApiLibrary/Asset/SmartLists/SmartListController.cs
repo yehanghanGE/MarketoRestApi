@@ -1,6 +1,7 @@
 ﻿using MarketoApiLibrary.Asset.SmartLists.Request;
 using MarketoApiLibrary.Asset.SmartLists.RequestProcessor;
 using MarketoApiLibrary.Asset.SmartLists.Response;
+using MarketoApiLibrary.Common.Model;
 
 namespace MarketoApiLibrary.Asset.SmartLists
 {
@@ -9,14 +10,20 @@ namespace MarketoApiLibrary.Asset.SmartLists
         private readonly GetSmartListsProcessor _getSmartListsProcessor;
         private readonly GetSmartListByIdProcessor _getSmartListByIdProcessor;
         private readonly GetSmartListByNameProcessor _getSmartListByNameProcessor;
+        private readonly DeleteSmartListProcessor _deleteSmartListProcessor;
+        private readonly CloneSmartListProcessor _cloneSmartListProcessor;
 
         public SmartListController(GetSmartListsProcessor getSmartListsProcessor,
             GetSmartListByIdProcessor getSmartListByIdProcessor,
-            GetSmartListByNameProcessor getSmartListByNameProcessor)
+            GetSmartListByNameProcessor getSmartListByNameProcessor, 
+            DeleteSmartListProcessor deleteSmartListProcessor, 
+            CloneSmartListProcessor cloneSmartListProcessor)
         {
             _getSmartListsProcessor = getSmartListsProcessor;
             _getSmartListByIdProcessor = getSmartListByIdProcessor;
             _getSmartListByNameProcessor = getSmartListByNameProcessor;
+            _deleteSmartListProcessor = deleteSmartListProcessor;
+            _cloneSmartListProcessor = cloneSmartListProcessor;
         }
 
         public SmartListsResponse GetSmartLists()
@@ -45,6 +52,31 @@ namespace MarketoApiLibrary.Asset.SmartLists
                 Name = name
             };
             var result = _getSmartListByNameProcessor.Process(request);
+
+            return result;
+        }
+
+        public SmartListDeleteResponse DeleteSmartList(long id)
+        {
+            var request = new DeleteSmartListRequest {Id = id};
+
+            var result = _deleteSmartListProcessor.Process(request);
+                                                
+            return result;
+        }
+
+        public SmartListsResponse CloneSmartList(int id, string clonedSmartListName, int parentFolderId, string parentFolderType,
+            string description)
+        {
+            var request = new CloneSmartListRequest
+            {
+                Id = id,
+                Name = clonedSmartListName,
+                Description = description,
+                Folder = new Folder {Id = parentFolderId, Type = parentFolderType}
+            };
+
+            var result = _cloneSmartListProcessor.Process(request);
 
             return result;
         }
