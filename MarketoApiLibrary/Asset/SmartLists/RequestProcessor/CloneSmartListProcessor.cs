@@ -12,9 +12,8 @@ namespace MarketoApiLibrary.Asset.SmartLists.RequestProcessor
         public CloneSmartListProcessor(
             IHttpRequestProvider<CloneSmartListRequest> requestProvider,
             IMarketoDataProvider dataProvider,
-            ILoggingService<CommerceLog> commerceLogger,
-            ILoggingService<SynchronizationLog> syncLogger) :
-            base(requestProvider, dataProvider, commerceLogger, syncLogger)
+            ILoggingService<CommerceLog> commerceLogger) :
+            base(requestProvider, dataProvider, commerceLogger)
         {
         }
     }

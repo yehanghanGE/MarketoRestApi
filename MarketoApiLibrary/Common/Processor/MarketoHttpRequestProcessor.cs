@@ -13,8 +13,8 @@ namespace MarketoApiLibrary.Common.Processor
         private readonly IMarketoDataProvider _dataProvider;
 
         protected MarketoHttpRequestProcessor(IHttpRequestProvider<TRequest> requestProvider,
-            IMarketoDataProvider dataProvider, ILoggingService<CommerceLog> commerceLogger, ILoggingService<SynchronizationLog> syncLogger)
-            : base(requestProvider, commerceLogger, syncLogger)
+            IMarketoDataProvider dataProvider, ILoggingService<CommerceLog> commerceLogger)
+            : base(requestProvider, commerceLogger)
         {
             this._dataProvider = dataProvider;
         }
