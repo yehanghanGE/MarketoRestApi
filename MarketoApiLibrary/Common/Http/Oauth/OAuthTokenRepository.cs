@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using MarketoApiLibrary.Common.Configuration;
+﻿using MarketoApiLibrary.Common.Configuration;
 using MarketoApiLibrary.Common.Http.Services;
 using MarketoApiLibrary.Common.Model;
-using MarketoApiLibrary.Mis.Provider;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
 using static MarketoApiLibrary.Constants.OAuth;
 using UriBuilder = MarketoApiLibrary.Common.Http.Helper.UriBuilder;
-using HttpClientFactory = MarketoApiLibrary.Common.Http.Services.HttpClientFactory;
 
 namespace MarketoApiLibrary.Common.Http.Oauth
 {
@@ -27,7 +25,7 @@ namespace MarketoApiLibrary.Common.Http.Oauth
 
 
             _oauthConfig = _configurationProvider.LoadConfig();
-            
+
         }
 
         public AuthenticationToken GetToken(OAuthParameters parameters, string refreshToken = null)
