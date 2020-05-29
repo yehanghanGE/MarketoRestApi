@@ -10,13 +10,11 @@ namespace MarketoApiLibrary.Common.Processor
     {
         private readonly IHttpRequestProvider<TRequest> _requestProvider;
         protected readonly ILoggingService<CommerceLog> CommerceLogger;
-        protected readonly ILoggingService<SynchronizationLog> SyncLogger;
 
-        protected BaseMarketoHttpRequestProcessor(IHttpRequestProvider<TRequest> requestProvider, ILoggingService<CommerceLog> commerceLogger, ILoggingService<SynchronizationLog> syncLogger)
+        protected BaseMarketoHttpRequestProcessor(IHttpRequestProvider<TRequest> requestProvider, ILoggingService<CommerceLog> commerceLogger)
         {
             this._requestProvider = requestProvider;
             this.CommerceLogger = commerceLogger;
-            this.SyncLogger = syncLogger;
         }
 
         protected virtual HttpRequest GetHttpRequest(TRequest request)

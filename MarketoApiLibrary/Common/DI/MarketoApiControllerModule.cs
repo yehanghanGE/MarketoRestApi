@@ -19,7 +19,6 @@ namespace MarketoApiLibrary.Common.DI
             container.RegisterType<IMarketoDataProvider, MarketoDataProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IConfigurationProvider, ConfigurationProvider2>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<ILoggingService<CommerceLog>, CommerceLogService>(RegistrationLifetime.InstancePerThread);
-            container.RegisterType<ILoggingService<SynchronizationLog>, SynchronizationLogService>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IHttpApiDataProvider, HttpApiDataProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IHttpClientFactory, HttpClientFactory>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IAuthenticationTokenProvider, AuthenticationTokenProvider>(RegistrationLifetime.InstancePerThread);

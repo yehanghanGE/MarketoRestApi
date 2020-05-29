@@ -12,9 +12,8 @@ namespace MarketoApiLibrary.Asset.SmartLists.RequestProcessor
         public GetSmartListByNameProcessor(
             IHttpRequestProvider<GetSmartListByNameRequest> requestProvider,
             IMarketoDataProvider dataProvider,
-            ILoggingService<CommerceLog> commerceLogger,
-            ILoggingService<SynchronizationLog> syncLogger) :
-            base(requestProvider, dataProvider, commerceLogger, syncLogger)
+            ILoggingService<CommerceLog> commerceLogger) :
+            base(requestProvider, dataProvider, commerceLogger)
         {
         }
     }

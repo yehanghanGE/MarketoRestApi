@@ -10,7 +10,7 @@ namespace MarketoApiLibrary.Common.Logging
         protected LoggingService()
         {
             var instance = new TLogInstance();
-            this.logger = LogManager.GetLogger(instance.LoggerName);
+            this.logger = LogManager.GetLogger(typeof(TLogInstance));
         }
 
         public void Debug(string message)
