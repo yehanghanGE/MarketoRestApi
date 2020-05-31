@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketoApiLibrary", "MarketoApiLibrary\MarketoApiLibrary.csproj", "{F43BE805-0890-40CA-B759-025193696B17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketoApiLibrary", "MarketoApiLibrary\MarketoApiLibrary.csproj", "{F43BE805-0890-40CA-B759-025193696B17}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketoApiConsole", "MarketoApiConsole\MarketoApiConsole.csproj", "{FA13F15B-B38C-4502-BF45-41BAC4590674}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketoUI", "MarketoUI\MarketoUI.csproj", "{AE4318F4-BC74-4373-8C09-E1E4E2A4FC63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketoApiLibrary.Tests", "MarketoApiLibrary.Tests\MarketoApiLibrary.Tests.csproj", "{7A8DDF71-8745-4170-9098-AB1F7C8D6650}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{AE4318F4-BC74-4373-8C09-E1E4E2A4FC63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE4318F4-BC74-4373-8C09-E1E4E2A4FC63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE4318F4-BC74-4373-8C09-E1E4E2A4FC63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A8DDF71-8745-4170-9098-AB1F7C8D6650}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A8DDF71-8745-4170-9098-AB1F7C8D6650}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A8DDF71-8745-4170-9098-AB1F7C8D6650}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A8DDF71-8745-4170-9098-AB1F7C8D6650}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

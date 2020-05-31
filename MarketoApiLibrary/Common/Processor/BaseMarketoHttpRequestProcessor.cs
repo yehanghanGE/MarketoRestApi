@@ -2,9 +2,11 @@
 using MarketoApiLibrary.Common.Http.ValueObjects;
 using MarketoApiLibrary.Common.Logging;
 using MarketoApiLibrary.Common.Model;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MarketoApiLibrary.Common.Processor
 {
+    [ExcludeFromCodeCoverage]
     public abstract class BaseMarketoHttpRequestProcessor<TRequest>
         where TRequest : BaseRequest
     {
