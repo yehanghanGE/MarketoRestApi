@@ -1,13 +1,4 @@
-﻿using MarketoApiLibrary;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using MarketoApiLibrary.Asset.Files.Response;
-using MarketoApiLibrary.Asset.Folders.Response;
-using MarketoApiLibrary.Mis.Utility;
-using Newtonsoft.Json.Linq;
-
-namespace MarketoApiConsole
+﻿namespace MarketoApiConsole
 {
     public class Program
     {
@@ -99,7 +90,7 @@ namespace MarketoApiConsole
         //}
         //private static void GetSmartList(string host, string clientId, string clientSecret)
         //{
-           
+
         //}
 
         //private static List<string> GetSubFolderIDs(string host, string clientId, string clientSecret, string rootFolderId)
