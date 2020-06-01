@@ -8,5 +8,11 @@
     &lt;TestId&gt;xUnit::7A8DDF71-8745-4170-9098-AB1F7C8D6650::.NETCoreApp,Version=v3.1::MarketoApiLibrary.Tests.Asset.SmartLists.RequestProvider.GetSmartListsRequestProviderTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f0d2bcab_002D4502_002D4744_002D9ff0_002D0002cd223c96/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetQueryString_ShouldReturnValidParameters" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7A8DDF71-8745-4170-9098-AB1F7C8D6650::.NETCoreApp,Version=v3.1::MarketoApiLibrary.Tests.Asset.SmartLists.RequestProvider.GetSmartListsRequestProviderTests.GetQueryString_ShouldReturnValidParameters&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::7A8DDF71-8745-4170-9098-AB1F7C8D6650::.NETCoreApp,Version=v3.1::MarketoApiLibrary.Tests.Asset.SmartLists.RequestProvider.GetSmartListsRequestProviderTests.GetQueryString_ShouldSetFolder_IfFolderCountGreaterThanZero&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Autofac/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=marketo/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

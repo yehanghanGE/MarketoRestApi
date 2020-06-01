@@ -3,6 +3,7 @@ using MarketoApiLibrary.Asset.SmartLists.RequestProvider;
 using MarketoApiLibrary.Common.Configuration;
 using MarketoApiLibrary.Common.Http.Oauth;
 using Moq;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
 using Xunit;
@@ -50,9 +51,45 @@ namespace MarketoApiLibrary.Tests.Asset.SmartLists.RequestProvider
         }
 
         [Fact]
-        public void GetBody_IfCalled_ShouldReturnContent()
+        public void GetQueryString_ShouldReturnValidParameters()
         {
+            // arrange
+            var request = new GetSmartListsRequest();
+            var requestProvider = this.GetInstance();
 
+            // act
+            var result = requestProvider.GetQueryString(request);
+
+            // assert
+            Assert.NotNull(result);
+            Assert.True(result.ContainsKey(Constants.QueryParameters.Asset.SmartList.Keys.Offset));
+            Assert.True(result.ContainsKey(Constants.QueryParameters.Asset.SmartList.Keys.MaxReturn));
+            Assert.True(result.ContainsKey(Constants.QueryParameters.Asset.SmartList.Keys.EarliestUpdatedAt));
+            Assert.True(result.ContainsKey(Constants.QueryParameters.Asset.SmartList.Keys.LatestUpdatedAt));
+            //Assert.Equal(party.PartyId, result[AddressId]);
+        }
+
+        [Fact]
+        public void GetQueryString_ShouldSetFolder_IfFolderCountGreaterThanZero()
+        {
+            // arrange
+            var request = new GetSmartListsRequest();
+            var folder = new Dictionary<string, dynamic>();
+            folder.Add("id", "folderType");
+            request.Folder = folder;
+            var requestProvider = this.GetInstance();
+
+            // act
+            var result = requestProvider.GetQueryString(request);
+
+            // assert
+            Assert.NotNull(result);
+            Assert.True(result.ContainsKey(Constants.QueryParameters.Asset.SmartList.Keys.Offset));
+            Assert.True(result.ContainsKey(Constants.QueryParameters.Asset.SmartList.Keys.MaxReturn));
+            Assert.True(result.ContainsKey(Constants.QueryParameters.Asset.SmartList.Keys.EarliestUpdatedAt));
+            Assert.True(result.ContainsKey(Constants.QueryParameters.Asset.SmartList.Keys.LatestUpdatedAt));
+            Assert.True(result.ContainsKey(Constants.QueryParameters.Asset.SmartList.Keys.Folder));
+            Assert.Equal(JsonConvert.SerializeObject(request.Folder), result[Constants.QueryParameters.Asset.SmartList.Keys.Folder]);
         }
 
         private GetSmartListsRequestProviderTest GetInstance()
