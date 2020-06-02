@@ -27,13 +27,14 @@
             public const string ByName = "byName.json";
             public const string Delete = "delete.json";
             public const string Clone = "clone.json";
+            public const string Folders = "folders.json";
         }
 
         public static class QueryParameters
         {
             public static class Asset
             {
-                public  static class SmartList
+                public static class SmartList
                 {
                     public static class Keys
                     {
@@ -45,16 +46,19 @@
                         public const string IncludeRules = "includeRules";
                         public const string SmartListName = "name";
                         public const string Description = "description";
+                        public const string Root = "root";
+                        public const string WorkSpace = "workSpace";
+                        public const string MaxDepth = "maxDepth";
                     }
 
                     public static class Values
                     {
-                        
+
                     }
                 }
             }
-           
+
         }
     }
-   
+
 }
