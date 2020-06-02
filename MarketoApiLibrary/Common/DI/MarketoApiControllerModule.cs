@@ -1,4 +1,5 @@
-﻿using MarketoApiLibrary.Asset.SmartLists;
+﻿using MarketoApiLibrary.Asset.Folders;
+using MarketoApiLibrary.Asset.SmartLists;
 using MarketoApiLibrary.Asset.SmartLists.Request;
 using MarketoApiLibrary.Asset.SmartLists.RequestProcessor;
 using MarketoApiLibrary.Asset.SmartLists.RequestProvider;
@@ -16,6 +17,7 @@ namespace MarketoApiLibrary.Common.DI
         public void Initialize(IMarketoApiContainer container)
         {
             container.RegisterType<ISmartListController, SmartListController>(RegistrationLifetime.InstancePerThread);
+            container.RegisterType<IFolderController, FolderController>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IMarketoDataProvider, MarketoDataProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IConfigurationProvider, ConfigurationProvider2>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<ILoggingService<CommerceLog>, CommerceLogService>(RegistrationLifetime.InstancePerThread);
