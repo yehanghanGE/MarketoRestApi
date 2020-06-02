@@ -1,6 +1,6 @@
-﻿using System;
-using MarketoApiLibrary.Asset.SmartLists;
+﻿using MarketoApiLibrary.Asset.SmartLists;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace MarketoApiConsole
 {
@@ -63,7 +63,7 @@ namespace MarketoApiConsole
                    }
                  */
                 //var result = SmartList.DeleteSmartList(1917);
-                
+
                 /*
                  * {
                    "result": [
