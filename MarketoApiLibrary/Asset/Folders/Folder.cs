@@ -1,4 +1,5 @@
-﻿using MarketoApiLibrary.Common.DI;
+﻿using MarketoApiLibrary.Asset.Folders.Response;
+using MarketoApiLibrary.Common.DI;
 
 namespace MarketoApiLibrary.Asset.Folders
 {
@@ -25,6 +26,14 @@ namespace MarketoApiLibrary.Asset.Folders
         private static void Initialize()
         {
             _folderController = MarketoApiContainer.Resolve<IFolderController>();
+        }
+        /// <summary>
+        /// GET /rest/asset/v1/folders.json
+        /// </summary>
+        /// <returns></returns>
+        public static FoldersResponse GetFolders()
+        {
+            return FolderController.GetFolders();
         }
     }
 }
