@@ -4,6 +4,6 @@ namespace MarketoApiLibrary.Asset.Folders
 {
     public interface IFolderController
     {
-        FoldersResponse GetFolders();
+        FoldersResponse GetFolders(int rootFolderId, string rootFolderType = "Folder");
     }
 }

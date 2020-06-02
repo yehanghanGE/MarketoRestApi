@@ -3,7 +3,7 @@ using MarketoApiLibrary.Common.DI;
 
 namespace MarketoApiLibrary.Asset.Folders
 {
-    public class Folder
+    public class Folders
     {
         private static IFolderController _folderController;
         public static IFolderController FolderController
@@ -19,7 +19,7 @@ namespace MarketoApiLibrary.Asset.Folders
             }
         }
 
-        static Folder()
+        static Folders()
         {
             Initialize();
         }
@@ -31,9 +31,9 @@ namespace MarketoApiLibrary.Asset.Folders
         /// GET /rest/asset/v1/folders.json
         /// </summary>
         /// <returns></returns>
-        public static FoldersResponse GetFolders()
+        public static FoldersResponse GetFolders(int parentFolderId)
         {
-            return FolderController.GetFolders();
+            return FolderController.GetFolders(parentFolderId);
         }
     }
 }

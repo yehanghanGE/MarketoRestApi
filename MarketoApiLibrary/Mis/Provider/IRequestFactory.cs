@@ -13,7 +13,7 @@ namespace MarketoApiLibrary.Mis.Provider
         BaseRequest CreategetActivityTypesResult(string host, string token);
         //GetFilesRequest CreateGetFilesRequest(string host, string token);
         GetFolderByNameRequest CreateGetFolderByNameRequest(string host, string token);
-        GetFoldersRequest CreateGetFoldersRequest(string host, string token, string rootFolderId);
+        GetFoldersRequest CreateGetFoldersRequest(string host, string token, int rootFolderId);
         LeadsExportRequest CreateGetLeadsExportRequest(string host, string token);
         BaseRequest CreateGetSmartListRequest(string host, string token);
     }
