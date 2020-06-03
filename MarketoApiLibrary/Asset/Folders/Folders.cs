@@ -35,5 +35,14 @@ namespace MarketoApiLibrary.Asset.Folders
         {
             return FolderController.GetFolders(parentFolderId);
         }
+        /// <summary>
+        /// GET /rest/asset/v1/folder/byName.json
+        /// </summary>
+        /// <param name="folderName"></param>
+        /// <returns></returns>
+        public static FoldersResponse GetFolderByName(string folderName)
+        {
+            return FolderController.GetFolderByName(folderName);
+        }
     }
 }
