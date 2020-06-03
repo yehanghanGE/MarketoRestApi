@@ -1,6 +1,5 @@
 ﻿using MarketoApiLibrary.Asset.Folders.Request;
 using MarketoApiLibrary.Common.Model;
-using System.Collections.Generic;
 
 namespace MarketoApiLibrary.Asset.Folders
 {
@@ -9,7 +8,8 @@ namespace MarketoApiLibrary.Asset.Folders
         public GetFolderByNameRequest CreateGetFolderByNameRequest(string host, string token, string folderName,
             int parentFolderId = 0, string parentFolderType = "Folder", string type = "Folder", string workSpace = null)
         {
-            var root = new Dictionary<string, dynamic> { { "id", parentFolderId }, { "type", parentFolderType } };
+            //var root = new Dictionary<string, dynamic> { { "id", parentFolderId }, { "type", parentFolderType } };
+            var root = new Folder() { Id = parentFolderId, Type = parentFolderType };
 
             var request = new GetFolderByNameRequest
             {
