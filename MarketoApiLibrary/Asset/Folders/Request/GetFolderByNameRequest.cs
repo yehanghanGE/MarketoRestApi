@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using MarketoApiLibrary.Common.Model;
-using MarketoApiLibrary.Mis.Request;
+﻿using MarketoApiLibrary.Common.Model;
 
 namespace MarketoApiLibrary.Asset.Folders.Request
 {
@@ -8,8 +6,7 @@ namespace MarketoApiLibrary.Asset.Folders.Request
     {
         public string Name { get; set; }
         public string Type { get; set; }
-        public Dictionary<string, dynamic> Root = new Dictionary<string, dynamic>();
+        public Folder Root { get; set; }
         public string WorkSpace { get; set; }//filter for workspace
-
     }
 }
