@@ -1,5 +1,7 @@
 ﻿using MarketoApiLibrary.Asset.Folders;
+using MarketoApiLibrary.Asset.Folders.Request;
 using MarketoApiLibrary.Asset.Folders.RequestProcessor;
+using MarketoApiLibrary.Asset.Folders.RequestProvider;
 using MarketoApiLibrary.Asset.SmartLists;
 using MarketoApiLibrary.Asset.SmartLists.Request;
 using MarketoApiLibrary.Asset.SmartLists.RequestProcessor;
@@ -40,7 +42,9 @@ namespace MarketoApiLibrary.Common.DI
             container.RegisterType<DeleteSmartListProcessor>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<CloneSmartListProcessor>(RegistrationLifetime.InstancePerThread);
 
+            container.RegisterType<IHttpRequestProvider<GetFolderByNameRequest>, GetFolderByNameRequestProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<GetFoldersProcessor>(RegistrationLifetime.InstancePerThread);
+            container.RegisterType<GetFolderByNameProcessor>(RegistrationLifetime.InstancePerThread);
         }
     }
 }

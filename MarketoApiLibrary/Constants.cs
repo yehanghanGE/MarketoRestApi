@@ -28,6 +28,7 @@
             public const string Delete = "delete.json";
             public const string Clone = "clone.json";
             public const string Folders = "folders.json";
+            public const string Folder = "folder.json";
         }
 
         public static class QueryParameters
@@ -38,7 +39,6 @@
                 {
                     public static class Keys
                     {
-                        public const string Folder = "folder";
                         public const string Offset = "offset";
                         public const string MaxReturn = "maxReturn";
                         public const string EarliestUpdatedAt = "earliestUpdatedAt";
@@ -49,6 +49,30 @@
                         public const string Root = "root";
                         public const string WorkSpace = "workSpace";
                         public const string MaxDepth = "maxDepth";
+                        public const string Folder = "folder";
+                    }
+
+                    public static class Values
+                    {
+
+                    }
+                }
+                public static class Folder
+                {
+                    public static class Keys
+                    {
+                        public const string Folder = "folder";
+                        public const string Offset = "offset";
+                        public const string MaxReturn = "maxReturn";
+                        public const string EarliestUpdatedAt = "earliestUpdatedAt";
+                        public const string LatestUpdatedAt = "latestUpdatedAt";
+                        public const string IncludeRules = "includeRules";
+                        public const string Name = "name";
+                        public const string Description = "description";
+                        public const string Root = "root";
+                        public const string WorkSpace = "workSpace";
+                        public const string MaxDepth = "maxDepth";
+                        public const string Type = "type";
                     }
 
                     public static class Values
