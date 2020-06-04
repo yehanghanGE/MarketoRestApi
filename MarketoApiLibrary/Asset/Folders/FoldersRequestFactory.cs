@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using MarketoApiLibrary.Asset.Folders.Request;
+﻿using MarketoApiLibrary.Asset.Folders.Request;
 using MarketoApiLibrary.Common.Model;
 
 namespace MarketoApiLibrary.Asset.Folders
@@ -10,7 +8,8 @@ namespace MarketoApiLibrary.Asset.Folders
         public GetFolderByNameRequest CreateGetFolderByNameRequest(string host, string token, string folderName,
             int parentFolderId = 0, string parentFolderType = "Folder", string type = "Folder", string workSpace = null)
         {
-            var root = new Dictionary<string, dynamic> { { "id", parentFolderId }, { "type", parentFolderType } };
+            //var root = new Dictionary<string, dynamic> { { "id", parentFolderId }, { "type", parentFolderType } };
+            var root = new Folder() { Id = parentFolderId, Type = parentFolderType };
 
             var request = new GetFolderByNameRequest
             {
@@ -28,9 +27,10 @@ namespace MarketoApiLibrary.Asset.Folders
         public GetFoldersRequest CreateGetFoldersRequest(string host, string token, int rootFolderId, string rootFolderType = "Folder", int offSet = 0,
             int maxDepth = 10, int maxReturn = 200, string workSpace = "")
         {
-            var root = new Dictionary<string, dynamic>
+            var root = new Folder
             {
-                {"id", rootFolderId}, {"type", rootFolderType}
+                Id = rootFolderId,
+                Type = rootFolderType
             };
 
             var request = new GetFoldersRequest()
@@ -95,9 +95,9 @@ namespace MarketoApiLibrary.Asset.Folders
         }
 
         public CreateFolderRequest CreateCreateFolderRequest(string host, string token,
-            string folderName, int parentFolderId, string parentFolderType,string description = null)
+            string folderName, int parentFolderId, string parentFolderType, string description = null)
         {
-            var parentFolder = new Folder {Id = parentFolderId, Type = parentFolderType};
+            var parentFolder = new Folder { Id = parentFolderId, Type = parentFolderType };
             var request = new CreateFolderRequest()
             {
                 Host = host,

@@ -1,4 +1,8 @@
-﻿using MarketoApiLibrary.Asset.SmartLists;
+﻿using MarketoApiLibrary.Asset.Folders;
+using MarketoApiLibrary.Asset.Folders.Request;
+using MarketoApiLibrary.Asset.Folders.RequestProcessor;
+using MarketoApiLibrary.Asset.Folders.RequestProvider;
+using MarketoApiLibrary.Asset.SmartLists;
 using MarketoApiLibrary.Asset.SmartLists.Request;
 using MarketoApiLibrary.Asset.SmartLists.RequestProcessor;
 using MarketoApiLibrary.Asset.SmartLists.RequestProvider;
@@ -16,6 +20,8 @@ namespace MarketoApiLibrary.Common.DI
         public void Initialize(IMarketoApiContainer container)
         {
             container.RegisterType<ISmartListController, SmartListController>(RegistrationLifetime.InstancePerThread);
+            container.RegisterType<IFolderController, FolderController>(RegistrationLifetime.InstancePerThread);
+
             container.RegisterType<IMarketoDataProvider, MarketoDataProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IConfigurationProvider, ConfigurationProvider2>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<ILoggingService<CommerceLog>, CommerceLogService>(RegistrationLifetime.InstancePerThread);
@@ -36,6 +42,11 @@ namespace MarketoApiLibrary.Common.DI
             container.RegisterType<GetSmartListByNameProcessor>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<DeleteSmartListProcessor>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<CloneSmartListProcessor>(RegistrationLifetime.InstancePerThread);
+
+            container.RegisterType<IHttpRequestProvider<GetFoldersRequest>, GetFoldersRequestProvider>(RegistrationLifetime.InstancePerThread);
+            container.RegisterType<IHttpRequestProvider<GetFolderByNameRequest>, GetFolderByNameRequestProvider>(RegistrationLifetime.InstancePerThread);
+            container.RegisterType<GetFoldersProcessor>(RegistrationLifetime.InstancePerThread);
+            container.RegisterType<GetFolderByNameProcessor>(RegistrationLifetime.InstancePerThread);
         }
     }
 }
