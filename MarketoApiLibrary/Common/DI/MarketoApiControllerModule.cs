@@ -21,6 +21,7 @@ namespace MarketoApiLibrary.Common.DI
         {
             container.RegisterType<ISmartListController, SmartListController>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IFolderController, FolderController>(RegistrationLifetime.InstancePerThread);
+
             container.RegisterType<IMarketoDataProvider, MarketoDataProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IConfigurationProvider, ConfigurationProvider2>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<ILoggingService<CommerceLog>, CommerceLogService>(RegistrationLifetime.InstancePerThread);
@@ -42,6 +43,7 @@ namespace MarketoApiLibrary.Common.DI
             container.RegisterType<DeleteSmartListProcessor>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<CloneSmartListProcessor>(RegistrationLifetime.InstancePerThread);
 
+            container.RegisterType<IHttpRequestProvider<GetFoldersRequest>, GetFoldersRequestProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IHttpRequestProvider<GetFolderByNameRequest>, GetFolderByNameRequestProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<GetFoldersProcessor>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<GetFolderByNameProcessor>(RegistrationLifetime.InstancePerThread);
