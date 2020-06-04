@@ -38,8 +38,8 @@ namespace MarketoApiConsole
                     }
                  */
 
-                var result = Folders.GetFolders(419, "Folder");
-                //var result = Folders.GetFolderByName("api_test");
+                //var result = Folders.GetFolders(419, "Folder");
+                var result = Folders.GetFolderByName("api_test");
                 //var result = SmartList.GetSmartListById(1266, false);
                 //var result = SmartList.GetSmartListByName("SL SFDC Contact Sync");
                 //var result = SmartList.CloneSmartList(1266, "cloneTest", 1001, "Program");

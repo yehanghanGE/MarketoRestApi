@@ -29,6 +29,7 @@ namespace MarketoApiLibrary.Asset.Folders
         public FoldersResponse GetFolderByName(string folderName)
         {
             var request = new GetFolderByNameRequest();
+            request.Name = folderName;
             var result = _getFolderByNameProcessor.Process(request);
             return result;
         }

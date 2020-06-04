@@ -28,7 +28,7 @@
             public const string Delete = "delete.json";
             public const string Clone = "clone.json";
             public const string Folders = "folders.json";
-            public const string Folder = "folder.json";
+            public const string Folder = "folder";
         }
 
         public static class QueryParameters
