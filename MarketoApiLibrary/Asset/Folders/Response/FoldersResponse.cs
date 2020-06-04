@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using MarketoApiLibrary.Common.Model;
-using MarketoApiLibrary.Mis.Response;
+﻿using MarketoApiLibrary.Common.Model;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace MarketoApiLibrary.Asset.Folders.Response
 {

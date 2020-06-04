@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using MarketoApiLibrary.Asset.Files.Request;
+﻿using MarketoApiLibrary.Asset.Files.Request;
 using MarketoApiLibrary.Asset.Folders.Request;
 using MarketoApiLibrary.Common.Model;
 using MarketoApiLibrary.Mis.Request;
+using System.Collections.Generic;
 
 namespace MarketoApiLibrary.Mis.Provider
 {
@@ -46,11 +46,13 @@ namespace MarketoApiLibrary.Mis.Provider
 
             return getFolderByNameRequest;
         }
-        public GetFoldersRequest CreateGetFoldersRequest(string host, string token, string rootFolderId)
+        public GetFoldersRequest CreateGetFoldersRequest(string host, string token, int rootFolderId)
         {
-            Dictionary<string, dynamic> root = new Dictionary<string, dynamic>();
-            root.Add("id", rootFolderId);
-            root.Add("type", "folder");
+            var root = new Folder
+            {
+                Id = rootFolderId,
+                Type = "Folder"
+            };
 
             GetFoldersRequest getFoldersRequest = new GetFoldersRequest()
             {
