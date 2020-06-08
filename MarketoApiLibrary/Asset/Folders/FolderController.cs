@@ -9,12 +9,13 @@ namespace MarketoApiLibrary.Asset.Folders
     {
         private readonly GetFoldersProcessor _getFoldersProcessor;
         private readonly GetFolderByNameProcessor _getFolderByNameProcessor;
-
+        private readonly GetFolderByIdProcessor _getFolderByIdProcessor;
         public FolderController(GetFoldersProcessor getFoldersProcessor,
-            GetFolderByNameProcessor getFolderByNameProcessor)
+            GetFolderByNameProcessor getFolderByNameProcessor, GetFolderByIdProcessor getFolderByIdProcessor)
         {
             _getFoldersProcessor = getFoldersProcessor;
             _getFolderByNameProcessor = getFolderByNameProcessor;
+            _getFolderByIdProcessor = getFolderByIdProcessor;
         }
 
         public FoldersResponse GetFolders(int rootFolderId, string rootFolderType = "Folder")
@@ -31,6 +32,15 @@ namespace MarketoApiLibrary.Asset.Folders
             var request = new GetFolderByNameRequest();
             request.Name = folderName;
             var result = _getFolderByNameProcessor.Process(request);
+            return result;
+        }
+
+        public FoldersResponse GetFolderById(int folderId, string folderType = "Folder")
+        {
+            var request = new GetFolderByIdRequest();
+            request.FolderId = folderId;
+            request.FolderType = folderType;
+            var result = _getFolderByIdProcessor.Process(request);
             return result;
         }
     }
