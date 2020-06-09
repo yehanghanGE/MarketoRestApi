@@ -29,6 +29,7 @@
             public const string Clone = "clone.json";
             public const string Folders = "folders.json";
             public const string Folder = "folder";
+            public const string Content = "content.json";
         }
 
         public static class QueryParameters
