@@ -47,10 +47,12 @@ namespace MarketoApiLibrary.Common.DI
             container.RegisterType<IHttpRequestProvider<GetFolderByNameRequest>, GetFolderByNameRequestProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IHttpRequestProvider<GetFolderByIdRequest>, GetFolderByIdRequestProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IHttpRequestProvider<GetFolderContentsRequest>, GetFolderContentsRequestProvider>(RegistrationLifetime.InstancePerThread);
+            container.RegisterType<IHttpRequestProvider<DeleteFolderRequest>, DeleteFolderRequestProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<GetFoldersProcessor>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<GetFolderByNameProcessor>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<GetFolderByIdProcessor>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<GetFolderContentsProcessor>(RegistrationLifetime.InstancePerThread);
+            container.RegisterType<DeleteFolderProcessor>(RegistrationLifetime.InstancePerThread);
         }
     }
 }

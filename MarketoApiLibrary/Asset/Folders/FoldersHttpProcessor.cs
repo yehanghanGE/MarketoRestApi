@@ -85,39 +85,6 @@ namespace MarketoApiLibrary.Asset.Folders
 
             return result;
         }
-        /// <summary>
-        /// POST /rest/asset/v1/folder/{id}/delete.json
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        public static async Task<T> DeleteFolder<T>(DeleteFolderRequest request)
-        {
-            var qs = HttpUtility.ParseQueryString(string.Empty);
-            qs.Add("access_token", request.Token);
 
-            if (!string.IsNullOrEmpty(request.FolderType))
-            {
-                qs.Add("type", request.FolderType);
-            }
-
-            var url = request.Host + $"/rest/asset/v1/folder/{request.FolderId}/delete.json?" + qs;
-            var client = new HttpClient();
-            var content = new StringContent("", Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(url, content);
-            response.EnsureSuccessStatusCode();
-            T result;
-            try
-            {
-                result = await response.Content.ReadAsAsync<T>();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-
-            return result;
-        }
     }
 }

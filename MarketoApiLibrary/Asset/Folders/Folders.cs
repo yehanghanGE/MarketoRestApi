@@ -64,5 +64,16 @@ namespace MarketoApiLibrary.Asset.Folders
         {
             return FolderController.GetFolderContents(folderId);
         }
+
+        /// <summary>
+        /// POST /rest/asset/v1/folder/{id}/delete.json
+        /// </summary>
+        /// <param name="folderId"></param>
+        /// <param name="folderType"></param>
+        /// <returns></returns>
+        public static FolderDeleteResponse DeleteFolder(int folderId, string folderType = "Folder")
+        {
+            return FolderController.DeleteFolder(folderId, folderType);
+        }
     }
 }

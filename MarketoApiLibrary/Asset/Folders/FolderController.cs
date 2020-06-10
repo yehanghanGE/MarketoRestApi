@@ -11,13 +11,15 @@ namespace MarketoApiLibrary.Asset.Folders
         private readonly GetFolderByNameProcessor _getFolderByNameProcessor;
         private readonly GetFolderByIdProcessor _getFolderByIdProcessor;
         private readonly GetFolderContentsProcessor _getFolderContentsProcessor;
+        private readonly DeleteFolderProcessor _deleteFolderProcessor;
         public FolderController(GetFoldersProcessor getFoldersProcessor,
-            GetFolderByNameProcessor getFolderByNameProcessor, GetFolderByIdProcessor getFolderByIdProcessor, GetFolderContentsProcessor getFolderContentsProcessor)
+            GetFolderByNameProcessor getFolderByNameProcessor, GetFolderByIdProcessor getFolderByIdProcessor, GetFolderContentsProcessor getFolderContentsProcessor, DeleteFolderProcessor deleteFolderProcessor)
         {
             _getFoldersProcessor = getFoldersProcessor;
             _getFolderByNameProcessor = getFolderByNameProcessor;
             _getFolderByIdProcessor = getFolderByIdProcessor;
             _getFolderContentsProcessor = getFolderContentsProcessor;
+            _deleteFolderProcessor = deleteFolderProcessor;
         }
 
         public FoldersResponse GetFolders(int rootFolderId, string rootFolderType = "Folder")
@@ -31,17 +33,14 @@ namespace MarketoApiLibrary.Asset.Folders
 
         public FoldersResponse GetFolderByName(string folderName)
         {
-            var request = new GetFolderByNameRequest();
-            request.Name = folderName;
+            var request = new GetFolderByNameRequest { Name = folderName };
             var result = _getFolderByNameProcessor.Process(request);
             return result;
         }
 
         public FoldersResponse GetFolderById(int folderId, string folderType = "Folder")
         {
-            var request = new GetFolderByIdRequest();
-            request.FolderId = folderId;
-            request.FolderType = folderType;
+            var request = new GetFolderByIdRequest { FolderId = folderId, FolderType = folderType };
             var result = _getFolderByIdProcessor.Process(request);
             return result;
         }
@@ -56,6 +55,13 @@ namespace MarketoApiLibrary.Asset.Folders
                 FolderType = folderType
             };
             var result = _getFolderContentsProcessor.Process(request);
+            return result;
+        }
+
+        public FolderDeleteResponse DeleteFolder(int folderId, string folderType)
+        {
+            var request = new DeleteFolderRequest { FolderId = folderId, FolderType = folderType };
+            var result = _deleteFolderProcessor.Process(request);
             return result;
         }
     }
