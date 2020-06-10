@@ -13,8 +13,9 @@ namespace MarketoApiLibrary.Asset.Folders
         private readonly GetFolderContentsProcessor _getFolderContentsProcessor;
         private readonly DeleteFolderProcessor _deleteFolderProcessor;
         private readonly CreateFolderProcessor _createFolderProcessor;
+        private readonly UpdateFolderMetadataProcessor _updateFolderMetadataProcessor;
         public FolderController(GetFoldersProcessor getFoldersProcessor,
-            GetFolderByNameProcessor getFolderByNameProcessor, GetFolderByIdProcessor getFolderByIdProcessor, GetFolderContentsProcessor getFolderContentsProcessor, DeleteFolderProcessor deleteFolderProcessor, CreateFolderProcessor craeteFolderProcessor)
+            GetFolderByNameProcessor getFolderByNameProcessor, GetFolderByIdProcessor getFolderByIdProcessor, GetFolderContentsProcessor getFolderContentsProcessor, DeleteFolderProcessor deleteFolderProcessor, CreateFolderProcessor craeteFolderProcessor, UpdateFolderMetadataProcessor updateFolderMetadataProcessor)
         {
             _getFoldersProcessor = getFoldersProcessor;
             _getFolderByNameProcessor = getFolderByNameProcessor;
@@ -22,6 +23,7 @@ namespace MarketoApiLibrary.Asset.Folders
             _getFolderContentsProcessor = getFolderContentsProcessor;
             _deleteFolderProcessor = deleteFolderProcessor;
             _createFolderProcessor = craeteFolderProcessor;
+            _updateFolderMetadataProcessor = updateFolderMetadataProcessor;
         }
 
         public FoldersResponse GetFolders(int rootFolderId, string rootFolderType = "Folder")
@@ -76,6 +78,21 @@ namespace MarketoApiLibrary.Asset.Folders
                 Parent = new Folder() { Id = parentFolderId, Type = parentFolderType }
             };
             var result = _createFolderProcessor.Process(request);
+            return result;
+        }
+
+        public FoldersResponse UpdateFolderMetadata(int folderId, string description, bool isArchive, string folderName,
+            string folderType)
+        {
+            var request = new UpdateFolderMetadataRequest
+            {
+                Description = description,
+                FolderId = folderId,
+                IsArchive = isArchive,
+                FolderType = folderType,
+                FolderName = folderName
+            };
+            var result = _updateFolderMetadataProcessor.Process(request);
             return result;
         }
     }

@@ -75,6 +75,7 @@
                         public const string MaxDepth = "maxDepth";
                         public const string Type = "type";
                         public const string Parent = "parent";
+                        public const string IsArchive = "isArchive";
                     }
 
                     public static class Values

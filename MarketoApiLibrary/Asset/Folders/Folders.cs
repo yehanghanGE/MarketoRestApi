@@ -88,5 +88,10 @@ namespace MarketoApiLibrary.Asset.Folders
         {
             return FolderController.CreateFolder(folderName, description, parentFolderId, parentFolderType);
         }
+
+        public static FoldersResponse UpdateFolderMetadata(int folderId, bool isArchive = true, string folderName = "", string folderType = "Type", string description = "")
+        {
+            return FolderController.UpdateFolderMetadata(folderId, description, isArchive, folderName, folderType);
+        }
     }
 }
