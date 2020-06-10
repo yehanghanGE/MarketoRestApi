@@ -12,14 +12,16 @@ namespace MarketoApiLibrary.Asset.Folders
         private readonly GetFolderByIdProcessor _getFolderByIdProcessor;
         private readonly GetFolderContentsProcessor _getFolderContentsProcessor;
         private readonly DeleteFolderProcessor _deleteFolderProcessor;
+        private readonly CreateFolderProcessor _createFolderProcessor;
         public FolderController(GetFoldersProcessor getFoldersProcessor,
-            GetFolderByNameProcessor getFolderByNameProcessor, GetFolderByIdProcessor getFolderByIdProcessor, GetFolderContentsProcessor getFolderContentsProcessor, DeleteFolderProcessor deleteFolderProcessor)
+            GetFolderByNameProcessor getFolderByNameProcessor, GetFolderByIdProcessor getFolderByIdProcessor, GetFolderContentsProcessor getFolderContentsProcessor, DeleteFolderProcessor deleteFolderProcessor, CreateFolderProcessor craeteFolderProcessor)
         {
             _getFoldersProcessor = getFoldersProcessor;
             _getFolderByNameProcessor = getFolderByNameProcessor;
             _getFolderByIdProcessor = getFolderByIdProcessor;
             _getFolderContentsProcessor = getFolderContentsProcessor;
             _deleteFolderProcessor = deleteFolderProcessor;
+            _createFolderProcessor = craeteFolderProcessor;
         }
 
         public FoldersResponse GetFolders(int rootFolderId, string rootFolderType = "Folder")
@@ -62,6 +64,18 @@ namespace MarketoApiLibrary.Asset.Folders
         {
             var request = new DeleteFolderRequest { FolderId = folderId, FolderType = folderType };
             var result = _deleteFolderProcessor.Process(request);
+            return result;
+        }
+
+        public FoldersResponse CreateFolder(string folderName, string description, int parentFolderId, string parentFolderType)
+        {
+            var request = new CreateFolderRequest
+            {
+                FolderName = folderName,
+                Description = description,
+                Parent = new Folder() { Id = parentFolderId, Type = parentFolderType }
+            };
+            var result = _createFolderProcessor.Process(request);
             return result;
         }
     }

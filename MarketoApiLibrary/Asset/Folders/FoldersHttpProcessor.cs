@@ -1,5 +1,4 @@
 ﻿using MarketoApiLibrary.Asset.Folders.Request;
-using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Text;
@@ -11,41 +10,6 @@ namespace MarketoApiLibrary.Asset.Folders
     public static class FoldersHttpProcessor
     {
 
-
-
-        /// <summary>
-        /// POST /rest/asset/v1/folders.json
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        public static async Task<T> CreateFolder<T>(CreateFolderRequest request)
-        {
-            var qs = HttpUtility.ParseQueryString(string.Empty);
-            qs.Add("access_token", request.Token);
-            qs.Add("parent", JsonConvert.SerializeObject(request.Parent));
-            qs.Add("name", request.FolderName);
-            qs.Add("description", request.Description);
-
-            var url = request.Host + $"/rest/asset/v1/folders.json?" + qs;
-            var client = new HttpClient();
-            var content = new StringContent("", Encoding.UTF8, "application/json");
-
-            var response = await client.PostAsync(url, content);
-            response.EnsureSuccessStatusCode();
-            T result;
-            try
-            {
-                result = await response.Content.ReadAsAsync<T>();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-
-            return result;
-        }
         /// <summary>
         /// POST /rest/asset/v1/folder/{id}.json
         /// </summary>

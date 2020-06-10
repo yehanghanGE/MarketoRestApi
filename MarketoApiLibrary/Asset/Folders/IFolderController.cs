@@ -9,5 +9,6 @@ namespace MarketoApiLibrary.Asset.Folders
         FoldersResponse GetFolderById(int folderId, string folderType);
         FolderContentsResponse GetFolderContents(int folderId, int maxReturn = 20, int offset = 20, string folderType = "Folder");
         FolderDeleteResponse DeleteFolder(int folderId, string folderType);
+        FoldersResponse CreateFolder(string folderName, string description, int parentFolderId, string parentFolderType);
     }
 }

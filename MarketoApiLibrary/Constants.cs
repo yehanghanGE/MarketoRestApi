@@ -74,6 +74,7 @@
                         public const string WorkSpace = "workSpace";
                         public const string MaxDepth = "maxDepth";
                         public const string Type = "type";
+                        public const string Parent = "parent";
                     }
 
                     public static class Values

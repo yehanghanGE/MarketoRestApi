@@ -75,5 +75,18 @@ namespace MarketoApiLibrary.Asset.Folders
         {
             return FolderController.DeleteFolder(folderId, folderType);
         }
+
+        /// <summary>
+        /// POST /rest/asset/v1/folders.json
+        /// </summary>
+        /// <param name="folderName"></param>
+        /// <param name="description"></param>
+        /// <param name="parentFolderId"></param>
+        /// <param name="parentFolderType"></param>
+        /// <returns></returns>
+        public static FoldersResponse CreateFolder(string folderName, string description, int parentFolderId, string parentFolderType)
+        {
+            return FolderController.CreateFolder(folderName, description, parentFolderId, parentFolderType);
+        }
     }
 }
