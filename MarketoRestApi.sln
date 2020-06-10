@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketoApiLibrary", "MarketoApiLibrary\MarketoApiLibrary.csproj", "{F43BE805-0890-40CA-B759-025193696B17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketoApiConsole", "MarketoApiConsole\MarketoApiConsole.csproj", "{FA13F15B-B38C-4502-BF45-41BAC4590674}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketoApiConsole", "MarketoApiConsole\MarketoApiConsole.csproj", "{FA13F15B-B38C-4502-BF45-41BAC4590674}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketoUI", "MarketoUI\MarketoUI.csproj", "{AE4318F4-BC74-4373-8C09-E1E4E2A4FC63}"
 EndProject

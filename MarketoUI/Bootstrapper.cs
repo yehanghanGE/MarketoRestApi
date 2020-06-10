@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Caliburn.Micro;
+using MarketoUI.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using Caliburn.Micro;
-using MarketoUI.ViewModels;
 
 namespace MarketoUI
 {
-    public class Bootstrapper: BootstrapperBase
+    public class Bootstrapper : BootstrapperBase
     {
         private readonly SimpleContainer _container = new SimpleContainer();
         public Bootstrapper()
@@ -17,7 +17,7 @@ namespace MarketoUI
 
         protected override void Configure()
         {
-           
+
             _container
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<IEventAggregator, EventAggregator>();
@@ -49,7 +49,6 @@ namespace MarketoUI
         {
             _container.BuildUp(instance);
         }
-
 
     }
 }

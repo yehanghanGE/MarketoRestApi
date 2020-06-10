@@ -2,11 +2,11 @@
 
 namespace MarketoUI.ViewModels
 {
-    public class ShellViewModel:Conductor<object>
+    public class ShellViewModel : Conductor<object>
     {
         public ShellViewModel()
         {
-            ActivateItem(IoC.Get<DownloadFileViewModel>());
+            //ActivateItem(IoC.Get<DownloadFileViewModel>());
         }
     }
 }
