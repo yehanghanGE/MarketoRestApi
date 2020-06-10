@@ -10,12 +10,14 @@ namespace MarketoApiLibrary.Asset.Folders
         private readonly GetFoldersProcessor _getFoldersProcessor;
         private readonly GetFolderByNameProcessor _getFolderByNameProcessor;
         private readonly GetFolderByIdProcessor _getFolderByIdProcessor;
+        private readonly GetFolderContentsProcessor _getFolderContentsProcessor;
         public FolderController(GetFoldersProcessor getFoldersProcessor,
-            GetFolderByNameProcessor getFolderByNameProcessor, GetFolderByIdProcessor getFolderByIdProcessor)
+            GetFolderByNameProcessor getFolderByNameProcessor, GetFolderByIdProcessor getFolderByIdProcessor, GetFolderContentsProcessor getFolderContentsProcessor)
         {
             _getFoldersProcessor = getFoldersProcessor;
             _getFolderByNameProcessor = getFolderByNameProcessor;
             _getFolderByIdProcessor = getFolderByIdProcessor;
+            _getFolderContentsProcessor = getFolderContentsProcessor;
         }
 
         public FoldersResponse GetFolders(int rootFolderId, string rootFolderType = "Folder")
@@ -41,6 +43,19 @@ namespace MarketoApiLibrary.Asset.Folders
             request.FolderId = folderId;
             request.FolderType = folderType;
             var result = _getFolderByIdProcessor.Process(request);
+            return result;
+        }
+
+        public FolderContentsResponse GetFolderContents(int folderId, int maxReturn = 20, int offset = 20, string folderType = "Folder")
+        {
+            var request = new GetFolderContentsRequest
+            {
+                FolderId = folderId,
+                MaxReturn = maxReturn,
+                Offset = offset,
+                FolderType = folderType
+            };
+            var result = _getFolderContentsProcessor.Process(request);
             return result;
         }
     }

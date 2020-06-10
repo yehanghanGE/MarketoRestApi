@@ -1,7 +1,6 @@
 ﻿using MarketoApiLibrary.Asset.Folders.Request;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Specialized;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,71 +12,7 @@ namespace MarketoApiLibrary.Asset.Folders
     {
 
 
-        /// <summary>
-        /// GET /rest/asset/v1/folder/{id}.json
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        public static async Task<T> GetFolderById<T>(GetFolderByIdRequest request)
-        {
-            NameValueCollection qs = HttpUtility.ParseQueryString(string.Empty);
-            qs.Add("access_token", request.Token);
-            qs.Add("type", request.FolderType);
-            var url = request.Host + $"/rest/asset/v1/folder/{request.FolderId}.json?" + qs;
-            HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync(url);
-            response.EnsureSuccessStatusCode();
-            T result;
-            try
-            {
-                result = await response.Content.ReadAsAsync<T>();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
 
-            return result;
-        }
-        /// <summary>
-        /// GET /rest/asset/v1/folder/{id}/content.json
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        public static async Task<T> GetFolderContents<T>(GetFolderContentsRequest request)
-        {
-            var qs = HttpUtility.ParseQueryString(string.Empty);
-            qs.Add("access_token", request.Token);
-            qs.Add("type", request.FolderType);
-            if (request.Offset > 0)
-            {
-                qs.Add("offset", request.Offset.ToString());
-            }
-            if (request.MaxReturn > 0)
-            {
-                qs.Add("maxReturn", request.MaxReturn.ToString());
-            }
-
-            var url = request.Host + $"/rest/asset/v1/folder/{request.FolderId}/content.json?" + qs;
-            var client = new HttpClient();
-            var response = await client.GetAsync(url);
-            response.EnsureSuccessStatusCode();
-            T result;
-            try
-            {
-                result = await response.Content.ReadAsAsync<T>();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-
-            return result;
-        }
         /// <summary>
         /// POST /rest/asset/v1/folders.json
         /// </summary>
