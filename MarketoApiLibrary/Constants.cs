@@ -29,6 +29,7 @@
             public const string Clone = "clone.json";
             public const string Folders = "folders.json";
             public const string Folder = "folder";
+            public const string Content = "content.json";
         }
 
         public static class QueryParameters
@@ -73,6 +74,8 @@
                         public const string WorkSpace = "workSpace";
                         public const string MaxDepth = "maxDepth";
                         public const string Type = "type";
+                        public const string Parent = "parent";
+                        public const string IsArchive = "isArchive";
                     }
 
                     public static class Values
