@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using MarketoMvc.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using MarketoMvc.Models;
+using System.Diagnostics;
 
 namespace MarketoMvc.Controllers
 {
@@ -17,7 +13,11 @@ namespace MarketoMvc.Controllers
         {
             _logger = logger;
         }
-
+        [Route("app1/{*url}")]
+        public IActionResult App1(string url)
+        {
+            return View("App1", url);
+        }
         public IActionResult Index()
         {
             return View();

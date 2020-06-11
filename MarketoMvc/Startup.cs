@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using System.IO;
 
 namespace MarketoMvc
 {
@@ -51,6 +48,27 @@ namespace MarketoMvc
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            app.Map("/apps/app1", builder =>
+            {
+                builder.UseSpa(spa =>
+                {
+                    if (env.IsDevelopment())
+                    {
+                        spa.UseProxyToSpaDevelopmentServer($"http://localhost:4201/");
+                    }
+                    else
+                    {
+                        var staticPath = Path.Combine(
+                            Directory.GetCurrentDirectory(), $"wwwroot/Apps/dist/app1");
+                        var fileOptions = new StaticFileOptions
+                        { FileProvider = new PhysicalFileProvider(staticPath) };
+                        builder.UseSpaStaticFiles(options: fileOptions);
+
+                        spa.Options.DefaultPageStaticFileOptions = fileOptions;
+                    }
+                });
             });
         }
     }
