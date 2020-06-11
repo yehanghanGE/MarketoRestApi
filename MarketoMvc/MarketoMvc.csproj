@@ -20,12 +20,14 @@
   
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
   </ItemGroup>
 
   <Target Name="PublishApps" AfterTargets="ComputeFilesToPublish">
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build -- --prod --outputPath=./dist/core" />
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build App1 -- --prod --base-href=/apps/app1/ --outputPath=./dist/app1" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build App2 -- --prod --base-href=/apps/app2/ --outputPath=./dist/app2" />
 
     <ItemGroup>
       <DistFiles Include="$(SpaRoot)dist\**" />

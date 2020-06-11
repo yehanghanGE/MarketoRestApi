@@ -70,6 +70,27 @@ namespace MarketoMvc
                     }
                 });
             });
+
+            app.Map("/apps/app2", builder =>
+            {
+                builder.UseSpa(spa =>
+                {
+                    if (env.IsDevelopment())
+                    {
+                        spa.UseProxyToSpaDevelopmentServer($"http://localhost:4202/");
+                    }
+                    else
+                    {
+                        var staticPath = Path.Combine(
+                            Directory.GetCurrentDirectory(), $"wwwroot/Apps/dist/app2");
+                        var fileOptions = new StaticFileOptions
+                        { FileProvider = new PhysicalFileProvider(staticPath) };
+                        builder.UseSpaStaticFiles(options: fileOptions);
+
+                        spa.Options.DefaultPageStaticFileOptions = fileOptions;
+                    }
+                });
+            });
         }
     }
 }

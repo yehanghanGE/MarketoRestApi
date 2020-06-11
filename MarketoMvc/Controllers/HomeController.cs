@@ -18,6 +18,12 @@ namespace MarketoMvc.Controllers
         {
             return View("App1", url);
         }
+
+        [Route("app2/{*url}")]
+        public IActionResult App2(string url)
+        {
+            return View("App2", url);
+        }
         public IActionResult Index()
         {
             return View();
