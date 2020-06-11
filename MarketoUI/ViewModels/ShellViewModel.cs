@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using System.Threading;
 
 namespace MarketoUI.ViewModels
 {
@@ -6,7 +7,7 @@ namespace MarketoUI.ViewModels
     {
         public ShellViewModel()
         {
-            //ActivateItem(IoC.Get<DownloadFileViewModel>());
+            ActivateItemAsync(IoC.Get<DownloadFileViewModel>(), new CancellationToken());
         }
     }
 }
