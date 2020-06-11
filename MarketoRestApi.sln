@@ -11,7 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketoUI", "MarketoUI\Mark
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketoApiLibrary.Tests", "MarketoApiLibrary.Tests\MarketoApiLibrary.Tests.csproj", "{7A8DDF71-8745-4170-9098-AB1F7C8D6650}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketoWebClient", "MarketoWebClient\MarketoWebClient.csproj", "{C4B942F3-2C19-4104-AF87-268B1C294F86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketoWebClient", "MarketoWebClient\MarketoWebClient.csproj", "{C4B942F3-2C19-4104-AF87-268B1C294F86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketoMvc", "MarketoMvc\MarketoMvc.csproj", "{6D86BA57-9853-4DAC-9A92-311BAE8A1E1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{C4B942F3-2C19-4104-AF87-268B1C294F86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4B942F3-2C19-4104-AF87-268B1C294F86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4B942F3-2C19-4104-AF87-268B1C294F86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D86BA57-9853-4DAC-9A92-311BAE8A1E1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D86BA57-9853-4DAC-9A92-311BAE8A1E1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D86BA57-9853-4DAC-9A92-311BAE8A1E1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D86BA57-9853-4DAC-9A92-311BAE8A1E1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
