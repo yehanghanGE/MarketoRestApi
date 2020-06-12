@@ -12,6 +12,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         xmlns:local="clr-namespace:Marketo.WPF.MaterialDesign"
+        xmlns:models="clr-namespace:Marketo.WPF.MaterialDesign.Models"
         mc:Ignorable="d" Height="600" Width="1080" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
     
     <StackPanel Orientation="Vertical" Background="WhiteSmoke">
@@ -34,8 +35,8 @@
         </Grid>
         <Grid Height="100">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="10 0">
-                <Button Uid="0" Width="150" Content="HOME" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="ButtonBase_OnClick"></Button>
-                <Button Uid="1" Width="150" Content="FOLDER" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="ButtonBase_OnClick"></Button>
+                <Button Uid="0" Width="150" Content="HOME" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="ButtonBase_OnClick" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static models:ViewType.Home}"></Button>
+                <Button Uid="1" Width="150" Content="FOLDER" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="ButtonBase_OnClick" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static models:ViewType.Folder}"></Button>
                 <Button Uid="2" Width="150" Content="FILE" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="ButtonBase_OnClick"></Button>
                 <Button Uid="3" Width="150" Content="SMART LIST" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="ButtonBase_OnClick"></Button>
                 <Button Uid="4" Width="150" Content="LEAD" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="ButtonBase_OnClick"></Button>
@@ -45,7 +46,7 @@
             <Grid x:Name="GridCursor" Width="150" Height="5" Background="#FF2196F3" HorizontalAlignment="Left" Margin="0 0"></Grid>
         </Grid>
         <Grid x:Name="GridMain" Height="460" Background="Azure">
-            
+            <ContentControl Content="{Binding CurrentViewModel}"></ContentControl>
         </Grid>
     </StackPanel>
 </Window>
