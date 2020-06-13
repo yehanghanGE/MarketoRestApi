@@ -11,11 +11,11 @@ namespace Marketo.WPF.MaterialDesign.ViewModels
 
 	public class MainViewModel : BaseViewModel, IMainViewModel
 	{
-		private BaseViewModel _currentViewModel;
+		private BaseViewModel _currentViewModel = new HomeViewModel();
 
 		public BaseViewModel CurrentViewModel
 		{
-			get { return _currentViewModel; }
+			get => _currentViewModel;
 			set
 			{
 				_currentViewModel = value;

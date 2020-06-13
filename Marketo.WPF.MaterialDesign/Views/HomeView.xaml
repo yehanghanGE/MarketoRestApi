@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Marketo.WPF.MaterialDesign.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="1080">
     <Grid>
-            <TextBlock Text="MARKETO HOME"></TextBlock>
+        <TextBlock Text="MARKETO HOME" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"></TextBlock>
     </Grid>
 </UserControl>

@@ -9,7 +9,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Teal" SecondaryColor="Lime" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate DataType="{x:Type viewModels:HomeViewModel}">
@@ -17,6 +17,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModels:FolderViewModel}">
                 <views:FolderView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:FileViewModel}">
+                <views:FileView/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

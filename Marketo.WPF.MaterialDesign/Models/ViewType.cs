@@ -3,6 +3,7 @@
     public enum ViewType
     {
         Home,
-        Folder
+        Folder,
+        File
     }
 }

@@ -34,6 +34,9 @@ namespace Marketo.WPF.MaterialDesign.Commands
                 case ViewType.Folder:
                     _mainViewModel.CurrentViewModel = new FolderViewModel();
                     break;
+                case ViewType.File:
+                    _mainViewModel.CurrentViewModel = new FileViewModel();
+                    break;
             }
         }
     }
