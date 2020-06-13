@@ -1,6 +1,7 @@
 ﻿using Marketo.WPF.MaterialDesign.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Marketo.WPF.MaterialDesign
 {
@@ -13,6 +14,7 @@ namespace Marketo.WPF.MaterialDesign
         {
             InitializeComponent();
             DataContext = new MainViewModel();
+            MouseDown += Window_MouseDown;
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
@@ -25,6 +27,12 @@ namespace Marketo.WPF.MaterialDesign
         private void CloseBtn_OnClick(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }
