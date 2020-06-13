@@ -36,8 +36,8 @@
         <Grid Height="80">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="10 0">
                 <Button Uid="0" Width="150" Content="HOME" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#005EB8" Click="ButtonBase_OnClick" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static models:ViewType.Home}"></Button>
-                <Button Uid="1" Width="150" Content="FOLDER" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#005EB8" Click="ButtonBase_OnClick" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static models:ViewType.Folder}"></Button>
-                <Button Uid="2" Width="150" Content="FILE" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#005EB8" Click="ButtonBase_OnClick" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static models:ViewType.File}"></Button>
+                <Button Uid="1" Width="150" Content="FILE" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#005EB8" Click="ButtonBase_OnClick" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static models:ViewType.File}"></Button>
+                <Button Uid="2" Width="150" Content="FOLDER" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#005EB8" Click="ButtonBase_OnClick" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static models:ViewType.Folder}"></Button>
                 <Button Uid="3" Width="150" Content="SMART LIST" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#005EB8" Click="ButtonBase_OnClick"></Button>
                 <Button Uid="4" Width="150" Content="LEAD" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#005EB8" Click="ButtonBase_OnClick"></Button>
                 <Button Uid="5" Width="150" Content="LEAD" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#005EB8" Click="ButtonBase_OnClick"></Button>
