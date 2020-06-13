@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Marketo.WPF.MaterialDesign.Views.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Marketo.WPF.MaterialDesign.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1080">
+    <Grid>
+        <materialDesign:Card
+            Background="{DynamicResource PrimaryHueDarkBrush}"
+            Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+            Width="1000"
+            Height="400"
+            Padding="8"
+            UniformCornerRadius="6">
+            <TextBlock
+                TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40">
+                MARKETO
+            </TextBlock>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>
