@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketoApiLibrary", "MarketoApiLibrary\MarketoApiLibrary.csproj", "{F43BE805-0890-40CA-B759-025193696B17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketo.ApiLibrary", "Marketo.ApiLibrary\Marketo.ApiLibrary.csproj", "{F43BE805-0890-40CA-B759-025193696B17}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketoApiConsole", "MarketoApiConsole\MarketoApiConsole.csproj", "{FA13F15B-B38C-4502-BF45-41BAC4590674}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketo.Console", "Marketo.Console\Marketo.Console.csproj", "{FA13F15B-B38C-4502-BF45-41BAC4590674}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketoUI", "MarketoUI\MarketoUI.csproj", "{AE4318F4-BC74-4373-8C09-E1E4E2A4FC63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketo.UI", "Marketo.UI\Marketo.UI.csproj", "{AE4318F4-BC74-4373-8C09-E1E4E2A4FC63}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketoApiLibrary.Tests", "MarketoApiLibrary.Tests\MarketoApiLibrary.Tests.csproj", "{7A8DDF71-8745-4170-9098-AB1F7C8D6650}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketo.ApiLibrary.Tests", "Marketo.ApiLibrary.Tests\Marketo.ApiLibrary.Tests.csproj", "{7A8DDF71-8745-4170-9098-AB1F7C8D6650}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketoWebClient", "MarketoWebClient\MarketoWebClient.csproj", "{C4B942F3-2C19-4104-AF87-268B1C294F86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketo.WPF.MaterialDesign", "Marketo.WPF.MaterialDesign\Marketo.WPF.MaterialDesign.csproj", "{B0EF35D0-9112-4081-9136-49285772B66A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketoMvc", "MarketoMvc\MarketoMvc.csproj", "{6D86BA57-9853-4DAC-9A92-311BAE8A1E1F}"
 EndProject
@@ -37,14 +37,10 @@ Global
 		{7A8DDF71-8745-4170-9098-AB1F7C8D6650}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A8DDF71-8745-4170-9098-AB1F7C8D6650}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A8DDF71-8745-4170-9098-AB1F7C8D6650}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C4B942F3-2C19-4104-AF87-268B1C294F86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4B942F3-2C19-4104-AF87-268B1C294F86}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C4B942F3-2C19-4104-AF87-268B1C294F86}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C4B942F3-2C19-4104-AF87-268B1C294F86}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6D86BA57-9853-4DAC-9A92-311BAE8A1E1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6D86BA57-9853-4DAC-9A92-311BAE8A1E1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6D86BA57-9853-4DAC-9A92-311BAE8A1E1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6D86BA57-9853-4DAC-9A92-311BAE8A1E1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0EF35D0-9112-4081-9136-49285772B66A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0EF35D0-9112-4081-9136-49285772B66A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0EF35D0-9112-4081-9136-49285772B66A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0EF35D0-9112-4081-9136-49285772B66A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
