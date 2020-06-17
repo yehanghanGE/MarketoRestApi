@@ -6,7 +6,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using System.IO;
 
-namespace MarketoMvc
+namespace Marketo.Mvc
 {
     public class Startup
     {

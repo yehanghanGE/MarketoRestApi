@@ -1,9 +1,9 @@
-﻿using MarketoMvc.Models;
+﻿using Marketo.Mvc.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
-namespace MarketoMvc.Controllers
+namespace Marketo.Mvc.Controllers
 {
     public class HomeController : Controller
     {

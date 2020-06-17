@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MarketoMvc
+namespace Marketo.Mvc
 {
     public class Program
     {

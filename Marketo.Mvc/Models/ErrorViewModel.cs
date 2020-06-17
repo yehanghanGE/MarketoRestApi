@@ -1,6 +1,6 @@
 using System;
 
-namespace MarketoMvc.Models
+namespace Marketo.Mvc.Models
 {
     public class ErrorViewModel
     {

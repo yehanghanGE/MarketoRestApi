@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketo.ApiLibrary.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketo.WPF.MaterialDesign", "Marketo.WPF.MaterialDesign\Marketo.WPF.MaterialDesign.csproj", "{B0EF35D0-9112-4081-9136-49285772B66A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketoMvc", "MarketoMvc\MarketoMvc.csproj", "{6D86BA57-9853-4DAC-9A92-311BAE8A1E1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketo.Mvc", "Marketo.Mvc\Marketo.Mvc.csproj", "{6D86BA57-9853-4DAC-9A92-311BAE8A1E1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +41,10 @@ Global
 		{B0EF35D0-9112-4081-9136-49285772B66A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0EF35D0-9112-4081-9136-49285772B66A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0EF35D0-9112-4081-9136-49285772B66A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D86BA57-9853-4DAC-9A92-311BAE8A1E1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D86BA57-9853-4DAC-9A92-311BAE8A1E1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D86BA57-9853-4DAC-9A92-311BAE8A1E1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D86BA57-9853-4DAC-9A92-311BAE8A1E1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
