@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace MarketoWebClient.Controllers
+namespace Marketo.Angular.Controllers
 {
     [ApiController]
     [Route("[controller]")]

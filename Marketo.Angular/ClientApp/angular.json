@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "MarketoWebClient": {
+    "Marketo.Angular": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "MarketoWebClient:build"
+            "browserTarget": "Marketo.Angular:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "MarketoWebClient:build:production"
+              "browserTarget": "Marketo.Angular:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "MarketoWebClient:build"
+            "browserTarget": "Marketo.Angular:build"
           }
         },
         "test": {
@@ -111,7 +111,7 @@
         }
       }
     },
-    "MarketoWebClient-e2e": {
+    "Marketo.Angular-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -119,7 +119,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "MarketoWebClient:serve"
+            "devServerTarget": "Marketo.Angular:serve"
           }
         },
         "lint": {
@@ -132,5 +132,5 @@
       }
     }
   },
-  "defaultProject": "MarketoWebClient"
+  "defaultProject": "Marketo.Angular"
 }

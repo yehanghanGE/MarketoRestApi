@@ -1,6 +1,6 @@
 using System;
 
-namespace MarketoWebClient
+namespace Marketo.Angular
 {
     public class WeatherForecast
     {
