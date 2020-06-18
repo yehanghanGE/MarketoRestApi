@@ -6,6 +6,8 @@
     <Authors>YehangHan</Authors>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="Leads\BulkExportLeads\RequestProcessor\" />
+    <Folder Include="Leads\BulkExportLeads\RequestProvider\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
