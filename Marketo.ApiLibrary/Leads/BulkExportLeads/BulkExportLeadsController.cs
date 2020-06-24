@@ -1,12 +1,23 @@
-﻿using Marketo.ApiLibrary.Leads.BulkExportLeads.Response;
+﻿using Marketo.ApiLibrary.Leads.BulkExportLeads.Request;
+using Marketo.ApiLibrary.Leads.BulkExportLeads.RequestProcessor;
+using Marketo.ApiLibrary.Leads.BulkExportLeads.Response;
 
 namespace Marketo.ApiLibrary.Leads.BulkExportLeads
 {
     public class BulkExportLeadsController : IBulkExportLeadsController
     {
+        private readonly CreateExportLeadJobProcessor _createExportLeadJobProcessor;
+
+        public BulkExportLeadsController(CreateExportLeadJobProcessor createExportLeadJobProcessor)
+        {
+            _createExportLeadJobProcessor = createExportLeadJobProcessor;
+        }
+
         public CreateExportLeadJobResponse CreateExportLeadJob()
         {
-            throw new System.NotImplementedException();
+            var request = new CreateExportLeadJobRequest();
+            var result = _createExportLeadJobProcessor.Process(request);
+            return result;
         }
     }
 }

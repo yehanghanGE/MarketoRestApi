@@ -2,6 +2,8 @@
 using Marketo.ApiLibrary.Common.Http.Oauth;
 using Marketo.ApiLibrary.Common.Http.Services;
 using Marketo.ApiLibrary.Leads.BulkExportLeads.Request;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Net.Http;
 
 namespace Marketo.ApiLibrary.Leads.BulkExportLeads.RequestProvider
@@ -24,9 +26,14 @@ namespace Marketo.ApiLibrary.Leads.BulkExportLeads.RequestProvider
             return HttpMethod.Post;
         }
 
-        protected override HttpContent GetBody(CreateExportLeadJobRequest request)
+        protected override Dictionary<string, string> GetQueryString(CreateExportLeadJobRequest request)
         {
-            return new HttpContent();
+            var qs = new Dictionary<string, string>
+            {
+                { Constants.QueryParameters.Lead.Leads.Keys.ExportLeadRequest, JsonConvert.SerializeObject(request)},
+            };
+
+            return qs;
         }
 
     }

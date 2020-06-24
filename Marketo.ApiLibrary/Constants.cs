@@ -89,6 +89,21 @@
                 }
             }
 
+            public static class Lead
+            {
+                public static class Leads
+                {
+                    public static class Keys
+                    {
+                        public const string ExportLeadRequest = "exportLeadRequest";
+                    }
+
+                    public static class Values
+                    {
+
+                    }
+                }
+            }
         }
     }
 
