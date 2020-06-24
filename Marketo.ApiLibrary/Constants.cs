@@ -30,6 +30,10 @@
             public const string Folders = "folders.json";
             public const string Folder = "folder";
             public const string Content = "content.json";
+            public const string Bulk = "bulk";
+            public const string Export = "export";
+            public const string Create = "create.json";
+            public const string Leads = "leads";
         }
 
         public static class QueryParameters

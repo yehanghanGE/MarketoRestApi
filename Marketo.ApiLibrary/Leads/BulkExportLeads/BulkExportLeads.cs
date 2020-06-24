@@ -1,4 +1,5 @@
 ﻿using Marketo.ApiLibrary.Common.DI;
+using Marketo.ApiLibrary.Leads.BulkExportLeads.Response;
 
 namespace Marketo.ApiLibrary.Leads.BulkExportLeads
 {
@@ -28,9 +29,13 @@ namespace Marketo.ApiLibrary.Leads.BulkExportLeads
         {
             _bulkExportLeadsController = MarketoApiContainer.Resolve<IBulkExportLeadsController>();
         }
-        public static void CreateExportLeadJob()
+        /// <summary>
+        /// POST /bulk/v1/leads/export/create.json
+        /// </summary>
+        /// <returns></returns>
+        public static CreateExportLeadJobResponse CreateExportLeadJob()
         {
-
+            return BulkExportLeadsController.CreateExportLeadJob();
         }
     }
 }
