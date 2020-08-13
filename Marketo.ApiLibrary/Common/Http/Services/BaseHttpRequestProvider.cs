@@ -50,7 +50,7 @@ namespace Marketo.ApiLibrary.Common.Http.Services
             return request;
         }
 
-        protected Uri GetMarketoBaseUri()
+        protected virtual Uri GetMarketoBaseUri()
         {
             var marketoConfig = this._configuration.LoadConfig();
             return new Uri(new Uri(marketoConfig.Host), marketoConfig.RestRelativePath);

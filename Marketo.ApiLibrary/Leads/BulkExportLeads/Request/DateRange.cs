@@ -2,7 +2,8 @@
 {
     public class DateRange
     {
-        public string EndAt { get; set; }
         public string StartAt { get; set; }
+        public string EndAt { get; set; }
+
     }
 }

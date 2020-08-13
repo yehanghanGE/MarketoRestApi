@@ -2,6 +2,14 @@
 {
     public static class Constants
     {
+        public static class MediaTypeNames
+        {
+            public static class Application
+            {
+                public const string Json = "application/json";
+            }
+        }
+
         public static class OAuth
         {
             public const string Host = "host";
@@ -10,6 +18,7 @@
             public const string ClientSecret = "client_secret";
             public const string RequestTimeoutSeconds = "requestTimeoutSeconds";
             public const string RestRelativePath = "restRelativePath";
+            public const string BulkRelativePath = "bulkRelativePath";
             public const string GrantType = "grant_type";
 
             public static class GrantTypes
