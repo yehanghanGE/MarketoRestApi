@@ -1,11 +1,11 @@
 ﻿using Marketo.ApiLibrary.Common.Configuration;
+using Marketo.ApiLibrary.Common.Http.Oauth;
 using Marketo.ApiLibrary.Common.Http.ValueObjects;
 using Marketo.ApiLibrary.Common.Model;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using Marketo.ApiLibrary.Common.Http.Oauth;
 using UriBuilder = Marketo.ApiLibrary.Common.Http.Helper.UriBuilder;
 
 namespace Marketo.ApiLibrary.Common.Http.Services
@@ -50,7 +50,7 @@ namespace Marketo.ApiLibrary.Common.Http.Services
             return request;
         }
 
-        protected Uri GetMarketoBaseUri()
+        protected virtual Uri GetMarketoBaseUri()
         {
             var marketoConfig = this._configuration.LoadConfig();
             return new Uri(new Uri(marketoConfig.Host), marketoConfig.RestRelativePath);
@@ -82,5 +82,6 @@ namespace Marketo.ApiLibrary.Common.Http.Services
         {
             return null;
         }
+
     }
 }
