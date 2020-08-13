@@ -5,16 +5,16 @@ namespace Marketo.ApiLibrary.Leads.BulkExportLeads.DTO
     public class ExportLeadFilterDto
     {
         [JsonProperty("createAt")]
-        public virtual DateRangeDto CreateAt { get; set; }
+        public DateRangeDto CreateAt { get; set; }
         [JsonProperty("smartListId")]
-        public virtual int SmartListId { get; set; }
+        public int SmartListId { get; set; }
         [JsonProperty("smartListName")]
-        public virtual string SmartListName { get; set; }
+        public string SmartListName { get; set; }
         [JsonProperty("staticListId")]
-        public virtual int StaticListId { get; set; }
+        public int StaticListId { get; set; }
         [JsonProperty("staticListName")]
-        public virtual string StaticListName { get; set; }
+        public string StaticListName { get; set; }
         [JsonProperty("updatedAt")]
-        public virtual DateRangeDto UpdatedAt { get; set; }
+        public DateRangeDto UpdatedAt { get; set; }
     }
 }

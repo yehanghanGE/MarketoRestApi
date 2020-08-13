@@ -1,5 +1,7 @@
 ﻿using Marketo.ApiLibrary.Common.DI;
+using Marketo.ApiLibrary.Leads.BulkExportLeads.Request;
 using Marketo.ApiLibrary.Leads.BulkExportLeads.Response;
+using System.Collections.Generic;
 
 namespace Marketo.ApiLibrary.Leads.BulkExportLeads
 {
@@ -33,9 +35,9 @@ namespace Marketo.ApiLibrary.Leads.BulkExportLeads
         /// POST /bulk/v1/leads/export/create.json
         /// </summary>
         /// <returns></returns>
-        public static CreateExportLeadJobResponse CreateExportLeadJob()
+        public static CreateExportLeadJobResponse CreateExportLeadJob(List<string> fields, ExportLeadFilter filters, List<ColumnHeaderName> columnHeaderNames, string format = "csv")
         {
-            return BulkExportLeadsController.CreateExportLeadJob();
+            return BulkExportLeadsController.CreateExportLeadJob(fields, filters, columnHeaderNames, format);
         }
     }
 }

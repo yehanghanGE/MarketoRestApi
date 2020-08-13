@@ -2,11 +2,11 @@
 
 namespace Marketo.ApiLibrary.Leads.BulkExportLeads.DTO
 {
-    public class ColumnHeaderNamesDto
+    public class ColumnHeaderNameDto
     {
         [JsonProperty("name")]
-        public virtual string Name { get; set; }
+        public string Name { get; set; }
         [JsonProperty("value")]
-        public virtual string Value { get; set; }
+        public string Value { get; set; }
     }
 }

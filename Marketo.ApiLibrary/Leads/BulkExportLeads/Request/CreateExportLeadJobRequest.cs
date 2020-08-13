@@ -5,7 +5,7 @@ namespace Marketo.ApiLibrary.Leads.BulkExportLeads.Request
 {
     public class CreateExportLeadJobRequest : BaseRequest
     {
-        public ColumnHeaderNames ColumnHeaderNames { get; set; }
+        public List<ColumnHeaderName> ColumnHeaderNames { get; set; }
         public List<string> Fields { get; set; }
         public ExportLeadFilter Filter { get; set; }
         public string Format { get; set; }
