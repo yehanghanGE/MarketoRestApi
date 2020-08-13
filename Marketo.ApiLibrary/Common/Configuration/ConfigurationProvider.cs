@@ -1,5 +1,5 @@
-﻿using System.Configuration;
-using Marketo.ApiLibrary.Common.Model;
+﻿using Marketo.ApiLibrary.Common.Model;
+using System.Configuration;
 
 namespace Marketo.ApiLibrary.Common.Configuration
 {
@@ -17,6 +17,7 @@ namespace Marketo.ApiLibrary.Common.Configuration
                 ClientSecret = confCollection[Constants.OAuth.ClientSecret]?.Value,
                 AuthorizeRelativePath = confCollection[Constants.OAuth.AuthorizeRelativePath]?.Value,
                 RestRelativePath = confCollection[Constants.OAuth.RestRelativePath]?.Value,
+                BulkRelativePath = confCollection[Constants.OAuth.BulkRelativePath]?.Value,
                 RequestTimeoutSeconds = confCollection[Constants.OAuth.RequestTimeoutSeconds]?.Value
             };
 
@@ -38,6 +39,7 @@ namespace Marketo.ApiLibrary.Common.Configuration
                 ClientSecret = confCollection[Constants.OAuth.ClientSecret]?.Value,
                 AuthorizeRelativePath = confCollection[Constants.OAuth.AuthorizeRelativePath]?.Value,
                 RestRelativePath = confCollection[Constants.OAuth.RestRelativePath]?.Value,
+                BulkRelativePath = confCollection[Constants.OAuth.BulkRelativePath]?.Value,
                 RequestTimeoutSeconds = confCollection[Constants.OAuth.RequestTimeoutSeconds]?.Value
             };
 
