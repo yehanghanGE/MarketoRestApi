@@ -34,7 +34,7 @@ namespace Marketo.ApiLibrary.Lead.Leads
 
         public static LeadAttributeResponse DescibeLead()
         {
-
+            return null;
         }
     }
 }
