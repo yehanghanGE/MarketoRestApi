@@ -14,4 +14,8 @@
     <Folder Include="Controls\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Marketo.ApiLibrary\Marketo.ApiLibrary.csproj" />
+  </ItemGroup>
+
 </Project>

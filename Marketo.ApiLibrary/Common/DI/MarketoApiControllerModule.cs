@@ -12,10 +12,10 @@ using Marketo.ApiLibrary.Common.Http.Data;
 using Marketo.ApiLibrary.Common.Http.Oauth;
 using Marketo.ApiLibrary.Common.Http.Services;
 using Marketo.ApiLibrary.Common.Logging;
-using Marketo.ApiLibrary.Leads.BulkExportLeads;
-using Marketo.ApiLibrary.Leads.BulkExportLeads.Request;
-using Marketo.ApiLibrary.Leads.BulkExportLeads.RequestProcessor;
-using Marketo.ApiLibrary.Leads.BulkExportLeads.RequestProvider;
+using Marketo.ApiLibrary.Lead.BulkExportLeads;
+using Marketo.ApiLibrary.Lead.BulkExportLeads.Request;
+using Marketo.ApiLibrary.Lead.BulkExportLeads.RequestProcessor;
+using Marketo.ApiLibrary.Lead.BulkExportLeads.RequestProvider;
 
 namespace Marketo.ApiLibrary.Common.DI
 {
@@ -64,7 +64,7 @@ namespace Marketo.ApiLibrary.Common.DI
             container.RegisterType<UpdateFolderMetadataProcessor>(RegistrationLifetime.InstancePerThread);
 
             container.RegisterType<IHttpRequestProvider<CreateExportLeadJobRequest>, CreateExportLeadJobRequestProvider>(RegistrationLifetime.InstancePerThread);
-            container.RegisterType<CreateExportLeadJobProcessor>(RegistrationLifetime.InstancePerThread);
+            container.RegisterType<DescribeLeadProcessor>(RegistrationLifetime.InstancePerThread);
 
         }
     }

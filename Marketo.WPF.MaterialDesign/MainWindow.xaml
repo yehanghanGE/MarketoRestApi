@@ -26,7 +26,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="20 0">
                 <Button Content="FAQ" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="15" FontWeight="Bold" VerticalAlignment="Center"></Button>
                 <Button Content="CONTACT" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="15" FontWeight="Bold" VerticalAlignment="Center"></Button>
-                <Button Content="ORDER STATUS" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="15" FontWeight="Bold" VerticalAlignment="Center"></Button>
+                <!--<Button Content="ORDER STATUS" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="15" FontWeight="Bold" VerticalAlignment="Center"></Button>-->
                 <Button Content="MY ACCOUNT" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="15" FontWeight="Bold" VerticalAlignment="Center"></Button>
                 <Button Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Click="CloseBtn_OnClick">
                     <materialDesign:PackIcon Kind="Power" Width="25" Height="25" />
@@ -39,7 +39,7 @@
                 <Button Uid="1" Width="150" Content="FILE" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtonBase_OnClick" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static models:ViewType.File}"></Button>
                 <Button Uid="2" Width="150" Content="FOLDER" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtonBase_OnClick" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static models:ViewType.Folder}"></Button>
                 <Button Uid="3" Width="150" Content="SMART LIST" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtonBase_OnClick"></Button>
-                <Button Uid="4" Width="150" Content="LEAD" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtonBase_OnClick"></Button>
+                <Button Uid="4" Width="150" Content="LEAD" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtonBase_OnClick" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static models:ViewType.Lead}"></Button>
                 <Button Uid="5" Width="150" Content="LEAD" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtonBase_OnClick"></Button>
                 <Button Uid="6" Width="150" Content="LEAD" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtonBase_OnClick"></Button>
             </StackPanel>

@@ -1,17 +1,4 @@
-﻿using Marketo.ApiLibrary.Asset.Files;
-using Marketo.ApiLibrary.Asset.Files.Request;
-using Marketo.ApiLibrary.Asset.Files.Response;
-using Marketo.ApiLibrary.Asset.Folders;
-using Marketo.ApiLibrary.Asset.Folders.Request;
-using Marketo.ApiLibrary.Asset.Folders.Response;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Threading.Tasks;
-using Marketo.ApiLibrary.Common.Http.Oauth;
-using Marketo.ApiLibrary.Mis.Provider;
-using Marketo.ApiLibrary.Mis.Request;
-using Marketo.ApiLibrary.Mis.Service;
+﻿using Marketo.ApiLibrary.Mis.Provider;
 
 namespace Marketo.ApiLibrary
 {
@@ -21,17 +8,17 @@ namespace Marketo.ApiLibrary
         //private readonly string _clientId;
         //private readonly string _clientSecret;
         //private readonly string _token;
-        //private readonly IRequestFactory _requestFactorty;
+        private readonly IRequestFactory _requestFactorty;
         //private readonly IAuthenticationTokenProvider _tokenProvider;
-        //public MarketoClient(string host, string clientId, string clientSecret)
-        //{
-        //    _host = host;
-        //    _clientId = clientId;
-        //    _clientSecret = clientSecret;
-        //    _tokenProvider = new AuthenticationTokenProvider();
-        //    _token = _tokenProvider.GetToken().Token;
-        //    _requestFactorty = new RequestFactory();
-        //}
+        public MarketoClient(string host, string clientId, string clientSecret)
+        {
+            //_host = host;
+            //_clientId = clientId;
+            //_clientSecret = clientSecret;
+            //_tokenProvider = new AuthenticationTokenProvider();
+            //_token = _tokenProvider.GetToken().Token;
+            _requestFactorty = new RequestFactory();
+        }
 
 
         //public Task<FoldersResponse> GetFolders(string rootFolderId)

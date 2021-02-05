@@ -4,6 +4,7 @@
     {
         Home,
         Folder,
-        File
+        File,
+        Lead
     }
 }

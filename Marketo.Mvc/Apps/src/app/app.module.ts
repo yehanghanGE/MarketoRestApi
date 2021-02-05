@@ -13,6 +13,9 @@ import { CurrentTimeComponent } from './current-time/current-time.component';
   imports: [
     BrowserModule
   ],
+  exports:[
+    CurrentTimeComponent
+  ],
   providers: [],
   entryComponents: [CurrentTimeComponent]
 })

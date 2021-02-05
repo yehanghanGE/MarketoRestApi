@@ -37,6 +37,9 @@ namespace Marketo.WPF.MaterialDesign.Commands
                 case ViewType.File:
                     _mainViewModel.CurrentViewModel = new FileViewModel();
                     break;
+                case ViewType.Lead:
+                    _mainViewModel.CurrentViewModel = new LeadViewModel();
+                    break;
             }
         }
     }
