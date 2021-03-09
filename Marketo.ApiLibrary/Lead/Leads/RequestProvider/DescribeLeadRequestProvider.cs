@@ -16,7 +16,7 @@ namespace Marketo.ApiLibrary.Lead.Leads.RequestProvider
 
         protected override string GetRelativeUrl(DescribeLeadRequest request)
         {
-            throw new System.NotImplementedException();
+            return $"/{Constants.UrlSegments.Version}/{Constants.UrlSegments.Leads}/{Constants.UrlSegments.Describe}";
         }
 
         protected override HttpMethod GetHttpMethod()

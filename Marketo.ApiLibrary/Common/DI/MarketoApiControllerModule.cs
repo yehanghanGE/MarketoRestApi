@@ -14,8 +14,11 @@ using Marketo.ApiLibrary.Common.Http.Services;
 using Marketo.ApiLibrary.Common.Logging;
 using Marketo.ApiLibrary.Lead.BulkExportLeads;
 using Marketo.ApiLibrary.Lead.BulkExportLeads.Request;
-using Marketo.ApiLibrary.Lead.BulkExportLeads.RequestProcessor;
 using Marketo.ApiLibrary.Lead.BulkExportLeads.RequestProvider;
+using Marketo.ApiLibrary.Lead.Leads;
+using Marketo.ApiLibrary.Lead.Leads.Request;
+using Marketo.ApiLibrary.Lead.Leads.RequestProcessor;
+using Marketo.ApiLibrary.Lead.Leads.RequestProvider;
 
 namespace Marketo.ApiLibrary.Common.DI
 {
@@ -36,6 +39,7 @@ namespace Marketo.ApiLibrary.Common.DI
             container.RegisterType<ISmartListController, SmartListController>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IFolderController, FolderController>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IBulkExportLeadsController, BulkExportLeadsController>(RegistrationLifetime.InstancePerThread);
+            container.RegisterType<ILeadsController, LeadsController>(RegistrationLifetime.InstancePerThread);
 
             container.RegisterType<IHttpRequestProvider<GetSmartListsRequest>, GetSmartListsRequestProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<IHttpRequestProvider<GetSmartListByIdRequest>, GetSmartListByIdRequestProvider>(RegistrationLifetime.InstancePerThread);
@@ -64,6 +68,7 @@ namespace Marketo.ApiLibrary.Common.DI
             container.RegisterType<UpdateFolderMetadataProcessor>(RegistrationLifetime.InstancePerThread);
 
             container.RegisterType<IHttpRequestProvider<CreateExportLeadJobRequest>, CreateExportLeadJobRequestProvider>(RegistrationLifetime.InstancePerThread);
+            container.RegisterType<IHttpRequestProvider<DescribeLeadRequest>, DescribeLeadRequestProvider>(RegistrationLifetime.InstancePerThread);
             container.RegisterType<DescribeLeadProcessor>(RegistrationLifetime.InstancePerThread);
 
         }

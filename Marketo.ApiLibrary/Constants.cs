@@ -43,6 +43,7 @@
             public const string Export = "export";
             public const string Create = "create.json";
             public const string Leads = "leads";
+            public const string Describe = "describe.json";
         }
 
         public static class QueryParameters

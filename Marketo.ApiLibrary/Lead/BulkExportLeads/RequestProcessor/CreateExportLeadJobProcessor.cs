@@ -7,11 +7,10 @@ using Marketo.ApiLibrary.Lead.BulkExportLeads.Response;
 
 namespace Marketo.ApiLibrary.Lead.BulkExportLeads.RequestProcessor
 {
-    public class DescribeLeadProcessor : MarketoHttpRequestProcessor<CreateExportLeadJobRequest, CreateExportLeadJobResponse>
+    public class CreateExportLeadJobProcessor : MarketoHttpRequestProcessor<CreateExportLeadJobRequest, CreateExportLeadJobResponse>
     {
-        public DescribeLeadProcessor(IHttpRequestProvider<CreateExportLeadJobRequest> requestProvider,
-            IMarketoDataProvider dataProvider,
-            ILoggingService<CommerceLog> commerceLogger) :
+        public CreateExportLeadJobProcessor(IHttpRequestProvider<CreateExportLeadJobRequest> requestProvider, 
+            IMarketoDataProvider dataProvider, ILoggingService<CommerceLog> commerceLogger) : 
             base(requestProvider, dataProvider, commerceLogger)
         {
         }

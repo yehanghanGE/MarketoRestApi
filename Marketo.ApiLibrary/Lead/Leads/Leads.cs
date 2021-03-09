@@ -1,4 +1,5 @@
-﻿using Marketo.ApiLibrary.Common.DI;
+﻿using System.Runtime.CompilerServices;
+using Marketo.ApiLibrary.Common.DI;
 using Marketo.ApiLibrary.Lead.Leads.Response;
 
 namespace Marketo.ApiLibrary.Lead.Leads
@@ -34,7 +35,7 @@ namespace Marketo.ApiLibrary.Lead.Leads
 
         public static LeadAttributeResponse DescibeLead()
         {
-            return null;
+            return LeadsController.DescribeLead();
         }
     }
 }
