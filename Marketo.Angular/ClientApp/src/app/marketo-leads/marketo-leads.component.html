@@ -1,0 +1,22 @@
+<h1 id="leadAttributesLabel">Marketo Lead Attributes</h1>
+
+<p *ngIf="!leadAttributes"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="leadAttributesLabel" *ngIf="leadAttributes">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>DisplayName</th>
+      <th>DataType</th>
+      <th>Length</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let leadAttribute of leadAttributes">
+      <td>{{ leadAttribute.id }}</td>
+      <td>{{ leadAttribute.displayName }}</td>
+      <td>{{ leadAttribute.dataType }}</td>
+      <td>{{ leadAttribute.length }}</td>
+    </tr>
+  </tbody>
+</table>
