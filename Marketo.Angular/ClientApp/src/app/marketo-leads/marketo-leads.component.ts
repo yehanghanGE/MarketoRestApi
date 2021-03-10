@@ -10,7 +10,7 @@ export class MarketoLeadsComponent {
 
   public leadAttributes: LeadAttribute[];
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) { 
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     http.get<LeadAttribute[]>(baseUrl + 'marketoleads').subscribe(result => {
       this.leadAttributes = result;
     }, error => console.error(error));
